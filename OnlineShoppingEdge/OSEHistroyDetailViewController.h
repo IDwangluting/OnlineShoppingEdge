@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  OSEHistroyDetailViewController.h
 //  OnlineShoppingEdge
 //
 //  Created by luting on 20/1/11.
@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface OSEHistroyDetailViewController : UIViewController
 
+- (instancetype)initWithUrl:(NSString *)url;
 
 @end
 
