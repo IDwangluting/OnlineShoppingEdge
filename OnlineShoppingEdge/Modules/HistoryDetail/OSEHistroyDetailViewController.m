@@ -12,37 +12,18 @@
 @interface OSEHistroyDetailViewController ()<WKUIDelegate,WKNavigationDelegate>
 
 @property (nonnull,strong,nonatomic)WKWebView * webView ;
-@property (nonnull,strong,nonatomic)NSMutableDictionary * contentDic;
+@property (nonnull,strong,nonatomic)UIButton  * backBtn ;
 
 @end
 
 @implementation OSEHistroyDetailViewController {
     NSArray  * _domains;
     NSString * _urlString;
+    NSMutableDictionary * _contentDic;
 }
 
 - (instancetype)initWithUrl:(NSString *)url {
     if (self = [super init]) {
-        _domains   = self.contentDic.allKeys;
-        _urlString = url;
-    }
-    return self;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self webView];
-    [self backBtn];
-    [self tryOpenWebWithUrl:_urlString];
-}
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    self.webView.frame = self.view.frame;
-}
-
-- (NSMutableDictionary *)contentDic {
-    if (!_contentDic) {
         _contentDic = [[NSMutableDictionary alloc]initWithCapacity:4];
         [_contentDic setObject:@{@"platform"       :@"天猫",
                                  @"historicalPrice":@"http://detail.tmallvvv.com/"}
@@ -51,7 +32,7 @@
                                  @"historicalPrice":@"http://detail.tmallvvv.com/"}
                         forKey:@"http://detail.tmall.com/"];
         [_contentDic setObject:@{@"platform"       :@"天猫",
-                                 @"historicalPrice":@"http://detail.m.tmallvvv.com/"}
+                                @"historicalPrice":@"http://detail.m.tmallvvv.com/"}
                         forKey:@"https://detail.m.tmall.com/"];
         [_contentDic setObject:@{@"platform"       :@"天猫",
                                  @"historicalPrice":@"http://detail.m.tmallvvv.com/"}
@@ -117,8 +98,24 @@
         [_contentDic setObject:@{@"platform"       :@"网易考拉",
                                  @"historicalPrice":@"http://goods.kaolavvv.com/"}
                         forKey:@"http://goods.kaola.com/"];
+        _domains   = _contentDic.allKeys;
+        _urlString = url;
     }
-    return _contentDic;
+    return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self webView];
+    [self backBtn];
+    [self tryOpenWebWithUrl:_urlString];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    CGSize size  = self.view.frame.size;
+    _webView.frame = self.view.frame;
+    _backBtn.frame = CGRectMake(size.width - 50 - 10, size.height - 40 - 15, 50, 40);
 }
 
 - (WKWebView *)webView {
@@ -132,16 +129,18 @@
     return _webView;
 }
 
-- (void)backBtn{
-    UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    backBtn.frame = CGRectMake(0, 40, 50, 40);
-    [backBtn setTitle:@"返回" forState:UIControlStateNormal];
-    [backBtn setTitleColor:UIColor.grayColor forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backBtn];
+- (UIButton *)backBtn{
+    if (!_backBtn) {
+        _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backBtn setTitleColor:UIColor.grayColor forState:UIControlStateNormal];
+        [_backBtn setImage:[UIImage imageNamed:@"goback"] forState:UIControlStateNormal];
+        [_backBtn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_backBtn];
+    }
+    return _backBtn;
 }
 
-- (void)back {
+- (void)goBack {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -154,7 +153,7 @@
     BOOL openSucess = false ;
     for (NSString *currentDomain  in _domains){
         if ([url containsString:currentDomain]) {
-            NSString * historicalPrice = [[self.contentDic objectForKey:currentDomain] objectForKey:@"historicalPrice"];
+            NSString * historicalPrice = [[_contentDic objectForKey:currentDomain] objectForKey:@"historicalPrice"];
             url = [url stringByReplacingOccurrencesOfString:currentDomain withString:historicalPrice];
             [self openWebWithUrl:url];
             openSucess = YES;

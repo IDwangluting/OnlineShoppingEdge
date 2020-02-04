@@ -16,7 +16,7 @@
         
 //     NSString * urlString = @"https://product.suning.com/0070067092/000000000128763302.html?srcPoint=index3_none_recscnxhB_1-7_p_0070067092_000000000128763302_rec_6-1_0_A&src=index3_none_recscnxhB_1-7_p_0070067092_000000000128763302_rec_6-1_0_A&safp=d488778a.homepage1.99347413133.13&safc=prd.1.rec_6-1_0_A";
 
-#define SearchBarHeight 40
+#define SearchBarHeight 45
 
 #import "OSEHomeViewController.h"
 #import "OSEHistroyDetailViewController.h"
@@ -41,7 +41,10 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     CGSize size = self.view.frame.size;
-    self.searchBar.frame = CGRectMake(SearchBarHeight, size.height / 3 - SearchBarHeight,size.width - SearchBarHeight * 2 , SearchBarHeight);
+    _searchBar.frame = CGRectMake(SearchBarHeight,
+                                  size.height / 3 - SearchBarHeight,
+                                  size.width - SearchBarHeight * 2,
+                                  SearchBarHeight);
 }
 
 - (UISearchBar *)searchBar {
@@ -56,7 +59,7 @@
         searchBar.keyboardType  = UIKeyboardTypeURL;
         searchBar.scopeButtonTitles = @[];
         searchBar.tintColor = UIColor.brownColor;
-        searchBar.backgroundColor = UIColor.grayColor;
+        searchBar.barTintColor = UIColor.darkGrayColor;
         _searchBar = searchBar;
         [self.view addSubview:_searchBar];
     }
@@ -85,11 +88,15 @@
 }
 
 - (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    if ([text isEqualToString:@"\n"]){
+    if ([text isEqualToString:@"\n"] && ![searchBar.text isEqualToString:@"\n"] ){
         [self enterHistoryDetailWithUrl:searchBar.text];
         return NO;
     }
     return YES;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 //- (void)simCardInfo {
@@ -102,32 +109,5 @@
 //    carrier.isoCountryCode;
 //    NSString *number = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBFormattedPhoneNumber"];
 //    UITextContentTypeOneTimeCode
-//    @{@"":@""};
-    
-    
-//    NSArray * contentTypeArray =  @[UITextContentTypeOneTimeCode         ,
-//                                    UITextContentTypeLocation            ,
-//                                    UITextContentTypeFullStreetAddress   ,
-//                                    UITextContentTypeStreetAddressLine1  ,
-//                                    UITextContentTypeStreetAddressLine2  ,
-//                                    UITextContentTypeAddressCity         ,
-//                                    UITextContentTypeAddressState        ,
-//                                    UITextContentTypeAddressCityAndState ,
-//                                    UITextContentTypeSublocality         ,
-//                                    UITextContentTypeCountryName         ,
-//                                    UITextContentTypePostalCode          ,
-//                                    UITextContentTypeTelephoneNumber     ,
-//                                    UITextContentTypeEmailAddress        ,
-//                                    UITextContentTypeURL                 ,
-//                                    UITextContentTypeCreditCardNumber    ];
-//    CGRect frame = self.navigationController.navigationBar.frame ;
-//    CGFloat topMargin = frame.size.height + frame.origin.y;
-//    for (NSInteger index = 0; contentTypeArray.count > index; index++) {
-//        UITextField * field = [[UITextField alloc]initWithFrame:CGRectMake(20, (40 + 10) * index + topMargin, self.view.frame.size.width - 40, 40)];
-//        field.textContentType = contentTypeArray[index];
-//        field.borderStyle = UITextBorderStyleLine;
-//        field.placeholder = field.textContentType;
-//        [self.view addSubview:field];
-//    }
 //}
 @end

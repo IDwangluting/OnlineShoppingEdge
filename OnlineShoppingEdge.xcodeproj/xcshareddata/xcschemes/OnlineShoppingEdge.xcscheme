@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1D0DA5B023C9F7B500BE11A6"
-               BuildableName = "&#x7f51;&#x8d2d;&#x6751;&#x6b63;.app"
+               BuildableName = "&#x7f51;&#x8d2d;&#x5229;&#x5203;.app"
                BlueprintName = "OnlineShoppingEdge"
                ReferencedContainer = "container:OnlineShoppingEdge.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -45,14 +45,14 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D0DA5B023C9F7B500BE11A6"
-            BuildableName = "&#x7f51;&#x8d2d;&#x6751;&#x6b63;.app"
+            BuildableName = "&#x7f51;&#x8d2d;&#x5229;&#x5203;.app"
             BlueprintName = "OnlineShoppingEdge"
             ReferencedContainer = "container:OnlineShoppingEdge.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D0DA5B023C9F7B500BE11A6"
-            BuildableName = "&#x7f51;&#x8d2d;&#x6751;&#x6b63;.app"
+            BuildableName = "&#x7f51;&#x8d2d;&#x5229;&#x5203;.app"
             BlueprintName = "OnlineShoppingEdge"
             ReferencedContainer = "container:OnlineShoppingEdge.xcodeproj">
          </BuildableReference>
