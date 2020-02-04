@@ -6,11 +6,9 @@
 //  Copyright © 2020 luting. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "OSEResponder.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow * window;
+@interface AppDelegate : OSEResponder <UIApplicationDelegate>
 
 @end
 

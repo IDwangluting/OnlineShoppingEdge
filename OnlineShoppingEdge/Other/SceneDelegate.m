@@ -1,18 +1,10 @@
 #import "SceneDelegate.h"
-#import "OSEHomeViewController.h"
-
-@interface SceneDelegate ()
-
-@end
 
 @implementation SceneDelegate
 
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session
       options:(UISceneConnectionOptions *)connectionOptions {
-    self.window.backgroundColor = [UIColor whiteColor];
-    self.window.bounds = [UIScreen mainScreen].bounds;
-   self.window.rootViewController = [[OSEHomeViewController alloc]init];
-    [self.window makeKeyAndVisible];
+    [self baseSetting];
 }
 
 
