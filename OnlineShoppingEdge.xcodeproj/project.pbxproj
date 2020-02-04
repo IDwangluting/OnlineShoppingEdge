@@ -14,11 +14,12 @@
 		1D0DA5C123C9F7B600BE11A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D0DA5C023C9F7B600BE11A6 /* Assets.xcassets */; };
 		1D0DA5C423C9F7B600BE11A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D0DA5C223C9F7B600BE11A6 /* LaunchScreen.storyboard */; };
 		1D0DA5C723C9F7B600BE11A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0DA5C623C9F7B600BE11A6 /* main.m */; };
+		1D38B18123E95A0600DCE9F2 /* OSEBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D38B18023E95A0600DCE9F2 /* OSEBaseViewController.m */; };
 		1DE6311523E7D549002D0C0A /* OSEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6311423E7D549002D0C0A /* OSEHomeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D0DA5B123C9F7B500BE11A6 /* 网购村正.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "网购村正.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D0DA5B123C9F7B500BE11A6 /* 网购利刃.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "网购利刃.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D0DA5B423C9F7B500BE11A6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D0DA5B523C9F7B500BE11A6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D0DA5B723C9F7B500BE11A6 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
@@ -30,6 +31,8 @@
 		1D0DA5C323C9F7B600BE11A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D0DA5C523C9F7B600BE11A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D0DA5C623C9F7B600BE11A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1D38B17F23E95A0600DCE9F2 /* OSEBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSEBaseViewController.h; sourceTree = "<group>"; };
+		1D38B18023E95A0600DCE9F2 /* OSEBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEBaseViewController.m; sourceTree = "<group>"; };
 		1DE6311323E7D549002D0C0A /* OSEHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSEHomeViewController.h; sourceTree = "<group>"; };
 		1DE6311423E7D549002D0C0A /* OSEHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEHomeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,7 +59,7 @@
 		1D0DA5B223C9F7B500BE11A6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D0DA5B123C9F7B500BE11A6 /* 网购村正.app */,
+				1D0DA5B123C9F7B500BE11A6 /* 网购利刃.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -68,10 +71,12 @@
 				1D0DA5B523C9F7B500BE11A6 /* AppDelegate.m */,
 				1D0DA5B723C9F7B500BE11A6 /* SceneDelegate.h */,
 				1D0DA5B823C9F7B500BE11A6 /* SceneDelegate.m */,
-				1D0DA5BA23C9F7B500BE11A6 /* OSEHistroyDetailViewController.h */,
-				1D0DA5BB23C9F7B500BE11A6 /* OSEHistroyDetailViewController.m */,
+				1D38B17F23E95A0600DCE9F2 /* OSEBaseViewController.h */,
+				1D38B18023E95A0600DCE9F2 /* OSEBaseViewController.m */,
 				1DE6311323E7D549002D0C0A /* OSEHomeViewController.h */,
 				1DE6311423E7D549002D0C0A /* OSEHomeViewController.m */,
+				1D0DA5BA23C9F7B500BE11A6 /* OSEHistroyDetailViewController.h */,
+				1D0DA5BB23C9F7B500BE11A6 /* OSEHistroyDetailViewController.m */,
 				1D0DA5BD23C9F7B500BE11A6 /* Main.storyboard */,
 				1D0DA5C023C9F7B600BE11A6 /* Assets.xcassets */,
 				1D0DA5C223C9F7B600BE11A6 /* LaunchScreen.storyboard */,
@@ -98,7 +103,7 @@
 			);
 			name = OnlineShoppingEdge;
 			productName = OnlineShoppingEdge;
-			productReference = 1D0DA5B123C9F7B500BE11A6 /* 网购村正.app */;
+			productReference = 1D0DA5B123C9F7B500BE11A6 /* 网购利刃.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -157,6 +162,7 @@
 				1DE6311523E7D549002D0C0A /* OSEHomeViewController.m in Sources */,
 				1D0DA5C723C9F7B600BE11A6 /* main.m in Sources */,
 				1D0DA5B923C9F7B500BE11A6 /* SceneDelegate.m in Sources */,
+				1D38B18123E95A0600DCE9F2 /* OSEBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,14 +304,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8HW8KSLHFR;
+				DEVELOPMENT_TEAM = TVAL974929;
 				INFOPLIST_FILE = OnlineShoppingEdge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zebra.kangaroo.www;
-				PRODUCT_NAME = "网购村正";
+				MARKETING_VERSION = 0.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.personalApp.OnlineShoppingEdge;
+				PRODUCT_NAME = "网购利刃";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -316,15 +323,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TVAL974929;
 				INFOPLIST_FILE = OnlineShoppingEdge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zebra.kangaroo.www;
-				PRODUCT_NAME = "网购村正";
+				MARKETING_VERSION = 0.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.personalApp.OnlineShoppingEdge;
+				PRODUCT_NAME = "网购利刃";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

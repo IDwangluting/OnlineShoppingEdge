@@ -34,7 +34,11 @@
     [self webView];
     [self backBtn];
     [self tryOpenWebWithUrl:_urlString];
-    
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.webView.frame = self.view.frame;
 }
 
 - (NSMutableDictionary *)contentDic {

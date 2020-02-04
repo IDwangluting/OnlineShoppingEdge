@@ -16,6 +16,8 @@
         
 //     NSString * urlString = @"https://product.suning.com/0070067092/000000000128763302.html?srcPoint=index3_none_recscnxhB_1-7_p_0070067092_000000000128763302_rec_6-1_0_A&src=index3_none_recscnxhB_1-7_p_0070067092_000000000128763302_rec_6-1_0_A&safp=d488778a.homepage1.99347413133.13&safc=prd.1.rec_6-1_0_A";
 
+#define SearchBarHeight 40
+
 #import "OSEHomeViewController.h"
 #import "OSEHistroyDetailViewController.h"
 
@@ -25,7 +27,7 @@
 @interface OSEHomeViewController ()<UISearchBarDelegate>
 
 @property (nonnull,strong,nonatomic)UIPasteboard * pasteboard;
-@property (nonnull,strong,nonatomic)UISearchBar * searchBar;
+@property (weak,nonatomic)UISearchBar * searchBar;
 
 @end
 
@@ -36,10 +38,17 @@
     [self searchBar];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    CGSize size = self.view.frame.size;
+    self.searchBar.frame = CGRectMake(SearchBarHeight, size.height / 3 - SearchBarHeight,size.width - SearchBarHeight * 2 , SearchBarHeight);
+}
+
 - (UISearchBar *)searchBar {
     if (!_searchBar) {
-        CGSize size = self.view.frame.size;
-        UISearchBar * searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(30, size.height / 3 - 30,size.width - 30 *2 , 30)];
+        UISearchBar * searchBar = [[UISearchBar alloc]init];
+        searchBar.layer.cornerRadius = 8;
+        searchBar.clipsToBounds = YES;
         searchBar.searchBarStyle = UISearchBarStyleProminent;
         searchBar.placeholder = @"请输入网址";
         searchBar.delegate = self;
@@ -66,6 +75,11 @@
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
     searchBar.text = @"https://product.suning.com/0070067092/000000000128763302.html?srcPoint=index3_none_recscnxhB_1-7_p_0070067092_000000000128763302_rec_6-1_0_A&src=index3_none_recscnxhB_1-7_p_0070067092_000000000128763302_rec_6-1_0_A&safp=d488778a.homepage1.99347413133.13&safc=prd.1.rec_6-1_0_A";
+    
+    NSURL * url = [NSURL URLWithString:searchBar.text];
+    if (![url.scheme containsString:@"http"] || ![url.scheme containsString:@"https"]) {
+        return ;
+    }
 
     [self enterHistoryDetailWithUrl:searchBar.text];
 }
