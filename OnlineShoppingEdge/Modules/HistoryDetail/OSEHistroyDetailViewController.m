@@ -7,6 +7,7 @@
 //
 
 #import "OSEHistroyDetailViewController.h"
+#import <YYCategories/UIView+YYAdd.h>
 @import WebKit;
 
 @interface OSEHistroyDetailViewController ()<WKUIDelegate,WKNavigationDelegate>
@@ -113,9 +114,8 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    CGSize size  = self.view.frame.size;
     _webView.frame = self.view.frame;
-    _backBtn.frame = CGRectMake(size.width - 50 - 10, size.height - 40 - 15, 50, 40);
+    _backBtn.frame = CGRectMake(self.view.width - 50 - 10, self.view.height - 40 - 15, 50, 40);
 }
 
 - (WKWebView *)webView {

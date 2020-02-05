@@ -20,14 +20,15 @@
 
 #import "OSEHomeViewController.h"
 #import "OSEHistroyDetailViewController.h"
+#import <YYCategories/UIView+YYAdd.h>
 
 //#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 //#import <CoreTelephony/CTCarrier.h>
 
 @interface OSEHomeViewController ()<UISearchBarDelegate>
 
-@property (nonnull,strong,nonatomic)UIPasteboard * pasteboard;
-@property (weak,nonatomic)UISearchBar * searchBar;
+@property (weak,nonatomic)UIPasteboard * pasteboard;
+@property (weak,nonatomic)UISearchBar  * searchBar;
 
 @end
 
@@ -40,27 +41,27 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    CGSize size = self.view.frame.size;
     _searchBar.frame = CGRectMake(SearchBarHeight,
-                                  size.height / 3 - SearchBarHeight,
-                                  size.width - SearchBarHeight * 2,
+                                  self.view.height / 4 - SearchBarHeight,
+                                  self.view.width - SearchBarHeight * 2,
                                   SearchBarHeight);
 }
 
 - (UISearchBar *)searchBar {
     if (!_searchBar) {
-        UISearchBar * searchBar = [[UISearchBar alloc]init];
-        searchBar.layer.cornerRadius = 8;
-        searchBar.clipsToBounds = YES;
-        searchBar.searchBarStyle = UISearchBarStyleProminent;
-        searchBar.placeholder = @"请输入网址";
-        searchBar.delegate = self;
-        searchBar.returnKeyType = UIReturnKeyDone;
-        searchBar.keyboardType  = UIKeyboardTypeURL;
+        UISearchBar * searchBar     = [[UISearchBar alloc]init];
+        searchBar.searchBarStyle    = UISearchBarStyleProminent;
+        searchBar.barStyle          = UIBarStyleBlack;
+        searchBar.placeholder       = @"请输入网址";
+        searchBar.returnKeyType     = UIReturnKeyDone;
+        searchBar.keyboardType      = UIKeyboardTypeURL;
         searchBar.scopeButtonTitles = @[];
-        searchBar.tintColor = UIColor.brownColor;
-        searchBar.barTintColor = UIColor.darkGrayColor;
-        _searchBar = searchBar;
+        searchBar.tintColor         = UIColor.brownColor;
+        searchBar.barTintColor      = UIColor.darkGrayColor;
+        searchBar.layer.cornerRadius= 8;
+        searchBar.clipsToBounds     = YES;
+        searchBar.delegate          = self;
+        _searchBar                  = searchBar;
         [self.view addSubview:_searchBar];
     }
     return _searchBar;
@@ -93,10 +94,6 @@
         return NO;
     }
     return YES;
-}
-
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 //- (void)simCardInfo {

@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OSEBaseViewController : UIViewController
 
+- (void)appWillEnterForeground ;
+
+- (void)appDidEnterBackground ;
+
 @end
 
 NS_ASSUME_NONNULL_END
