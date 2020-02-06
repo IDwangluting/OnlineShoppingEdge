@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -152,7 +152,6 @@
 				C6826047F940E9CB65D4316A /* Pods-OnlineShoppingEdge.debug.xcconfig */,
 				9BB9F59484FB019A5163DD4B /* Pods-OnlineShoppingEdge.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -418,8 +417,8 @@
 			baseConfigurationReference = C6826047F940E9CB65D4316A /* Pods-OnlineShoppingEdge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = TVAL974929;
 				INFOPLIST_FILE = OnlineShoppingEdge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -429,7 +428,7 @@
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.personalApp.OnlineShoppingEdge;
 				PRODUCT_NAME = "网购利刃";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = developer_provisining_profile;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -439,8 +438,8 @@
 			baseConfigurationReference = 9BB9F59484FB019A5163DD4B /* Pods-OnlineShoppingEdge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = TVAL974929;
 				INFOPLIST_FILE = OnlineShoppingEdge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -450,7 +449,7 @@
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.personalApp.OnlineShoppingEdge;
 				PRODUCT_NAME = "网购利刃";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = appstore_provisioning_profile;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
