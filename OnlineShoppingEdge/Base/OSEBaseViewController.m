@@ -37,15 +37,6 @@
     [self.view endEditing:YES];
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIApplicationWillEnterForegroundNotification
-                                                  object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIApplicationDidEnterBackgroundNotification
-                                                  object:nil];
-}
-
 - (UIStatusBarStyle)preferredStatusBarStyle {
     if (@available(iOS 13.0, *)) {
         return UIStatusBarStyleDarkContent;
