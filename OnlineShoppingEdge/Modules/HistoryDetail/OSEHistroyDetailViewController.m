@@ -58,11 +58,11 @@
     UIPasteboard *pastboard = [UIPasteboard generalPasteboard];
     if (![pastboard hasURLs] && [pastboard.string isEqualToString:_url]) return ;
     
-    [self dismissViewControllerAnimated:NO completion:^{
+    [self dismissViewControllerAnimated:NO completion:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationWillEnterForegroundNotification object:nil];
-    }];
+    });
 }
-
 
 - (void)goBack {
     [self dismissViewControllerAnimated:YES completion:nil];

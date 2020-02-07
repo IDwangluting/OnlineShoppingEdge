@@ -16,9 +16,8 @@
         
 //     NSString * urlString = @"https://product.suning.com/0070067092/000000000128763302.html?srcPoint=index3_none_recscnxhB_1-7_p_0070067092_000000000128763302_rec_6-1_0_A&src=index3_none_recscnxhB_1-7_p_0070067092_000000000128763302_rec_6-1_0_A&safp=d488778a.homepage1.99347413133.13&safc=prd.1.rec_6-1_0_A";
 
-#define SearchBarHeight 45
-
 #import "OSEHomeViewController.h"
+#import "OSETutorialViewController.h"
 #import "OSEHistroyDetailViewController.h"
 #import <YYCategories/UIView+YYAdd.h>
 
@@ -27,7 +26,8 @@
 
 @interface OSEHomeViewController ()<UISearchBarDelegate>
 
-@property (weak,nonatomic)UISearchBar  * searchBar;
+@property (strong,nonatomic)UISearchBar * searchBar;
+@property (strong,nonatomic)UIButton    * tutorialBtn;
 
 @end
 
@@ -39,7 +39,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self commonInit];
-    [self searchBar];
     __weak typeof(self)  weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         __strong typeof(weakSelf)  strongSelf = weakSelf;
@@ -47,30 +46,39 @@
     });
 }
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    _searchBar.frame = CGRectMake(SearchBarHeight, self.view.height / 4 - SearchBarHeight,
-                                  self.view.width - SearchBarHeight * 2, SearchBarHeight);
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
-- (UISearchBar *)searchBar {
-    if (!_searchBar) {
-        UISearchBar * searchBar     = [[UISearchBar alloc]init];
-        searchBar.searchBarStyle    = UISearchBarStyleProminent;
-        searchBar.barStyle          = UIBarStyleBlack;
-        searchBar.placeholder       = @"请输入网址";
-        searchBar.returnKeyType     = UIReturnKeyDone;
-        searchBar.keyboardType      = UIKeyboardTypeURL;
-        searchBar.scopeButtonTitles = @[];
-        searchBar.tintColor         = UIColor.brownColor;
-        searchBar.barTintColor      = UIColor.darkGrayColor;
-        searchBar.layer.cornerRadius= 8;
-        searchBar.clipsToBounds     = YES;
-        searchBar.delegate          = self;
-        _searchBar                  = searchBar;
-        [self.view addSubview:_searchBar];
-    }
-    return _searchBar;
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    _searchBar.frame   = CGRectMake(45, self.view.height / 4 - 45,
+                                  self.view.width - 45 * 2, 45);
+    _tutorialBtn.frame = CGRectMake(self.view.width  - 90 , 30 , 80 , 44);
+}
+
+- (void)layoutSubviews {
+    _searchBar                   = [[UISearchBar alloc]init];
+    _searchBar.searchBarStyle    = UISearchBarStyleProminent;
+    _searchBar.barStyle          = UIBarStyleBlack;
+    _searchBar.placeholder       = @"请输入网址";
+    _searchBar.returnKeyType     = UIReturnKeyDone;
+    _searchBar.keyboardType      = UIKeyboardTypeURL;
+    _searchBar.scopeButtonTitles = @[];
+    _searchBar.tintColor         = UIColor.brownColor;
+    _searchBar.barTintColor      = UIColor.darkGrayColor;
+    _searchBar.layer.cornerRadius= 8;
+    _searchBar.clipsToBounds     = YES;
+    _searchBar.delegate          = self;
+    [self.view addSubview:_searchBar];
+    
+    _tutorialBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_tutorialBtn setTitleColor:UIColor.darkGrayColor forState:UIControlStateNormal];
+    [_tutorialBtn setTitle       :@"使用教程" forState:UIControlStateNormal];
+    [_tutorialBtn addTarget      :self action:@selector(tutorial:) forControlEvents:UIControlEventTouchUpInside];
+    _tutorialBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    [self.view addSubview        :_tutorialBtn];
 }
 
 - (void)commonInit {
@@ -151,10 +159,17 @@
        _domains   = _contentDic.allKeys;
 }
 
+- (void)tutorial:(UIButton *)sender {
+    [self.navigationController pushViewController:[[OSETutorialViewController alloc]init] animated:YES];
+}
+
 - (void)enterHistoryDetailWithUrl:(NSString *)url {
     if (url == nil && url.length < 1) return ;
     
-    self.searchBar.text  = [url stringByReplacingOccurrencesOfString:@"vvv" withString:@""];
+    if ([url containsString:@"vvv"]) {
+        _searchBar.text = [url stringByReplacingOccurrencesOfString:@"vvv" withString:@""];
+    }
+    NSLog(@"---url:%@",url);
     OSEHistroyDetailViewController * vc= [[OSEHistroyDetailViewController alloc]initWithUrl:url];
     [self presentViewController:vc animated:YES completion:nil];
 }

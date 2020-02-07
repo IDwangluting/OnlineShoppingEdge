@@ -27,11 +27,12 @@
                                              selector:@selector(appDidEnterBackground)
                                                  name:UIApplicationDidEnterBackgroundNotification
                                                object:nil];
+    [self layoutSubviews];
 }
 
-- (void)appWillEnterForeground {
-    
-}
+- (void)layoutSubviews {}
+
+- (void)appWillEnterForeground {}
 
 - (void)appDidEnterBackground {
     [self.view endEditing:YES];

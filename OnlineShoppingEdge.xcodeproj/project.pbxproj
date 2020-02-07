@@ -16,6 +16,7 @@
 		1D0DA5C723C9F7B600BE11A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0DA5C623C9F7B600BE11A6 /* main.m */; };
 		1D38B18123E95A0600DCE9F2 /* OSEBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D38B18023E95A0600DCE9F2 /* OSEBaseViewController.m */; };
 		1D38B18423E966EF00DCE9F2 /* OSEResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D38B18323E966EF00DCE9F2 /* OSEResponder.m */; };
+		1DA3657B23EC81E700068EEF /* OSETutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA3657A23EC81E700068EEF /* OSETutorialViewController.m */; };
 		1DE6311523E7D549002D0C0A /* OSEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6311423E7D549002D0C0A /* OSEHomeViewController.m */; };
 		E40500F22B43ED6248EFD1E0 /* Pods_OnlineShoppingEdge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A624950E6961521CAE6AFD /* Pods_OnlineShoppingEdge.framework */; };
 /* End PBXBuildFile section */
@@ -37,6 +38,8 @@
 		1D38B18023E95A0600DCE9F2 /* OSEBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEBaseViewController.m; sourceTree = "<group>"; };
 		1D38B18223E966EF00DCE9F2 /* OSEResponder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSEResponder.h; sourceTree = "<group>"; };
 		1D38B18323E966EF00DCE9F2 /* OSEResponder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEResponder.m; sourceTree = "<group>"; };
+		1DA3657923EC81E700068EEF /* OSETutorialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSETutorialViewController.h; sourceTree = "<group>"; };
+		1DA3657A23EC81E700068EEF /* OSETutorialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSETutorialViewController.m; sourceTree = "<group>"; };
 		1DE6311323E7D549002D0C0A /* OSEHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSEHomeViewController.h; sourceTree = "<group>"; };
 		1DE6311423E7D549002D0C0A /* OSEHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEHomeViewController.m; sourceTree = "<group>"; };
 		32A624950E6961521CAE6AFD /* Pods_OnlineShoppingEdge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnlineShoppingEdge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +94,7 @@
 		1D38B18523E967D600DCE9F2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1DA3657823EC81D300068EEF /* Tutorial */,
 				1D38B18623E967D600DCE9F2 /* Home */,
 				1D38B18723E967D600DCE9F2 /* HistoryDetail */,
 			);
@@ -136,6 +140,15 @@
 				1D0DA5B823C9F7B500BE11A6 /* SceneDelegate.m */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		1DA3657823EC81D300068EEF /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				1DA3657923EC81E700068EEF /* OSETutorialViewController.h */,
+				1DA3657A23EC81E700068EEF /* OSETutorialViewController.m */,
+			);
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 		8E38253EE87B680136601BB5 /* Frameworks */ = {
@@ -270,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DA3657B23EC81E700068EEF /* OSETutorialViewController.m in Sources */,
 				1D0DA5BC23C9F7B500BE11A6 /* OSEHistroyDetailViewController.m in Sources */,
 				1D0DA5B623C9F7B500BE11A6 /* AppDelegate.m in Sources */,
 				1DE6311523E7D549002D0C0A /* OSEHomeViewController.m in Sources */,
@@ -419,6 +433,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = TVAL974929;
 				INFOPLIST_FILE = OnlineShoppingEdge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -440,6 +455,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = TVAL974929;
 				INFOPLIST_FILE = OnlineShoppingEdge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
