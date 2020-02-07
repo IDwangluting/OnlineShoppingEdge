@@ -21,7 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self layoutSubviews];
-    [self openWebWithUrl:_url];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -29,18 +28,28 @@
     _webView.frame = self.view.frame;
 }
 
-- (void)layoutSubviews {
-    _webView =[[WKWebView alloc]initWithFrame:self.view.bounds
-                                      configuration:[[WKWebViewConfiguration alloc]init]];
-    _webView.navigationDelegate = self;
-    _webView.UIDelegate = self;
-    [self.view addSubview:_webView];
+- (void)setUrl:(NSString *)url {
+    _url = url;
+    [self openWebWithUrl:_url];
 }
 
-- (void)openWebWithUrl:(NSString *)urlstr {
+- (void)layoutSubviews {
+    [self.view addSubview:self.webView];
+}
+
+- (WKWebView *)webView {
+    if (!_webView) {
+        _webView = [[WKWebView alloc]initWithFrame:self.view.bounds
+                                     configuration:[[WKWebViewConfiguration alloc]init]];
+        _webView.navigationDelegate = self;
+        _webView.UIDelegate = self;
+    }
+    return _webView;
+}
+
+- (void)openWebWithUrl:(NSString *)url {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    NSURL *url = [NSURL URLWithString:urlstr];
-    NSURLRequest *request =[NSURLRequest requestWithURL:url];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     [self.webView loadRequest:request];
 }
 

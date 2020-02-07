@@ -67,8 +67,10 @@
     @weakify(self);
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
         @strongify(self);
+        if (self.searchBar.searchTextField.editing == NO) {
+            [self tryOpenWebWithUrl:self.searchBar.text];
+        }
         [self.view endEditing:YES];
-        [self tryOpenWebWithUrl:self.searchBar.text];
     }];
     [self.view addGestureRecognizer:tap];
     _histroyDetailViewController = [[OSEHistroyDetailViewController alloc]init];
