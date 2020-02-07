@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(appWillEnterForeground)
                                                  name:UIApplicationWillEnterForegroundNotification
@@ -28,6 +29,14 @@
                                                  name:UIApplicationDidEnterBackgroundNotification
                                                object:nil];
     [self layoutSubviews];
+}
+
+- (void)setRightBarButtonItem:(UIBarButtonItem *)rightBarButtonItem {
+    self.navigationController.navigationBar.topItem.rightBarButtonItem  = rightBarButtonItem;
+}
+
+- (void)setLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem {
+    self.navigationController.navigationBar.topItem.leftBarButtonItem = leftBarButtonItem;
 }
 
 - (void)layoutSubviews {}

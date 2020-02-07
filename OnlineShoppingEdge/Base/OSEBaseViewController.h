@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OSEBaseViewController : UIViewController
 
+- (void)setRightBarButtonItem:(UIBarButtonItem *)rightBarButtonItem ;
+
+- (void)setLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem ;
+
 - (void)layoutSubviews;
 
 - (void)appWillEnterForeground ;

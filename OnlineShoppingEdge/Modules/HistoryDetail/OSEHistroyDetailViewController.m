@@ -14,7 +14,6 @@
 @interface OSEHistroyDetailViewController ()<WKUIDelegate,WKNavigationDelegate>
 
 @property (nonnull,strong,nonatomic)WKWebView * webView ;
-@property (nonnull,strong,nonatomic)UIButton  * backBtn ;
 
 @end
 
@@ -38,7 +37,6 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     _webView.frame = self.view.frame;
-    _backBtn.frame = CGRectMake(self.view.width - 50 - 10, self.view.height - 40 - 15, 50, 40);
 }
 
 - (void)layoutSubviews {
@@ -47,12 +45,6 @@
     _webView.navigationDelegate = self;
     _webView.UIDelegate = self;
     [self.view addSubview:_webView];
-    
-    _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_backBtn setTitleColor:UIColor.grayColor forState:UIControlStateNormal];
-    [_backBtn setImage:[UIImage imageNamed:@"goback"] forState:UIControlStateNormal];
-    [_backBtn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_backBtn];
 }
 
 - (void)appWillEnterForeground {
@@ -60,13 +52,12 @@
     if (![pastboard hasURLs] && [pastboard.string isEqualToString:_url]) return ;
     
     [self dismissViewControllerAnimated:NO completion:nil];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_block_t notificationBlock = ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationWillEnterForegroundNotification object:nil];
-    });
-}
-
-- (void)goBack {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    };
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)),
+                   dispatch_get_main_queue(),
+                   notificationBlock);
 }
 
 - (void)openWebWithUrl:(NSString *)urlstr {
