@@ -39,6 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self commonInit];
+    self.title = @"首页";
     __weak typeof(self)  weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         __strong typeof(weakSelf)  strongSelf = weakSelf;
@@ -83,80 +84,80 @@
 
 - (void)commonInit {
     _contentDic = [[NSMutableDictionary alloc]initWithCapacity:4];
-       [_contentDic setObject:@{@"platform"       :@"天猫",
-                                @"historicalPrice":@"http://detail.tmallvvv.com/"}
-                       forKey:@"https://detail.tmall.com/"];
-       [_contentDic setObject:@{@"platform"       :@"天猫",
-                                @"historicalPrice":@"http://detail.tmallvvv.com/"}
-                       forKey:@"http://detail.tmall.com/"];
-       [_contentDic setObject:@{@"platform"       :@"天猫",
-                               @"historicalPrice":@"http://detail.m.tmallvvv.com/"}
-                       forKey:@"https://detail.m.tmall.com/"];
-       [_contentDic setObject:@{@"platform"       :@"天猫",
-                                @"historicalPrice":@"http://detail.m.tmallvvv.com/"}
-                       forKey:@"http://detail.m.tmall.com/"];
-       
-       [_contentDic setObject:@{@"platform"       :@"淘宝",
-                                @"historicalPrice":@"http://item.taobaovvv.com/"}
-                       forKey:@"https://item.taobao.com/"];
-       [_contentDic setObject:@{@"platform"       :@"淘宝",
-                                @"historicalPrice":@"http://item.taobaovvv.com/"}
-                       forKey:@"http://item.taobao.com/"];
-       [_contentDic setObject:@{@"platform"       :@"淘宝",
-                                @"historicalPrice":@"http://h5.m.taobaovvv.com/"}
-                       forKey:@"https://h5.m.taobao.com/"];
-       [_contentDic setObject:@{@"platform"       :@"淘宝",
-                                @"historicalPrice":@"http://h5.m.taobaovvv.com/"}
-                       forKey:@"http://h5.m.taobao.com/"];
-       
-       [_contentDic setObject:@{@"platform"       :@"京东",
-                                @"historicalPrice":@"http://item.jdvvv.com/"}
-                       forKey:@"https://item.jd.com/"];
-       [_contentDic setObject:@{@"platform"       :@"京东",
-                                @"historicalPrice":@"http://item.jdvvv.com/"}
-                       forKey:@"http://item.jd.com/"];
-       [_contentDic setObject:@{@"platform"       :@"京东",
-                                @"historicalPrice":@"http://item.m.jdvvv.com/"}
-                       forKey:@"https://item.m.jd.com/"];
-       [_contentDic setObject:@{@"platform"       :@"京东",
-                                @"historicalPrice":@"http://item.m.jdvvv.com/"}
-                       forKey:@"http://item.m.jd.com/"];
-       
-       [_contentDic setObject:@{@"platform"       :@"亚马逊",
-                                @"historicalPrice":@"https://www.amazonvvv.cn/"}
-                       forKey:@"https://www.amazon.cn/"];
-       [_contentDic setObject:@{@"platform"       :@"亚马逊",
-                                @"historicalPrice":@"http://www.amazonvvv.cn/"}
-                       forKey:@"http://www.amazon.cn/"];
-       
-       [_contentDic setObject:@{@"platform"       :@"当当",
-                                @"historicalPrice":@"http://product.dangdangvvv.com/"}
-                       forKey:@"https://product.dangdang.com/"];
-       [_contentDic setObject:@{@"platform"       :@"当当",
-                                @"historicalPrice":@"http://product.dangdangvvv.com/"}
-                       forKey:@"http://product.dangdang.com/"];
-       
-       [_contentDic setObject:@{@"platform"       :@"苏宁易购",
-                                @"historicalPrice":@"http://product.suningvvv.com/"}
-                       forKey:@"https://product.suning.com/"];
-       [_contentDic setObject:@{@"platform"       :@"苏宁易购",
-                                @"historicalPrice":@"http://product.suningvvv.com/"}
-                       forKey:@"http://product.suning.com/"];
-       
-       [_contentDic setObject:@{@"platform"       :@"国美",
-                                @"historicalPrice":@"http://item.gomevvv.com.cn/"}
-                       forKey:@"https://item.gome.com.cn/"];
-       [_contentDic setObject:@{@"platform"       :@"国美",
-                                @"historicalPrice":@"http://item.gomevvv.com.cn/"}
-                       forKey:@"http://item.gome.com.cn/"];
-       
-       [_contentDic setObject:@{@"platform"       :@"网易考拉",
-                               @"historicalPrice":@"http://goods.kaolavvv.com/"}
-                         forKey:@"https://goods.kaola.com/"];
-       [_contentDic setObject:@{@"platform"       :@"网易考拉",
-                                @"historicalPrice":@"http://goods.kaolavvv.com/"}
-                       forKey:@"http://goods.kaola.com/"];
-       _domains   = _contentDic.allKeys;
+    [_contentDic setObject:@{@"platform"       :@"天猫",
+                             @"historicalPrice":@"http://detail.tmallvvv.com/"}
+                    forKey:@"https://detail.tmall.com/"];
+    [_contentDic setObject:@{@"platform"       :@"天猫",
+                             @"historicalPrice":@"http://detail.tmallvvv.com/"}
+                    forKey:@"http://detail.tmall.com/"];
+    [_contentDic setObject:@{@"platform"       :@"天猫",
+                            @"historicalPrice":@"http://detail.m.tmallvvv.com/"}
+                    forKey:@"https://detail.m.tmall.com/"];
+    [_contentDic setObject:@{@"platform"       :@"天猫",
+                             @"historicalPrice":@"http://detail.m.tmallvvv.com/"}
+                    forKey:@"http://detail.m.tmall.com/"];
+    
+    [_contentDic setObject:@{@"platform"       :@"淘宝",
+                             @"historicalPrice":@"http://item.taobaovvv.com/"}
+                    forKey:@"https://item.taobao.com/"];
+    [_contentDic setObject:@{@"platform"       :@"淘宝",
+                             @"historicalPrice":@"http://item.taobaovvv.com/"}
+                    forKey:@"http://item.taobao.com/"];
+    [_contentDic setObject:@{@"platform"       :@"淘宝",
+                             @"historicalPrice":@"http://h5.m.taobaovvv.com/"}
+                    forKey:@"https://h5.m.taobao.com/"];
+    [_contentDic setObject:@{@"platform"       :@"淘宝",
+                             @"historicalPrice":@"http://h5.m.taobaovvv.com/"}
+                    forKey:@"http://h5.m.taobao.com/"];
+    
+    [_contentDic setObject:@{@"platform"       :@"京东",
+                             @"historicalPrice":@"http://item.jdvvv.com/"}
+                    forKey:@"https://item.jd.com/"];
+    [_contentDic setObject:@{@"platform"       :@"京东",
+                             @"historicalPrice":@"http://item.jdvvv.com/"}
+                    forKey:@"http://item.jd.com/"];
+    [_contentDic setObject:@{@"platform"       :@"京东",
+                             @"historicalPrice":@"http://item.m.jdvvv.com/"}
+                    forKey:@"https://item.m.jd.com/"];
+    [_contentDic setObject:@{@"platform"       :@"京东",
+                             @"historicalPrice":@"http://item.m.jdvvv.com/"}
+                    forKey:@"http://item.m.jd.com/"];
+    
+    [_contentDic setObject:@{@"platform"       :@"亚马逊",
+                             @"historicalPrice":@"https://www.amazonvvv.cn/"}
+                    forKey:@"https://www.amazon.cn/"];
+    [_contentDic setObject:@{@"platform"       :@"亚马逊",
+                             @"historicalPrice":@"http://www.amazonvvv.cn/"}
+                    forKey:@"http://www.amazon.cn/"];
+    
+    [_contentDic setObject:@{@"platform"       :@"当当",
+                             @"historicalPrice":@"http://product.dangdangvvv.com/"}
+                    forKey:@"https://product.dangdang.com/"];
+    [_contentDic setObject:@{@"platform"       :@"当当",
+                             @"historicalPrice":@"http://product.dangdangvvv.com/"}
+                    forKey:@"http://product.dangdang.com/"];
+    
+    [_contentDic setObject:@{@"platform"       :@"苏宁易购",
+                             @"historicalPrice":@"http://product.suningvvv.com/"}
+                    forKey:@"https://product.suning.com/"];
+    [_contentDic setObject:@{@"platform"       :@"苏宁易购",
+                             @"historicalPrice":@"http://product.suningvvv.com/"}
+                    forKey:@"http://product.suning.com/"];
+    
+    [_contentDic setObject:@{@"platform"       :@"国美",
+                             @"historicalPrice":@"http://item.gomevvv.com.cn/"}
+                    forKey:@"https://item.gome.com.cn/"];
+    [_contentDic setObject:@{@"platform"       :@"国美",
+                             @"historicalPrice":@"http://item.gomevvv.com.cn/"}
+                    forKey:@"http://item.gome.com.cn/"];
+    
+    [_contentDic setObject:@{@"platform"       :@"网易考拉",
+                            @"historicalPrice":@"http://goods.kaolavvv.com/"}
+                      forKey:@"https://goods.kaola.com/"];
+    [_contentDic setObject:@{@"platform"       :@"网易考拉",
+                             @"historicalPrice":@"http://goods.kaolavvv.com/"}
+                    forKey:@"http://goods.kaola.com/"];
+    _domains   = _contentDic.allKeys;
 }
 
 - (void)tutorial:(UIButton *)sender {
@@ -169,7 +170,6 @@
     if ([url containsString:@"vvv"]) {
         _searchBar.text = [url stringByReplacingOccurrencesOfString:@"vvv" withString:@""];
     }
-    NSLog(@"---url:%@",url);
     OSEHistroyDetailViewController * vc= [[OSEHistroyDetailViewController alloc]initWithUrl:url];
     [self presentViewController:vc animated:YES completion:nil];
 }
@@ -201,11 +201,10 @@
 
 - (NSString *)pastboardUrl{
     UIPasteboard *pastboard = [UIPasteboard generalPasteboard];
+    NSLog(@"---pastboard.string:%@",pastboard.string);
     if (![pastboard hasURLs]) {
-        
         return nil;
     }
-     
     return  pastboard.string;
 }
 

@@ -8,6 +8,7 @@
 
 #import "OSEHistroyDetailViewController.h"
 #import <YYCategories/UIView+YYAdd.h>
+#import "MBProgressHUD.h"
 @import WebKit;
 
 @interface OSEHistroyDetailViewController ()<WKUIDelegate,WKNavigationDelegate>
@@ -69,9 +70,18 @@
 }
 
 - (void)openWebWithUrl:(NSString *)urlstr {
-    NSURL *url =[NSURL URLWithString:urlstr];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    NSURL *url = [NSURL URLWithString:urlstr];
     NSURLRequest *request =[NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 @end
