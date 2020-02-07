@@ -24,6 +24,7 @@
     NSArray             * _domains;
     NSMutableDictionary * _contentDic;
     OSEHistroyDetailViewController * _histroyDetailViewController;
+    OSETutorialViewController * _tutorialViewController;
 }
 
 - (void)viewDidLoad {
@@ -72,29 +73,29 @@
     [self.view addGestureRecognizer:tap];
     _histroyDetailViewController = [[OSEHistroyDetailViewController alloc]init];
     _contentDic = [[NSMutableDictionary alloc]initWithCapacity:4];
-    [_contentDic setObject:@{@"platform"       :@"天猫",
+    [_contentDic setObject:@{@"platform"       :@"手机天猫",
                              @"historicalPrice":@"https://detail.tmallvvv.com/"}
                     forKey:@"https://detail.tmall.com/"];
-    [_contentDic setObject:@{@"platform"       :@"天猫",
+    [_contentDic setObject:@{@"platform"       :@"手机天猫",
                              @"historicalPrice":@"http://detail.tmallvvv.com/"}
                     forKey:@"http://detail.tmall.com/"];
-    [_contentDic setObject:@{@"platform"       :@"天猫",
+    [_contentDic setObject:@{@"platform"       :@"手机天猫",
                             @"historicalPrice":@"https://detail.m.tmallvvv.com/"}
                     forKey:@"https://detail.m.tmall.com/"];
-    [_contentDic setObject:@{@"platform"       :@"天猫",
+    [_contentDic setObject:@{@"platform"       :@"手机天猫",
                              @"historicalPrice":@"http://detail.m.tmallvvv.com/"}
                     forKey:@"http://detail.m.tmall.com/"];
     
-    [_contentDic setObject:@{@"platform"       :@"淘宝",
+    [_contentDic setObject:@{@"platform"       :@"手机淘宝",
                              @"historicalPrice":@"https://item.taobaovvv.com/"}
                     forKey:@"https://item.taobao.com/"];
-    [_contentDic setObject:@{@"platform"       :@"淘宝",
+    [_contentDic setObject:@{@"platform"       :@"手机淘宝",
                              @"historicalPrice":@"http://item.taobaovvv.com/"}
                     forKey:@"http://item.taobao.com/"];
-    [_contentDic setObject:@{@"platform"       :@"淘宝",
+    [_contentDic setObject:@{@"platform"       :@"手机淘宝",
                              @"historicalPrice":@"https://h5.m.taobaovvv.com/"}
                     forKey:@"https://h5.m.taobao.com/"];
-    [_contentDic setObject:@{@"platform"       :@"淘宝",
+    [_contentDic setObject:@{@"platform"       :@"手机淘宝",
                              @"historicalPrice":@"http://h5.m.taobaovvv.com/"}
                     forKey:@"http://h5.m.taobao.com/"];
     
@@ -111,10 +112,10 @@
                              @"historicalPrice":@"http://item.m.jdvvv.com/"}
                     forKey:@"http://item.m.jd.com/"];
     
-    [_contentDic setObject:@{@"platform"       :@"亚马逊",
+    [_contentDic setObject:@{@"platform"       :@"亚马逊中国",
                              @"historicalPrice":@"https://www.amazonvvv.cn/"}
                     forKey:@"https://www.amazon.cn/"];
-    [_contentDic setObject:@{@"platform"       :@"亚马逊",
+    [_contentDic setObject:@{@"platform"       :@"亚马逊中国",
                              @"historicalPrice":@"http://www.amazonvvv.cn/"}
                     forKey:@"http://www.amazon.cn/"];
     
@@ -139,17 +140,21 @@
                              @"historicalPrice":@"http://item.gomevvv.com.cn/"}
                     forKey:@"http://item.gome.com.cn/"];
     
-    [_contentDic setObject:@{@"platform"       :@"网易考拉",
+    [_contentDic setObject:@{@"platform"       :@"考拉海购",
                             @"historicalPrice":@"https://goods.kaolavvv.com/"}
                       forKey:@"https://goods.kaola.com/"];
-    [_contentDic setObject:@{@"platform"       :@"网易考拉",
+    [_contentDic setObject:@{@"platform"       :@"考拉海购",
                              @"historicalPrice":@"http://goods.kaolavvv.com/"}
                     forKey:@"http://goods.kaola.com/"];
     _domains   = _contentDic.allKeys;
 }
 
 - (void)tutorial:(UIButton *)sender {
-    [self.navigationController pushViewController:[[OSETutorialViewController alloc]init] animated:YES];
+    if (!_tutorialViewController) {
+        _tutorialViewController = [[OSETutorialViewController alloc]init];
+        _tutorialViewController.title = @"使用教程";
+    }
+    [self.navigationController pushViewController:_tutorialViewController animated:YES];
 }
 
 - (void)enterHistoryDetailWithUrl:(NSString *)url {

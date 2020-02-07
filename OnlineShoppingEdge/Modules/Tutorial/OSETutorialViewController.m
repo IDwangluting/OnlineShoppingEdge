@@ -36,7 +36,7 @@
 
 - (void)setContentText:(NSString *)contentText {
     UILabel * contentLable = self.textLabel;
-    contentLable.text = [NSString stringWithFormat:@"%@%@",contentText,@"使用教程"];
+    contentLable.text = [NSString stringWithFormat:@"%@ -- %@",contentText,@"使用教程"];
 }
 
 @end
@@ -52,8 +52,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title   = @"使用教程";
-    _dataSources = @[@"天猫",@"淘宝",@"京东",@"亚马逊",@"苏宁易购",@"当当", @"国美" ,@"考拉"];
+    _dataSources = @[@"手机天猫",@"手机淘宝",@"京东",@"亚马逊中国",@"苏宁易购",@"当当", @"国美" ,@"考拉海购"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
