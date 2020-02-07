@@ -203,3 +203,19 @@ Pods/Target Support Files/MBProgressHUD/MBProgressHUD.modulemap
 Pods/Target Support Files/MBProgressHUD/MBProgressHUD.xcconfig
 Pods/Pods.xcodeproj/xcuserdata/luting.xcuserdatad/xcschemes/CRToast.xcscheme
 Pods/Pods.xcodeproj/xcuserdata/luting.xcuserdatad/xcschemes/MBProgressHUD.xcscheme
+Pods/Target Support Files/Pods-OnlineShoppingEdge/Pods-OnlineShoppingEdge-acknowledgements.markdown
+Pods/Target Support Files/Pods-OnlineShoppingEdge/Pods-OnlineShoppingEdge-acknowledgements.plist
+Pods/Target Support Files/Pods-OnlineShoppingEdge/Pods-OnlineShoppingEdge-dummy.m
+Pods/Target Support Files/Pods-OnlineShoppingEdge/Pods-OnlineShoppingEdge-frameworks-Debug-input-files.xcfilelist
+Pods/Target Support Files/Pods-OnlineShoppingEdge/Pods-OnlineShoppingEdge-frameworks-Debug-output-files.xcfilelist
+Pods/Target Support Files/Pods-OnlineShoppingEdge/Pods-OnlineShoppingEdge-frameworks-Release-input-files.xcfilelist
+Pods/Target Support Files/Pods-OnlineShoppingEdge/Pods-OnlineShoppingEdge-frameworks-Release-output-files.xcfilelist
+Pods/Target Support Files/Pods-OnlineShoppingEdge/Pods-OnlineShoppingEdge-frameworks.sh
+Pods/Target Support Files/Pods-OnlineShoppingEdge/Pods-OnlineShoppingEdge-Info.plist
+Pods/Target Support Files/Pods-OnlineShoppingEdge/Pods-OnlineShoppingEdge-umbrella.h
+Pods/Target Support Files/Pods-OnlineShoppingEdge/Pods-OnlineShoppingEdge.debug.xcconfig
+Pods/Target Support Files/Pods-OnlineShoppingEdge/Pods-OnlineShoppingEdge.modulemap
+Pods/Target Support Files/Pods-OnlineShoppingEdge/Pods-OnlineShoppingEdge.release.xcconfig
+Pods/Pods.xcodeproj/project.pbxproj
+Pods/Pods.xcodeproj/xcuserdata/luting.xcuserdatad/xcschemes/Pods-OnlineShoppingEdge.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/luting.xcuserdatad/xcschemes/xcschememanagement.plist
