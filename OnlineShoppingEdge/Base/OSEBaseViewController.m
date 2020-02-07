@@ -10,22 +10,17 @@
 
 @implementation OSEBaseViewController
 
-- (instancetype)init {
-    if (self = [super init]) {
-        self.modalPresentationStyle = UIModalPresentationFullScreen;
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.modalPresentationStyle = UIModalPresentationFullScreen;
     self.automaticallyAdjustsScrollViewInsets = YES;
+    self.view.backgroundColor = UIColor.whiteColor;
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(appWillEnterForeground)
+                                             selector:@selector(appWillEnterForegroundNotification)
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(appDidEnterBackground)
+                                             selector:@selector(appDidEnterBackgroundNotification)
                                                  name:UIApplicationDidEnterBackgroundNotification
                                                object:nil];
     [self layoutSubviews];
@@ -41,9 +36,9 @@
 
 - (void)layoutSubviews {}
 
-- (void)appWillEnterForeground {}
+- (void)appWillEnterForegroundNotification {}
 
-- (void)appDidEnterBackground {
+- (void)appDidEnterBackgroundNotification {
     [self.view endEditing:YES];
 }
 

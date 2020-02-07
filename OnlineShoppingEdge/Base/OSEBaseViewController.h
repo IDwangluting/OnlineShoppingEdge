@@ -18,9 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)layoutSubviews;
 
-- (void)appWillEnterForeground ;
+- (void)appWillEnterForegroundNotification ;
 
-- (void)appDidEnterBackground ;
+- (void)appDidEnterBackgroundNotification ;
 
 @end
 

@@ -18,6 +18,7 @@
 		1D38B18423E966EF00DCE9F2 /* OSEResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D38B18323E966EF00DCE9F2 /* OSEResponder.m */; };
 		1DA3657B23EC81E700068EEF /* OSETutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA3657A23EC81E700068EEF /* OSETutorialViewController.m */; };
 		1DE6311523E7D549002D0C0A /* OSEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6311423E7D549002D0C0A /* OSEHomeViewController.m */; };
+		1DEA1E6623ED2D5C00AC594A /* OSETutorialDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DEA1E6523ED2D5C00AC594A /* OSETutorialDetailViewController.m */; };
 		E40500F22B43ED6248EFD1E0 /* Pods_OnlineShoppingEdge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A624950E6961521CAE6AFD /* Pods_OnlineShoppingEdge.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,8 @@
 		1DA3657A23EC81E700068EEF /* OSETutorialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSETutorialViewController.m; sourceTree = "<group>"; };
 		1DE6311323E7D549002D0C0A /* OSEHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSEHomeViewController.h; sourceTree = "<group>"; };
 		1DE6311423E7D549002D0C0A /* OSEHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEHomeViewController.m; sourceTree = "<group>"; };
+		1DEA1E6423ED2D5C00AC594A /* OSETutorialDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSETutorialDetailViewController.h; sourceTree = "<group>"; };
+		1DEA1E6523ED2D5C00AC594A /* OSETutorialDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSETutorialDetailViewController.m; sourceTree = "<group>"; };
 		32A624950E6961521CAE6AFD /* Pods_OnlineShoppingEdge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnlineShoppingEdge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB9F59484FB019A5163DD4B /* Pods-OnlineShoppingEdge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineShoppingEdge.release.xcconfig"; path = "Target Support Files/Pods-OnlineShoppingEdge/Pods-OnlineShoppingEdge.release.xcconfig"; sourceTree = "<group>"; };
 		C6826047F940E9CB65D4316A /* Pods-OnlineShoppingEdge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnlineShoppingEdge.debug.xcconfig"; path = "Target Support Files/Pods-OnlineShoppingEdge/Pods-OnlineShoppingEdge.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,6 +150,8 @@
 			children = (
 				1DA3657923EC81E700068EEF /* OSETutorialViewController.h */,
 				1DA3657A23EC81E700068EEF /* OSETutorialViewController.m */,
+				1DEA1E6423ED2D5C00AC594A /* OSETutorialDetailViewController.h */,
+				1DEA1E6523ED2D5C00AC594A /* OSETutorialDetailViewController.m */,
 			);
 			path = Tutorial;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 				1D0DA5C723C9F7B600BE11A6 /* main.m in Sources */,
 				1D0DA5B923C9F7B500BE11A6 /* SceneDelegate.m in Sources */,
 				1D38B18123E95A0600DCE9F2 /* OSEBaseViewController.m in Sources */,
+				1DEA1E6623ED2D5C00AC594A /* OSETutorialDetailViewController.m in Sources */,
 				1D38B18423E966EF00DCE9F2 /* OSEResponder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
