@@ -13,6 +13,7 @@
 
 //#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 //#import <CoreTelephony/CTCarrier.h>
+#define baiduSearch @"https://m.baidu.com/s?from=1000539d&word="
 
 @interface OSEHomeViewController ()<UISearchBarDelegate>
 
@@ -52,7 +53,7 @@
     _searchBar                   = [[UISearchBar alloc]init];
     _searchBar.searchBarStyle    = UISearchBarStyleProminent;
     _searchBar.barStyle          = UIBarStyleBlack;
-    _searchBar.placeholder       = @"请输入网址";
+    _searchBar.placeholder       = @"请输入搜索内容";
     _searchBar.returnKeyType     = UIReturnKeyDone;
     _searchBar.keyboardType      = UIKeyboardTypeURL;
     _searchBar.scopeButtonTitles = @[];
@@ -73,81 +74,60 @@
         [self.view endEditing:YES];
     }];
     [self.view addGestureRecognizer:tap];
-    _histroyDetailViewController = [[OSEHistroyDetailViewController alloc]init];
     _contentDic = [[NSMutableDictionary alloc]initWithCapacity:4];
-    [_contentDic setObject:@{@"platform"       :@"手机天猫",
-                             @"historicalPrice":@"https://detail.tmallvvv.com/"}
-                    forKey:@"https://detail.tmall.com/"];
-    [_contentDic setObject:@{@"platform"       :@"手机天猫",
-                             @"historicalPrice":@"http://detail.tmallvvv.com/"}
-                    forKey:@"http://detail.tmall.com/"];
-    [_contentDic setObject:@{@"platform"       :@"手机天猫",
-                            @"historicalPrice":@"https://detail.m.tmallvvv.com/"}
-                    forKey:@"https://detail.m.tmall.com/"];
-    [_contentDic setObject:@{@"platform"       :@"手机天猫",
-                             @"historicalPrice":@"http://detail.m.tmallvvv.com/"}
-                    forKey:@"http://detail.m.tmall.com/"];
+    [_contentDic setObject:@{@"platform"       :@"天猫",
+                             @"historicalPrice":@"detail.tmallvvv.com"}
+                    forKey:@"detail.tmall.com"];
+    [_contentDic setObject:@{@"platform"       :@"天猫",
+                            @"historicalPrice":@"detail.m.tmallvvv.com"}
+                    forKey:@"detail.m.tmall.com"];
     
-    [_contentDic setObject:@{@"platform"       :@"手机淘宝",
-                             @"historicalPrice":@"https://item.taobaovvv.com/"}
-                    forKey:@"https://item.taobao.com/"];
-    [_contentDic setObject:@{@"platform"       :@"手机淘宝",
-                             @"historicalPrice":@"http://item.taobaovvv.com/"}
-                    forKey:@"http://item.taobao.com/"];
-    [_contentDic setObject:@{@"platform"       :@"手机淘宝",
-                             @"historicalPrice":@"https://h5.m.taobaovvv.com/"}
-                    forKey:@"https://h5.m.taobao.com/"];
-    [_contentDic setObject:@{@"platform"       :@"手机淘宝",
-                             @"historicalPrice":@"http://h5.m.taobaovvv.com/"}
-                    forKey:@"http://h5.m.taobao.com/"];
+    //这种暂时处理不了
+    [_contentDic setObject:@{@"platform"       :@"天猫",
+                             @"historicalPrice":@"m.tb.cn"}
+                       forKey:@"m.tb.cn"];
+    
+    [_contentDic setObject:@{@"platform"       :@"淘宝",
+                             @"historicalPrice":@"item.taobaovvv.com"}
+                    forKey:@"item.taobao.com"];
+    [_contentDic setObject:@{@"platform"       :@"淘宝",
+                             @"historicalPrice":@"h5.m.taobaovvv.com"}
+                    forKey:@"h5.m.taobao.com"];
     
     [_contentDic setObject:@{@"platform"       :@"京东",
-                             @"historicalPrice":@"https://item.jdvvv.com/"}
-                    forKey:@"https://item.jd.com/"];
+                             @"historicalPrice":@"item.jdvvv.com"}
+                    forKey:@"item.jd.com"];
     [_contentDic setObject:@{@"platform"       :@"京东",
-                             @"historicalPrice":@"http://item.jdvvv.com/"}
-                    forKey:@"http://item.jd.com/"];
-    [_contentDic setObject:@{@"platform"       :@"京东",
-                             @"historicalPrice":@"https://item.m.jdvvv.com/"}
-                    forKey:@"https://item.m.jd.com/"];
-    [_contentDic setObject:@{@"platform"       :@"京东",
-                             @"historicalPrice":@"http://item.m.jdvvv.com/"}
-                    forKey:@"http://item.m.jd.com/"];
+                             @"historicalPrice":@"item.m.jdvvv.com"}
+                    forKey:@"item.m.jd.com"];
     
-    [_contentDic setObject:@{@"platform"       :@"亚马逊中国",
-                             @"historicalPrice":@"https://www.amazonvvv.cn/"}
-                    forKey:@"https://www.amazon.cn/"];
-    [_contentDic setObject:@{@"platform"       :@"亚马逊中国",
-                             @"historicalPrice":@"http://www.amazonvvv.cn/"}
-                    forKey:@"http://www.amazon.cn/"];
+    [_contentDic setObject:@{@"platform"       :@"亚马逊",
+                             @"historicalPrice":@"www.amazonvvv.cn"}
+                    forKey:@"www.amazon.cn"];
     
     [_contentDic setObject:@{@"platform"       :@"当当",
-                             @"historicalPrice":@"https://product.dangdangvvv.com/"}
-                    forKey:@"https://product.dangdang.com/"];
+                             @"historicalPrice":@"product.dangdangvvv.com"}
+                    forKey:@"product.dangdang.com"];
+    
     [_contentDic setObject:@{@"platform"       :@"当当",
-                             @"historicalPrice":@"http://product.dangdangvvv.com/"}
-                    forKey:@"http://product.dangdang.com/"];
+                             @"historicalPrice":@"product.dangdangvvv.com"}
+                       forKey:@"product.m.dangdang.com"];
     
     [_contentDic setObject:@{@"platform"       :@"苏宁易购",
-                             @"historicalPrice":@"https://product.suningvvv.com/"}
-                    forKey:@"https://product.suning.com/"];
-    [_contentDic setObject:@{@"platform"       :@"苏宁易购",
-                             @"historicalPrice":@"http://product.suningvvv.com/"}
-                    forKey:@"http://product.suning.com/"];
+                             @"historicalPrice":@"product.suningvvv.com"}
+                    forKey:@"product.suning.com"];
     
     [_contentDic setObject:@{@"platform"       :@"国美",
-                             @"historicalPrice":@"https://item.gomevvv.com.cn/"}
-                    forKey:@"https://item.gome.com.cn/"];
-    [_contentDic setObject:@{@"platform"       :@"国美",
-                             @"historicalPrice":@"http://item.gomevvv.com.cn/"}
-                    forKey:@"http://item.gome.com.cn/"];
+                             @"historicalPrice":@"item.gomevvv.com.cn"}
+                    forKey:@"item.gome.com.cn"];
     
     [_contentDic setObject:@{@"platform"       :@"考拉海购",
-                            @"historicalPrice":@"https://goods.kaolavvv.com/"}
-                      forKey:@"https://goods.kaola.com/"];
+                             @"historicalPrice":@"goods.kaolavvv.com"}
+                      forKey:@"goods.kaola.com"];
     [_contentDic setObject:@{@"platform"       :@"考拉海购",
-                             @"historicalPrice":@"http://goods.kaolavvv.com/"}
-                    forKey:@"http://goods.kaola.com/"];
+                             @"historicalPrice":@"goods.kaolavvv.com"}
+                      forKey:@"m-goods.kaola.com"];
+    
     _domains   = _contentDic.allKeys;
 }
 
@@ -159,48 +139,94 @@
     [self.navigationController pushViewController:_tutorialViewController animated:YES];
 }
 
-- (void)enterHistoryDetailWithUrl:(NSString *)url {
+- (void)enterHistoryDetailWithTitle:(NSString *)title url:(NSString *)url {
     if (url == nil && url.length < 1) return ;
     
     if ([url containsString:@"vvv"]) {
         _searchBar.text = [url stringByReplacingOccurrencesOfString:@"vvv" withString:@""];
     }
-    _histroyDetailViewController.url = url;
+    if (!_histroyDetailViewController) {
+        _histroyDetailViewController = [[OSEHistroyDetailViewController alloc]init];
+    }
+    _histroyDetailViewController.title = title;
+    // 处理重定向问题
+    NSMutableCharacterSet *set  = [[NSCharacterSet URLQueryAllowedCharacterSet] mutableCopy];
+    [set addCharactersInString:@"#"];
+    _histroyDetailViewController.url = [url stringByAddingPercentEncodingWithAllowedCharacters:set];
     [self.navigationController pushViewController:_histroyDetailViewController animated:YES];
 }
 
 - (void)tryOpenWebWithUrl:(NSString *)url {
-    // 处理重定向问题
-    NSMutableCharacterSet *set  = [[NSCharacterSet URLQueryAllowedCharacterSet] mutableCopy];
-    [set addCharactersInString:@"#"];
-    url = [url stringByAddingPercentEncodingWithAllowedCharacters:set];
-    BOOL openSucess = false ;
+    if (url.length < 1 || url == nil) return ;
     
-    if ([url containsString:@"vvv"]) {
-        [self enterHistoryDetailWithUrl:url];
-        openSucess = YES;
+    NSArray<NSString *> * urls = [self getUrlFromString:url];
+    if (urls.count > 0 && urls.firstObject.length > 0 ) {
+        url = urls.firstObject;
     }
+
+    if ([url containsString:@"vvv"]) {
+        url = [url stringByReplacingOccurrencesOfString:@"vvv" withString:@""];
+    }
+    BOOL openSucess = false ;
     for (NSString *currentDomain  in _domains){
         if ([url containsString:currentDomain]) {
             NSString * historicalPrice = [[_contentDic objectForKey:currentDomain] objectForKey:@"historicalPrice"];
             url = [url stringByReplacingOccurrencesOfString:currentDomain withString:historicalPrice];
-            [self enterHistoryDetailWithUrl:url];
+            NSString * title = [[_contentDic objectForKey:currentDomain] objectForKey:@"platform"];
+            [self enterHistoryDetailWithTitle:title url:url];
             openSucess = YES;
             break ;
         }
+    }
+    if (openSucess == false) {
+        [self searchWithContent:url];
     }
     
     _searchBar.showsSearchResultsButton = YES;
     _searchBar.searchResultsButtonSelected = openSucess;
 }
 
+- (void)searchWithContent:(NSString *)content {
+    NSString * url = nil;
+    if([content containsString:@"http"] || [content containsString:baiduSearch]) {
+        url = content;
+        content = [[content stringByRemovingPercentEncoding] stringByReplacingOccurrencesOfString:baiduSearch withString:@""];
+        _searchBar.text = content;
+    }else {
+        url = [NSString stringWithFormat:@"%@%@",baiduSearch,content];
+    }
+    [self enterHistoryDetailWithTitle:content url:url];
+}
+
 - (NSString *)pastboardUrl{
     UIPasteboard *pastboard = [UIPasteboard generalPasteboard];
-    NSLog(@"---pastboard.string:%@",pastboard.string);
-    if (![pastboard hasURLs]) {
-        return nil;
+    if (pastboard.string.length < 1) return @"";
+    
+    return pastboard.string;
+}
+
+- (NSArray*)getUrlFromString:(NSString *)string {
+    NSError *error;
+    //可以识别url的正则表达式
+    NSString *regulaStr = @"((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)";
+
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regulaStr
+    options:NSRegularExpressionCaseInsensitive
+    error:&error];
+
+    NSArray *arrayOfAllMatches = [regex matchesInString:string
+    options:0
+    range:NSMakeRange(0, [string length])];
+
+    //NSString *subStr;
+    NSMutableArray *arr=[[NSMutableArray alloc] init];
+
+    for (NSTextCheckingResult *match in arrayOfAllMatches){
+        NSString* substringForMatch;
+        substringForMatch = [string substringWithRange:match.range];
+        [arr addObject:substringForMatch];
     }
-    return  pastboard.string;
+    return arr;
 }
 
 - (void)appWillEnterForegroundNotification {

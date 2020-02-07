@@ -30,6 +30,7 @@
 
 - (void)setUrl:(NSString *)url {
     _url = url;
+    [self openWebWithUrl:@""];
     [self openWebWithUrl:_url];
 }
 

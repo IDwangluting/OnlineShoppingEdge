@@ -52,7 +52,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _dataSources = @[@"手机天猫",@"手机淘宝",@"京东",@"亚马逊中国",@"苏宁易购",@"当当", @"国美" ,@"考拉海购"];
+    _dataSources = @[@"天猫",@"淘宝",@"京东",@"亚马逊",@"苏宁易购",@"当当", @"国美" ,@"考拉海购"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
