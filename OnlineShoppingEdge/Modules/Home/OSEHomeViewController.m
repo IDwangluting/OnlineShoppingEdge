@@ -10,18 +10,20 @@
 #import "OSETutorialViewController.h"
 #import "OSEHistroyDetailViewController.h"
 #import <YYCategories/UIView+YYAdd.h>
+#import <YYCategories/UIGestureRecognizer+YYAdd.h>
 
 //#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 //#import <CoreTelephony/CTCarrier.h>
 
 @interface OSEHomeViewController ()<UISearchBarDelegate>
 
+@property (nonatomic,strong)UISearchBar * searchBar;
+
 @end
 
 @implementation OSEHomeViewController {
     NSArray             * _domains;
     NSMutableDictionary * _contentDic;
-    UISearchBar * _searchBar;
     OSEHistroyDetailViewController * _histroyDetailViewController;
 }
 
@@ -64,6 +66,12 @@
 }
 
 - (void)commonInit {
+    __weak typeof(self) weakSelf = self;
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        [weakSelf.view endEditing:YES];
+        [weakSelf tryOpenWebWithUrl:weakSelf.searchBar.text];
+    }];
+    [self.view addGestureRecognizer:tap];
     _histroyDetailViewController = [[OSEHistroyDetailViewController alloc]init];
     _contentDic = [[NSMutableDictionary alloc]initWithCapacity:4];
     [_contentDic setObject:@{@"platform"       :@"天猫",
@@ -204,12 +212,6 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
     [self tryOpenWebWithUrl:url];
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [super touchesBegan:touches withEvent:event];
-    [self.view endEditing:YES];
-    [self tryOpenWebWithUrl:_searchBar.text];
 }
 
 #pragma mark UISearchBarDelegate

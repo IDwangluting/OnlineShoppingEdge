@@ -25,6 +25,7 @@
         _bottomLine = [[UIView alloc]initWithFrame:CGRectMake(0, self.height - 1, self.width, 0.5)];
         _bottomLine.backgroundColor = [UIColor.grayColor colorWithAlphaComponent:0.2];
         [self addSubview:_bottomLine];
+        self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     }
     return self;
 }
