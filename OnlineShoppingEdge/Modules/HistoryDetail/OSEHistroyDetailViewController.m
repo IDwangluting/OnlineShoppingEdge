@@ -7,7 +7,6 @@
 //
 
 #import "OSEHistroyDetailViewController.h"
-#import <YYCategories/UIView+YYAdd.h>
 #import "MBProgressHUD.h"
 @import WebKit;
 

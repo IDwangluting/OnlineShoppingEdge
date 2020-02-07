@@ -8,7 +8,6 @@
 
 #import "OSETutorialViewController.h"
 #import "OSETutorialDetailViewController.h"
-#import <YYCategories/UIView+YYAdd.h>
 
 @interface ItemTableViewCell : UITableViewCell
 

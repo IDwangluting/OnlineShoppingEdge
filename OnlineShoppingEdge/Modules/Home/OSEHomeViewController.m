@@ -9,7 +9,6 @@
 #import "OSEHomeViewController.h"
 #import "OSETutorialViewController.h"
 #import "OSEHistroyDetailViewController.h"
-#import <YYCategories/UIView+YYAdd.h>
 #import <YYCategories/UIGestureRecognizer+YYAdd.h>
 
 //#import <CoreTelephony/CTTelephonyNetworkInfo.h>
@@ -29,12 +28,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"首页";
     [self commonInit];
-    __weak typeof(self)  weakSelf = self;
+    @weakify(self);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        __strong typeof(weakSelf)  strongSelf = weakSelf;
-        [strongSelf tryOpenWebWithUrl:[strongSelf pastboardUrl]];
+        @strongify(self);
+        [self tryOpenWebWithUrl:[self pastboardUrl]];
     });
 }
 
@@ -57,8 +55,7 @@
     _searchBar.returnKeyType     = UIReturnKeyDone;
     _searchBar.keyboardType      = UIKeyboardTypeURL;
     _searchBar.scopeButtonTitles = @[];
-    _searchBar.tintColor         = UIColor.brownColor;
-    _searchBar.barTintColor      = UIColor.darkGrayColor;
+    _searchBar.tintColor         = UIColor.darkGrayColor;
     _searchBar.layer.cornerRadius= 8;
     _searchBar.clipsToBounds     = YES;
     _searchBar.delegate          = self;
@@ -66,10 +63,11 @@
 }
 
 - (void)commonInit {
-    __weak typeof(self) weakSelf = self;
+    @weakify(self);
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-        [weakSelf.view endEditing:YES];
-        [weakSelf tryOpenWebWithUrl:weakSelf.searchBar.text];
+        @strongify(self);
+        [self.view endEditing:YES];
+        [self tryOpenWebWithUrl:self.searchBar.text];
     }];
     [self.view addGestureRecognizer:tap];
     _histroyDetailViewController = [[OSEHistroyDetailViewController alloc]init];
