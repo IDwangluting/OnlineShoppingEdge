@@ -20,8 +20,12 @@
     self.window.rootViewController = navigationController ;
     [self.window makeKeyAndVisible];
     
-    [UINavigationBar appearance].barStyle     = UIBarStyleBlack;
-    [UINavigationBar appearance].barTintColor = UIColor.darkTextColor;
+    [UINavigationBar appearance].titleTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:17],
+                                                         NSForegroundColorAttributeName:UIColor.blackColor};
+    [UITableViewCell appearance].backgroundColor     = UIColor.whiteColor ;
+    //    [UINavigationBar appearance].translucent     = false ;
+    //    [UINavigationBar appearance].barStyle        = UIBarStyleDefault  ;
+    //    [UINavigationBar appearance].barTintColor    = UIColor.whiteColor ;
 }
 
 @end
