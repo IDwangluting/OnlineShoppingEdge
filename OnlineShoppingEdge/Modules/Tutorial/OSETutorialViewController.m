@@ -24,6 +24,7 @@
         _bottomLine = [[UIView alloc]initWithFrame:CGRectMake(0, self.height - 1, self.width, 0.5)];
         _bottomLine.backgroundColor = [UIColor.grayColor colorWithAlphaComponent:0.2];
         [self addSubview:_bottomLine];
+        self.backgroundColor = UIColor.whiteColor;
         self.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     }
     return self;
@@ -36,6 +37,7 @@
 
 - (void)setContentText:(NSString *)contentText {
     UILabel * contentLable = self.textLabel;
+    contentLable.textColor = UIColor.blackColor;
     contentLable.text = [NSString stringWithFormat:@"%@ -- %@",contentText,@"使用教程"];
 }
 
@@ -72,6 +74,7 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.delegate       = self;
     _tableView.dataSource     = self;
+    _tableView.backgroundColor = UIColor.whiteColor;
     [_tableView registerClass:[ItemTableViewCell class] forCellReuseIdentifier:NSStringFromClass([ItemTableViewCell class])];
     [self.view addSubview:_tableView];
 }

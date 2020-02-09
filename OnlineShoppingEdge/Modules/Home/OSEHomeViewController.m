@@ -7,6 +7,7 @@
 //
 
 #import "OSEHomeViewController.h"
+#import "OSEMutableDictionary.h"
 #import "OSETutorialViewController.h"
 #import "OSEHistroyDetailViewController.h"
 #import <YYCategories/UIGestureRecognizer+YYAdd.h>
@@ -18,12 +19,12 @@
 @interface OSEHomeViewController ()<UISearchBarDelegate>
 
 @property (nonatomic,strong)UISearchBar * searchBar;
+@property (nonatomic,assign)BOOL isEditing;
 
 @end
 
 @implementation OSEHomeViewController {
-    NSArray             * _domains;
-    NSMutableDictionary * _contentDic;
+    NSArray             * _hosts;
     OSEHistroyDetailViewController * _histroyDetailViewController;
     OSETutorialViewController * _tutorialViewController;
 }
@@ -42,6 +43,11 @@
     [super viewDidLayoutSubviews];
     CGFloat top =  self.view.height / 4 - 45 + self.navigationController.navigationBar.bottom;
     _searchBar.frame = CGRectMake(45, top , self.view.width - 45 * 2, 45);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.isEditing = NO;
 }
 
 - (void)layoutSubviews {
@@ -68,67 +74,14 @@
     @weakify(self);
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
         @strongify(self);
-        if (self.searchBar.searchTextField.editing == NO) {
-            [self tryOpenWebWithUrl:self.searchBar.text];
+        if (self.isEditing) {
+            [self.view endEditing:YES];
+            return ;
         }
-        [self.view endEditing:YES];
+        [self tryOpenWebWithUrl:self.searchBar.text];
     }];
     [self.view addGestureRecognizer:tap];
-    _contentDic = [[NSMutableDictionary alloc]initWithCapacity:4];
-    [_contentDic setObject:@{@"platform"       :@"天猫",
-                             @"historicalPrice":@"detail.tmallvvv.com"}
-                    forKey:@"detail.tmall.com"];
-    [_contentDic setObject:@{@"platform"       :@"天猫",
-                            @"historicalPrice":@"detail.m.tmallvvv.com"}
-                    forKey:@"detail.m.tmall.com"];
-    
-    //这种暂时处理不了
-    [_contentDic setObject:@{@"platform"       :@"天猫",
-                             @"historicalPrice":@"m.tb.cn"}
-                       forKey:@"m.tb.cn"];
-    
-    [_contentDic setObject:@{@"platform"       :@"淘宝",
-                             @"historicalPrice":@"item.taobaovvv.com"}
-                    forKey:@"item.taobao.com"];
-    [_contentDic setObject:@{@"platform"       :@"淘宝",
-                             @"historicalPrice":@"h5.m.taobaovvv.com"}
-                    forKey:@"h5.m.taobao.com"];
-    
-    [_contentDic setObject:@{@"platform"       :@"京东",
-                             @"historicalPrice":@"item.jdvvv.com"}
-                    forKey:@"item.jd.com"];
-    [_contentDic setObject:@{@"platform"       :@"京东",
-                             @"historicalPrice":@"item.m.jdvvv.com"}
-                    forKey:@"item.m.jd.com"];
-    
-    [_contentDic setObject:@{@"platform"       :@"亚马逊",
-                             @"historicalPrice":@"www.amazonvvv.cn"}
-                    forKey:@"www.amazon.cn"];
-    
-    [_contentDic setObject:@{@"platform"       :@"当当",
-                             @"historicalPrice":@"product.dangdangvvv.com"}
-                    forKey:@"product.dangdang.com"];
-    
-    [_contentDic setObject:@{@"platform"       :@"当当",
-                             @"historicalPrice":@"product.dangdangvvv.com"}
-                       forKey:@"product.m.dangdang.com"];
-    
-    [_contentDic setObject:@{@"platform"       :@"苏宁易购",
-                             @"historicalPrice":@"product.suningvvv.com"}
-                    forKey:@"product.suning.com"];
-    
-    [_contentDic setObject:@{@"platform"       :@"国美",
-                             @"historicalPrice":@"item.gomevvv.com.cn"}
-                    forKey:@"item.gome.com.cn"];
-    
-    [_contentDic setObject:@{@"platform"       :@"考拉海购",
-                             @"historicalPrice":@"goods.kaolavvv.com"}
-                      forKey:@"goods.kaola.com"];
-    [_contentDic setObject:@{@"platform"       :@"考拉海购",
-                             @"historicalPrice":@"goods.kaolavvv.com"}
-                      forKey:@"m-goods.kaola.com"];
-    
-    _domains   = _contentDic.allKeys;
+    _hosts = [OSEMutableDictionary allKeys];
 }
 
 - (void)tutorial:(UIButton *)sender {
@@ -168,16 +121,14 @@
         url = [url stringByReplacingOccurrencesOfString:@"vvv" withString:@""];
     }
     BOOL openSucess = false ;
-    for (NSString *currentDomain  in _domains){
-        if ([url containsString:currentDomain]) {
-            NSString * historicalPrice = [[_contentDic objectForKey:currentDomain] objectForKey:@"historicalPrice"];
-            url = [url stringByReplacingOccurrencesOfString:currentDomain withString:historicalPrice];
-            NSString * title = [[_contentDic objectForKey:currentDomain] objectForKey:@"platform"];
-            [self enterHistoryDetailWithTitle:title url:url];
-            openSucess = YES;
-            break ;
-        }
+    NSString * host = [NSURL URLWithString:url].host;
+    url = [OSEMutableDictionary histroyDeatailUrl:url];
+    if ([_hosts containsObject:host]) {
+        NSString * title = [[[OSEMutableDictionary contentData] objectForKey:host] objectForKey:PlatformName];
+        [self enterHistoryDetailWithTitle:title url:url];
+        openSucess = YES;
     }
+    
     if (openSucess == false) {
         [self searchWithContent:url];
     }
@@ -246,7 +197,12 @@
 }
 
 #pragma mark UISearchBarDelegate
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    _isEditing = YES;
+}
+
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    _isEditing = NO;
     [self tryOpenWebWithUrl:searchBar.text];
 }
 
