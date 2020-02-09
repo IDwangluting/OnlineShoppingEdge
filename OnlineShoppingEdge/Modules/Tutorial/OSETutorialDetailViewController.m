@@ -36,8 +36,8 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    UIView * navigationBar = self.navigationController.navigationBar;
-    self.videoPlayer.frame = CGRectMake(0, navigationBar.bottom,self.view.width,self.view.height - navigationBar.bottom);
+    CGFloat top = self.navigationController.navigationBar.bottom;
+    self.videoPlayer.frame = CGRectMake(0, top,self.view.width,self.view.height - top);
 }
 
 - (void)viewDidAppear:(BOOL)animated {

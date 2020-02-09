@@ -103,9 +103,10 @@
 				1D38B18823E967E200DCE9F2 /* Base */,
 				1D38B18523E967D600DCE9F2 /* Modules */,
 				1DA206A623F0576200675475 /* Resource */,
-				1D0DA5BD23C9F7B500BE11A6 /* Main.storyboard */,
 				1D0DA5C223C9F7B600BE11A6 /* LaunchScreen.storyboard */,
+				1D0DA5BD23C9F7B500BE11A6 /* Main.storyboard */,
 				1D0DA5C523C9F7B600BE11A6 /* Info.plist */,
+				1D0DA5C623C9F7B600BE11A6 /* main.m */,
 			);
 			path = OnlineShoppingEdge;
 			sourceTree = "<group>";
@@ -141,11 +142,11 @@
 		1D38B18823E967E200DCE9F2 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				1DD8E9E123EFF1D400603887 /* OSEMutableDictionary.h */,
-				1DD8E9E223EFF1D400603887 /* OSEMutableDictionary.m */,
 				1DBE30FE23F04AC100A07DA4 /* CommonDefine.h */,
 				1D38B18223E966EF00DCE9F2 /* OSEResponder.h */,
 				1D38B18323E966EF00DCE9F2 /* OSEResponder.m */,
+				1DD8E9E123EFF1D400603887 /* OSEMutableDictionary.h */,
+				1DD8E9E223EFF1D400603887 /* OSEMutableDictionary.m */,
 				1D38B17F23E95A0600DCE9F2 /* OSEBaseViewController.h */,
 				1D38B18023E95A0600DCE9F2 /* OSEBaseViewController.m */,
 			);
@@ -155,7 +156,6 @@
 		1D38B18923E968A300DCE9F2 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				1D0DA5C623C9F7B600BE11A6 /* main.m */,
 				1D0DA5B423C9F7B500BE11A6 /* AppDelegate.h */,
 				1D0DA5B523C9F7B500BE11A6 /* AppDelegate.m */,
 				1D0DA5B723C9F7B500BE11A6 /* SceneDelegate.h */,
