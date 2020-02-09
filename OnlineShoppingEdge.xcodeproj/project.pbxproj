@@ -16,6 +16,12 @@
 		1D0DA5C723C9F7B600BE11A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0DA5C623C9F7B600BE11A6 /* main.m */; };
 		1D38B18123E95A0600DCE9F2 /* OSEBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D38B18023E95A0600DCE9F2 /* OSEBaseViewController.m */; };
 		1D38B18423E966EF00DCE9F2 /* OSEResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D38B18323E966EF00DCE9F2 /* OSEResponder.m */; };
+		1DA206AD23F0578700675475 /* 亚马逊.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206A723F0578600675475 /* 亚马逊.mp4 */; };
+		1DA206AE23F0578700675475 /* 京东.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206A823F0578600675475 /* 京东.mp4 */; };
+		1DA206AF23F0578700675475 /* 天猫.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206A923F0578600675475 /* 天猫.mp4 */; };
+		1DA206B023F0578700675475 /* 当当.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206AA23F0578700675475 /* 当当.mp4 */; };
+		1DA206B123F0578700675475 /* 淘宝.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206AB23F0578700675475 /* 淘宝.mp4 */; };
+		1DA206B223F0578700675475 /* 考拉海购.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206AC23F0578700675475 /* 考拉海购.mp4 */; };
 		1DA3657B23EC81E700068EEF /* OSETutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA3657A23EC81E700068EEF /* OSETutorialViewController.m */; };
 		1DD8E9E323EFF1D400603887 /* OSEMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD8E9E223EFF1D400603887 /* OSEMutableDictionary.m */; };
 		1DE6311523E7D549002D0C0A /* OSEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6311423E7D549002D0C0A /* OSEHomeViewController.m */; };
@@ -40,6 +46,12 @@
 		1D38B18023E95A0600DCE9F2 /* OSEBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEBaseViewController.m; sourceTree = "<group>"; };
 		1D38B18223E966EF00DCE9F2 /* OSEResponder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSEResponder.h; sourceTree = "<group>"; };
 		1D38B18323E966EF00DCE9F2 /* OSEResponder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEResponder.m; sourceTree = "<group>"; };
+		1DA206A723F0578600675475 /* 亚马逊.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "亚马逊.mp4"; sourceTree = "<group>"; };
+		1DA206A823F0578600675475 /* 京东.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "京东.mp4"; sourceTree = "<group>"; };
+		1DA206A923F0578600675475 /* 天猫.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "天猫.mp4"; sourceTree = "<group>"; };
+		1DA206AA23F0578700675475 /* 当当.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "当当.mp4"; sourceTree = "<group>"; };
+		1DA206AB23F0578700675475 /* 淘宝.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "淘宝.mp4"; sourceTree = "<group>"; };
+		1DA206AC23F0578700675475 /* 考拉海购.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "考拉海购.mp4"; sourceTree = "<group>"; };
 		1DA3657923EC81E700068EEF /* OSETutorialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSETutorialViewController.h; sourceTree = "<group>"; };
 		1DA3657A23EC81E700068EEF /* OSETutorialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSETutorialViewController.m; sourceTree = "<group>"; };
 		1DBE30FE23F04AC100A07DA4 /* CommonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
@@ -90,8 +102,8 @@
 				1D38B18923E968A300DCE9F2 /* Other */,
 				1D38B18823E967E200DCE9F2 /* Base */,
 				1D38B18523E967D600DCE9F2 /* Modules */,
+				1DA206A623F0576200675475 /* Resource */,
 				1D0DA5BD23C9F7B500BE11A6 /* Main.storyboard */,
-				1D0DA5C023C9F7B600BE11A6 /* Assets.xcassets */,
 				1D0DA5C223C9F7B600BE11A6 /* LaunchScreen.storyboard */,
 				1D0DA5C523C9F7B600BE11A6 /* Info.plist */,
 			);
@@ -129,6 +141,9 @@
 		1D38B18823E967E200DCE9F2 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				1DD8E9E123EFF1D400603887 /* OSEMutableDictionary.h */,
+				1DD8E9E223EFF1D400603887 /* OSEMutableDictionary.m */,
+				1DBE30FE23F04AC100A07DA4 /* CommonDefine.h */,
 				1D38B18223E966EF00DCE9F2 /* OSEResponder.h */,
 				1D38B18323E966EF00DCE9F2 /* OSEResponder.m */,
 				1D38B17F23E95A0600DCE9F2 /* OSEBaseViewController.h */,
@@ -145,11 +160,22 @@
 				1D0DA5B523C9F7B500BE11A6 /* AppDelegate.m */,
 				1D0DA5B723C9F7B500BE11A6 /* SceneDelegate.h */,
 				1D0DA5B823C9F7B500BE11A6 /* SceneDelegate.m */,
-				1DD8E9E123EFF1D400603887 /* OSEMutableDictionary.h */,
-				1DD8E9E223EFF1D400603887 /* OSEMutableDictionary.m */,
-				1DBE30FE23F04AC100A07DA4 /* CommonDefine.h */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		1DA206A623F0576200675475 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				1D0DA5C023C9F7B600BE11A6 /* Assets.xcassets */,
+				1DA206AA23F0578700675475 /* 当当.mp4 */,
+				1DA206A823F0578600675475 /* 京东.mp4 */,
+				1DA206AC23F0578700675475 /* 考拉海购.mp4 */,
+				1DA206AB23F0578700675475 /* 淘宝.mp4 */,
+				1DA206A923F0578600675475 /* 天猫.mp4 */,
+				1DA206A723F0578600675475 /* 亚马逊.mp4 */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		1DA3657823EC81D300068EEF /* Tutorial */ = {
@@ -240,9 +266,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DA206AE23F0578700675475 /* 京东.mp4 in Resources */,
+				1DA206B023F0578700675475 /* 当当.mp4 in Resources */,
+				1DA206B223F0578700675475 /* 考拉海购.mp4 in Resources */,
+				1DA206B123F0578700675475 /* 淘宝.mp4 in Resources */,
 				1D0DA5C423C9F7B600BE11A6 /* LaunchScreen.storyboard in Resources */,
 				1D0DA5C123C9F7B600BE11A6 /* Assets.xcassets in Resources */,
+				1DA206AD23F0578700675475 /* 亚马逊.mp4 in Resources */,
 				1D0DA5BF23C9F7B500BE11A6 /* Main.storyboard in Resources */,
+				1DA206AF23F0578700675475 /* 天猫.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

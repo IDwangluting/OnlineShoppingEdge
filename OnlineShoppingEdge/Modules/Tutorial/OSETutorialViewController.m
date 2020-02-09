@@ -53,7 +53,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _dataSources = @[@"天猫",@"淘宝",@"京东",@"亚马逊",@"苏宁易购",@"当当", @"国美" ,@"考拉海购"];
+    _dataSources = @[@"天猫",@"淘宝",@"京东",@"亚马逊",@"当当",@"考拉海购"]; // @"苏宁易购", @"国美" ,
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -85,7 +85,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIViewController * viewController = [[OSETutorialDetailViewController alloc]initWithTitle:[_dataSources objectAtIndex:indexPath.row]];
+    UIViewController * viewController = [[OSETutorialDetailViewController alloc]init];
+    viewController.title = [_dataSources objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

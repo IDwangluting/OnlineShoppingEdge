@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OSETutorialDetailViewController : OSEBaseViewController
 
-- (instancetype)initWithTitle:(NSString *)title;
-
 @end
 
 NS_ASSUME_NONNULL_END
