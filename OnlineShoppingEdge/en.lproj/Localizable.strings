@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  OnlineShoppingEdge
+
+  Created by luting on 20/2/11.
+  Copyright © 2020 luting. All rights reserved.
+*/
+
+"如何使用?" = "HOW-TO?"  ;
+"重新播放"  = "重新播放"  ;
+"首页"     = "home page" ;
+"请输入网商品地址" = "please enter the online product address";
+"当当"    = "当当";
+"京东"    = "京东";
+"亚马逊"  = "amazon";
+"淘宝"    = "淘宝";
+"考拉海购" = "考拉海购";
+"天猫"    = "天猫";

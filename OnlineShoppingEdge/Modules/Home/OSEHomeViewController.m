@@ -16,6 +16,9 @@
 //#import <CoreTelephony/CTCarrier.h>
 #define baiduSearch @"https://m.baidu.com/s?from=1000539d&word="
 
+//可以识别url的正则表达式
+#define RegulaStr @"((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)"
+
 @interface OSEHomeViewController ()<UISearchBarDelegate>
 
 @property (nonatomic,strong)UISearchBar * searchBar;
@@ -51,7 +54,7 @@
 }
 
 - (void)layoutSubviews {
-    self.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"如何使用？"
+    self.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"如何使用?", nil)
                                                               style:UIBarButtonItemStylePlain
                                                              target:self
                                                              action:@selector(tutorial:)];
@@ -59,7 +62,7 @@
     _searchBar                   = [[UISearchBar alloc]init];
     _searchBar.searchBarStyle    = UISearchBarStyleProminent;
     _searchBar.barStyle          = UIBarStyleBlack;
-    _searchBar.placeholder       = @"请输入搜索内容";
+    _searchBar.placeholder       = NSLocalizedString(@"请输入网商品地址", nil);
     _searchBar.returnKeyType     = UIReturnKeyDone;
     _searchBar.keyboardType      = UIKeyboardTypeURL;
     _searchBar.scopeButtonTitles = @[];
@@ -87,7 +90,7 @@
 - (void)tutorial:(UIButton *)sender {
     if (!_tutorialViewController) {
         _tutorialViewController = [[OSETutorialViewController alloc]init];
-        _tutorialViewController.title = @"使用教程";
+        _tutorialViewController.title = NSLocalizedString(@"使用教程", nil);
     }
     [self.navigationController pushViewController:_tutorialViewController animated:YES];
 }
@@ -158,10 +161,8 @@
 
 - (NSArray*)getUrlFromString:(NSString *)string {
     NSError *error;
-    //可以识别url的正则表达式
-    NSString *regulaStr = @"((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)";
 
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regulaStr
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:RegulaStr
     options:NSRegularExpressionCaseInsensitive
     error:&error];
 

@@ -23,60 +23,65 @@ static NSMutableDictionary * contentData = nil;
 - (instancetype)init {
     if (self = [super init]) {
         contentData = [[NSMutableDictionary alloc]initWithCapacity:4];
-        [contentData setObject:@{PlatformName     :@"天猫",
+        NSString *tmail = NSLocalizedString(@"天猫", nil);
+        [contentData setObject:@{PlatformName       :tmail,
                           HistoricalPriceData:@"detail.tmallvvv.com"}
                  forKey:@"detail.tmall.com"];
-        [contentData setObject:@{PlatformName       :@"天猫",
+        [contentData setObject:@{PlatformName       :tmail,
                           HistoricalPriceData:@"detail.m.tmallvvv.com"}
                  forKey:@"detail.m.tmall.com"];
                       
-        [contentData setObject:@{PlatformName       :@"淘宝",
+        NSString *taobao = NSLocalizedString(@"淘宝", nil);
+        [contentData setObject:@{PlatformName       :taobao,
                           HistoricalPriceData:@"item.taobaovvv.com"}
                  forKey:@"item.taobao.com"];
-        [contentData setObject:@{PlatformName       :@"淘宝",
+        [contentData setObject:@{PlatformName       :taobao,
                           HistoricalPriceData:@"h5.m.taobaovvv.com"}
                  forKey:@"h5.m.taobao.com"];
-                      
-        [contentData setObject:@{PlatformName       :@"京东",
+        
+        NSString *jd = NSLocalizedString(@"京东", nil);
+        [contentData setObject:@{PlatformName       :jd,
                           HistoricalPriceData:@"item.jdvvv.com"}
                  forKey:@"item.jd.com"];
-        [contentData setObject:@{PlatformName       :@"京东",
+        [contentData setObject:@{PlatformName       :jd,
                           HistoricalPriceData:@"item.m.jdvvv.com"}
                  forKey:@"item.m.jd.com"];
                       
-        [contentData setObject:@{PlatformName       :@"亚马逊",
+        NSString * amazon = NSLocalizedString(@"亚马逊", nil);
+        [contentData setObject:@{PlatformName       :amazon,
                           HistoricalPriceData:@"www.amazonvvv.cn"}
                  forKey:@"www.amazon.cn"];
                       
-        [contentData setObject:@{PlatformName       :@"当当",
+        NSString * dangdang = NSLocalizedString(@"当当", nil);
+        [contentData setObject:@{PlatformName       :dangdang,
                           HistoricalPriceData:@"product.dangdangvvv.com"}
                  forKey:@"product.dangdang.com"];
-        [contentData setObject:@{PlatformName       :@"当当",
+        [contentData setObject:@{PlatformName       :dangdang,
                           HistoricalPriceData:@"product.dangdangvvv.com"}
                  forKey:@"product.m.dangdang.com"];
-                                            
-        [contentData setObject:@{PlatformName       :@"苏宁易购",
-                          HistoricalPriceData:@"product.suningvvv.com"}
-                 forKey:@"product.suning.com"];
-                                                   
-        [contentData setObject:@{PlatformName       :@"国美",
-                          HistoricalPriceData:@"item.gomevvv.com.cn"}
-                 forKey:@"item.gome.com.cn"];
-                                                   
-        [contentData setObject:@{PlatformName       :@"考拉海购",
+                                
+        NSString * kaola = NSLocalizedString(@"考拉海购", nil);
+        [contentData setObject:@{PlatformName       :kaola,
                           HistoricalPriceData:@"goods.kaolavvv.com"}
                  forKey:@"goods.kaola.com"];
-        [contentData setObject:@{PlatformName       :@"考拉海购",
+        [contentData setObject:@{PlatformName       :kaola,
                           HistoricalPriceData:@"goods.kaolavvv.com"}
                  forKey:@"m-goods.kaola.com"];
-                                                   
+                           
+        //        [contentData setObject:@{PlatformName       :@"苏宁易购",
+        //                          HistoricalPriceData:@"product.suningvvv.com"}
+        //                 forKey:@"product.suning.com"];
+        //
+        //        [contentData setObject:@{PlatformName       :@"国美",
+        //                          HistoricalPriceData:@"item.gomevvv.com.cn"}
+        //                 forKey:@"item.gome.com.cn"];
         // 暂不支持
-        [contentData setObject:@{PlatformName       :@"苏宁易购",
-                          HistoricalPriceData:@"m.suning.com"}
-                 forKey:@"m.suning.com"];
-        [contentData setObject:@{PlatformName       :@"国美",
-                          HistoricalPriceData:@"item.m.gome.com.cn"}
-                 forKey:@"item.m.gome.com.cn"];
+//        [contentData setObject:@{PlatformName       :@"苏宁易购",
+//                          HistoricalPriceData:@"m.suning.com"}
+//                 forKey:@"m.suning.com"];
+//        [contentData setObject:@{PlatformName       :@"国美",
+//                          HistoricalPriceData:@"item.m.gome.com.cn"}
+//                 forKey:@"item.m.gome.com.cn"];
     }
     return self;
 }

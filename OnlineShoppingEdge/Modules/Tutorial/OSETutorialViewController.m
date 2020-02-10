@@ -8,6 +8,7 @@
 
 #import "OSETutorialViewController.h"
 #import "OSETutorialDetailViewController.h"
+#import "OSEMutableDictionary.h"
 
 @interface ItemTableViewCell : UITableViewCell
 
@@ -37,7 +38,7 @@
 - (void)setContentText:(NSString *)contentText {
     UILabel * contentLable = self.textLabel;
     contentLable.textColor = UIColor.darkTextColor;
-    contentLable.text = [NSString stringWithFormat:@"%@ -- %@",contentText,@"使用教程"];
+    contentLable.text = [NSString stringWithFormat:@"%@ -- %@",contentText,NSLocalizedString(@"使用教程", nil)];
 }
 
 @end
@@ -53,7 +54,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _dataSources = @[@"天猫",@"淘宝",@"京东",@"当当",@"亚马逊",@"考拉海购"]; // @"苏宁易购", @"国美" ,
+    NSMutableSet * set = [[NSMutableSet alloc]initWithCapacity:4];
+    for (NSDictionary * value in [OSEMutableDictionary contentData].allValues) {
+       [set addObject:[value objectForKey:PlatformName]];
+    } ;
+    
+    _dataSources = [set allObjects];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
