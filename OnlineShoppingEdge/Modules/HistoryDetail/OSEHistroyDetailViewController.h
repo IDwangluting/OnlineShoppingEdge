@@ -9,7 +9,7 @@
 
 @interface OSEHistroyDetailViewController : OSEBaseViewController
 
-@property (nonnull,strong,nonatomic)NSString * url;
+@property (nonnull,strong,nonatomic)NSURL * url;
 
 @end
 

@@ -105,7 +105,7 @@
     // 处理重定向问题
     NSMutableCharacterSet *set  = [[NSCharacterSet URLQueryAllowedCharacterSet] mutableCopy];
     [set addCharactersInString:@"#"];
-    _histroyDetailViewController.url = [url stringByAddingPercentEncodingWithAllowedCharacters:set];
+    _histroyDetailViewController.url = [NSURL URLWithString:[url stringByAddingPercentEncodingWithAllowedCharacters:set]];
     [self.navigationController pushViewController:_histroyDetailViewController animated:YES];
 }
 
@@ -184,7 +184,7 @@
     NSString * url = [self pastboardUrl];
     UIViewController *viewController = self.navigationController.viewControllers.lastObject;
     if ([viewController isEqual:_histroyDetailViewController]) {
-        NSString * tmpUrl = [_histroyDetailViewController.url stringByReplacingOccurrencesOfString:@"vvv" withString:@""];
+        NSString * tmpUrl = [_histroyDetailViewController.url.absoluteString stringByReplacingOccurrencesOfString:@"vvv" withString:@""];
         if ([tmpUrl isEqualToString:url]) {
             return ;
         }else {
