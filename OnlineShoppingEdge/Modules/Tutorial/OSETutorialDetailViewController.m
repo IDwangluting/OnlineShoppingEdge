@@ -51,6 +51,8 @@
 }
 
 - (void)layoutSubviews {
+    CGFloat top = self.navigationController.navigationBar.bottom;
+    self.videoPlayer.frame = CGRectMake(0, top,self.view.width,self.view.height - top);
     [self.view.layer addSublayer:self.videoPlayer];
 }
 

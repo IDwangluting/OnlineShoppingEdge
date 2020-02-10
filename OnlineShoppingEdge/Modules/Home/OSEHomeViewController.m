@@ -51,7 +51,7 @@
 }
 
 - (void)layoutSubviews {
-    self.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"使用教程"
+    self.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"如何使用？"
                                                               style:UIBarButtonItemStylePlain
                                                              target:self
                                                              action:@selector(tutorial:)];
