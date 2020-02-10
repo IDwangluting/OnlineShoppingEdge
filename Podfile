@@ -5,7 +5,7 @@ use_frameworks!
 
 target 'OnlineShoppingEdge' do
 
-	pod 'LookinServer', :configurations => ['Debug']
+#	pod 'LookinServer', :configurations => ['Debug']
   pod 'YYCategories'
 #  pod 'CRToast'
   pod 'MBProgressHUD'
