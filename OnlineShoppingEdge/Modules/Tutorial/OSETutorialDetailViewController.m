@@ -19,11 +19,9 @@
     NSURL * _url ;
 }
 
-- (instancetype)init {
-    if (self = [super init]) {
-        _url = [[NSBundle mainBundle] URLForResource:self.title withExtension:@".mp4"];
-    }
-    return self;
+- (void)setTitle:(NSString *)title {
+    [super setTitle:title];
+    _url = [[NSBundle mainBundle] URLForResource:title withExtension:@".mp4"];
 }
 
 - (void)viewDidLoad{
