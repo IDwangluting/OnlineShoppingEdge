@@ -60,7 +60,7 @@
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     if (![[OSEMutableDictionary  allKeys] containsObject:[_url.host stringByReplacingOccurrencesOfString:@"vvv" withString:@""]]) return ;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [webView.scrollView setContentOffset:CGPointMake(0, offsetY) animated:YES] ;
     });
 }
