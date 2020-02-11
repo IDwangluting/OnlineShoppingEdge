@@ -7,7 +7,7 @@
 //
 
 #import "OSETutorialDetailViewController.h"
-#import <AVKit/AVKit.h>
+@import AVFoundation;
 
 @interface OSETutorialDetailViewController ()
 
