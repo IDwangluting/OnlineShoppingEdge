@@ -20,8 +20,20 @@
 }
 
 - (void)setTitle:(NSString *)title {
-    [super setTitle:title];
-    _url = [[NSBundle mainBundle] URLForResource:title withExtension:@".mp4"];
+    if ([@[@"当当",@"當當"] containsObject:title]) {
+        _url = [[NSBundle mainBundle] URLForResource:@"当当" withExtension:@".mp4"];
+    }else  if([@[@"京东",@"京東"] containsObject:title]) {
+        _url = [[NSBundle mainBundle] URLForResource:@"京东" withExtension:@".mp4"];
+    }else  if([@[@"天猫",@"天貓"] containsObject:title]) {
+        _url = [[NSBundle mainBundle] URLForResource:@"天猫" withExtension:@".mp4"];
+    }else  if([@[@"亚马逊",@"亞馬遜",@"amazon"] containsObject:title]) {
+        _url = [[NSBundle mainBundle] URLForResource:@"亚马逊" withExtension:@".mp4"];
+    }else  if([@[@"淘宝",@"淘寶"] containsObject:title]) {
+        _url = [[NSBundle mainBundle] URLForResource:@"淘宝" withExtension:@".mp4"];
+    }else  if([@[@"考拉海购",@"考拉海購"] containsObject:title]) {
+        _url = [[NSBundle mainBundle] URLForResource:@"考拉海购" withExtension:@".mp4"];
+    }
+    [super setTitle:[NSString stringWithFormat:@"%@App--%@",title,NSLocalizedString(@"使用教程", nil)]];
 }
 
 - (void)viewDidLoad{

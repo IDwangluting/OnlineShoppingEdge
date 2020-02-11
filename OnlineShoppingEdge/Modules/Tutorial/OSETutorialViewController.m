@@ -38,7 +38,7 @@
 - (void)setContentText:(NSString *)contentText {
     UILabel * contentLable = self.textLabel;
     contentLable.textColor = UIColor.darkTextColor;
-    contentLable.text = [NSString stringWithFormat:@"%@ -- %@",contentText,NSLocalizedString(@"使用教程", nil)];
+    contentLable.text = [NSString stringWithFormat:@"%@App--%@",contentText,NSLocalizedString(@"使用教程", nil)];
 }
 
 @end
@@ -92,7 +92,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIViewController * viewController = [[OSETutorialDetailViewController alloc]init];
-    viewController.title = [_dataSources objectAtIndex:indexPath.row];
+    viewController.title = [NSString stringWithFormat:@"%@",[_dataSources objectAtIndex:indexPath.row]];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

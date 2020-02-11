@@ -15,7 +15,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.bounds = [UIScreen mainScreen].bounds;
     OSEHomeViewController * rootViewController  = [[OSEHomeViewController alloc]init];
-    [rootViewController setTitle:@"首页"];
+    [rootViewController setTitle:NSLocalizedString(@"首页", nil)];
     UIViewController * navigationController = [[UINavigationController alloc]initWithRootViewController:rootViewController];
     self.window.rootViewController = navigationController ;
     [self.window makeKeyAndVisible];
