@@ -14,7 +14,8 @@
 
 //#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 //#import <CoreTelephony/CTCarrier.h>
-#define baiduSearch @"https://m.baidu.com/s?from=1000539d&word="
+
+#define QuarkSearch @"https://quark.sm.cn/s?from=kkframenew&uc_param_str=dnntnwvepffrgibijbprsvpidsdichei&q="
 
 //可以识别url的正则表达式
 #define RegulaStr @"((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)"
@@ -142,12 +143,12 @@
 
 - (void)searchWithContent:(NSString *)content {
     NSString * url = nil;
-    if([content containsString:@"http"] || [content containsString:baiduSearch]) {
+    if([content containsString:@"http"] || [content containsString:QuarkSearch]) {
         url = content;
-        content = [[content stringByRemovingPercentEncoding] stringByReplacingOccurrencesOfString:baiduSearch withString:@""];
+        content = [[content stringByRemovingPercentEncoding] stringByReplacingOccurrencesOfString:QuarkSearch withString:@""];
         _searchBar.text = content;
     }else {
-        url = [NSString stringWithFormat:@"%@%@",baiduSearch,content];
+        url = [NSString stringWithFormat:@"%@%@",QuarkSearch,content];
     }
     [self enterHistoryDetailWithTitle:content url:url];
 }

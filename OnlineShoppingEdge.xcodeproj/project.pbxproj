@@ -123,8 +123,6 @@
 				1D0DA5BD23C9F7B500BE11A6 /* Main.storyboard */,
 				1D0DA5C523C9F7B600BE11A6 /* Info.plist */,
 				1D0DA5C623C9F7B600BE11A6 /* main.m */,
-				1D4C09D823F1B732004AD0D5 /* Localizable.strings */,
-				1D4C09CC23F1B512004AD0D5 /* InfoPlist.strings */,
 			);
 			path = OnlineShoppingEdge;
 			sourceTree = "<group>";
@@ -186,6 +184,8 @@
 			isa = PBXGroup;
 			children = (
 				1D0DA5C023C9F7B600BE11A6 /* Assets.xcassets */,
+				1D4C09D823F1B732004AD0D5 /* Localizable.strings */,
+				1D4C09CC23F1B512004AD0D5 /* InfoPlist.strings */,
 				1DA206AA23F0578700675475 /* 当当.mp4 */,
 				1DA206A823F0578600675475 /* 京东.mp4 */,
 				1DA206AC23F0578700675475 /* 考拉海购.mp4 */,
@@ -564,7 +564,7 @@
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.personalApp.OnlineShoppingEdge;
 				PRODUCT_NAME = "网购利刃";
-				PROVISIONING_PROFILE_SPECIFIER = appstore_provisioning_profile;
+				PROVISIONING_PROFILE_SPECIFIER = adhoc_Provision_profie;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
