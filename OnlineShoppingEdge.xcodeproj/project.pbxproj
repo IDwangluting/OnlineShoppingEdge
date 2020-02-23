@@ -18,6 +18,9 @@
 		1D38B18423E966EF00DCE9F2 /* OSEResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D38B18323E966EF00DCE9F2 /* OSEResponder.m */; };
 		1D4C09CA23F1B512004AD0D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D4C09CC23F1B512004AD0D5 /* InfoPlist.strings */; };
 		1D4C09D623F1B732004AD0D5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D4C09D823F1B732004AD0D5 /* Localizable.strings */; };
+		1D928E2A2400389300F660F0 /* WWNetwoorking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D928E252400389300F660F0 /* WWNetwoorking.m */; };
+		1D928E2B2400389300F660F0 /* WWJsonToModelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D928E272400389300F660F0 /* WWJsonToModelTool.m */; };
+		1D928E2C2400389300F660F0 /* KGRNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D928E292400389300F660F0 /* KGRNetworking.m */; };
 		1DA206AD23F0578700675475 /* 亚马逊.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206A723F0578600675475 /* 亚马逊.mp4 */; };
 		1DA206AE23F0578700675475 /* 京东.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206A823F0578600675475 /* 京东.mp4 */; };
 		1DA206AF23F0578700675475 /* 天猫.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206A923F0578600675475 /* 天猫.mp4 */; };
@@ -62,6 +65,12 @@
 		1D4C09D923F1B734004AD0D5 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1D4C09DA23F1B735004AD0D5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1D4C09DB23F1B736004AD0D5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1D928E242400389300F660F0 /* WWJsonToModelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWJsonToModelTool.h; sourceTree = "<group>"; };
+		1D928E252400389300F660F0 /* WWNetwoorking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWNetwoorking.m; sourceTree = "<group>"; };
+		1D928E262400389300F660F0 /* KGRNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGRNetworking.h; sourceTree = "<group>"; };
+		1D928E272400389300F660F0 /* WWJsonToModelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWJsonToModelTool.m; sourceTree = "<group>"; };
+		1D928E282400389300F660F0 /* WWNetwoorking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWNetwoorking.h; sourceTree = "<group>"; };
+		1D928E292400389300F660F0 /* KGRNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGRNetworking.m; sourceTree = "<group>"; };
 		1DA206A723F0578600675475 /* 亚马逊.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "亚马逊.mp4"; sourceTree = "<group>"; };
 		1DA206A823F0578600675475 /* 京东.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "京东.mp4"; sourceTree = "<group>"; };
 		1DA206A923F0578600675475 /* 天猫.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "天猫.mp4"; sourceTree = "<group>"; };
@@ -165,6 +174,7 @@
 				1DD8E9E223EFF1D400603887 /* OSEMutableDictionary.m */,
 				1D38B17F23E95A0600DCE9F2 /* OSEBaseViewController.h */,
 				1D38B18023E95A0600DCE9F2 /* OSEBaseViewController.m */,
+				1D928E232400389300F660F0 /* Network */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -178,6 +188,19 @@
 				1D0DA5B823C9F7B500BE11A6 /* SceneDelegate.m */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		1D928E232400389300F660F0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1D928E242400389300F660F0 /* WWJsonToModelTool.h */,
+				1D928E272400389300F660F0 /* WWJsonToModelTool.m */,
+				1D928E262400389300F660F0 /* KGRNetworking.h */,
+				1D928E292400389300F660F0 /* KGRNetworking.m */,
+				1D928E252400389300F660F0 /* WWNetwoorking.m */,
+				1D928E282400389300F660F0 /* WWNetwoorking.h */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		1DA206A623F0576200675475 /* Resource */ = {
@@ -350,9 +373,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D928E2C2400389300F660F0 /* KGRNetworking.m in Sources */,
 				1DA3657B23EC81E700068EEF /* OSETutorialViewController.m in Sources */,
 				1D0DA5BC23C9F7B500BE11A6 /* OSEHistroyDetailViewController.m in Sources */,
 				1DD8E9E323EFF1D400603887 /* OSEMutableDictionary.m in Sources */,
+				1D928E2A2400389300F660F0 /* WWNetwoorking.m in Sources */,
+				1D928E2B2400389300F660F0 /* WWJsonToModelTool.m in Sources */,
 				1D0DA5B623C9F7B500BE11A6 /* AppDelegate.m in Sources */,
 				1DE6311523E7D549002D0C0A /* OSEHomeViewController.m in Sources */,
 				1D0DA5C723C9F7B600BE11A6 /* main.m in Sources */,

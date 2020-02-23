@@ -9,6 +9,9 @@
 #import "OSEHistroyDetailViewController.h"
 #import "MBProgressHUD.h"
 #import "OSEMutableDictionary.h"
+#import "KGRNetworking.h"
+#import "TFHpple.h"
+
 @import WebKit;
 
 #define offsetY  210 / 375.0 * [UIScreen mainScreen].bounds.size.width
@@ -16,6 +19,9 @@
 @interface OSEHistroyDetailViewController ()<WKUIDelegate,WKNavigationDelegate>
 
 @property (nonnull,strong,nonatomic)WKWebView * webView ;
+
+@property (nonnull,strong,nonatomic)NSString * cheakCode;
+@property (nonnull,strong,nonatomic)NSMutableArray * historyDataArray;
 
 @end
 
@@ -33,9 +39,94 @@
 
 - (void)setUrl:(NSURL *)url {
     if ([_url.absoluteString isEqualToString:url.absoluteString])  return ;
-    
+
     _url = url;
+    self.cheakCode = [self searchCheakCodeWithData:[[NSData alloc] initWithContentsOfURL:_url]];
     [self openWebWithUrl:_url];
+}
+
+- (void)setCheakCode:(NSString *)cheakCode {
+    _cheakCode = cheakCode;
+    if (!_cheakCode  || _cheakCode.length < 1) return ;
+ 
+    [self getCodeWithCheckCode:_cheakCode];
+}
+
+- (void)setHistoryDataArray:(NSMutableArray *)historyDataArray {
+    _historyDataArray = historyDataArray;
+}
+
+- (void)dealWithArray:(NSArray *)orignArray {
+    NSMutableArray <NSString *>* array = [[NSMutableArray alloc]initWithArray:orignArray];
+    for (NSInteger index = array.count -1; index >= 0; index--) {
+        if (array[index].length > 50 || array[index].length < 5) {
+            [array removeObjectAtIndex:index];
+        }
+    }
+    self.historyDataArray = array;
+}
+
+- (void)getCodeWithCheckCode:(NSString *)checkCode {
+    @weakify(self);
+    NSString * con = [_url.absoluteString stringByReplacingOccurrencesOfString:@"vvv" withString:@""];
+    [[KGRNetworking manager]postRequest:@"http://www.amazonvvv.cn/dm/ptinfo.php"
+                             parameters:@{@"checkCode":checkCode,@"con":con }
+                                success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable result) {
+           NSError * error = nil ;
+           NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:result
+                                                                    options:NSJSONReadingMutableLeaves
+                                                                      error:&error];
+           if (error || !jsonDict ||![jsonDict.allKeys containsObject:@"code"]) return ;
+           
+           @strongify(self);
+           [self getHistroyDataWithCode:jsonDict[@"code"]];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {}];
+}
+
+- (void)getHistroyDataWithCode:(NSString *)code {
+    NSString *url = [NSString stringWithFormat:@"http://212.64.43.245/vv/dm/historynew.php?code=%@&t=",code];
+    @weakify(self);
+    [[KGRNetworking manager] getRequest:url
+                                success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable result) {
+        NSCharacterSet * set = [NSCharacterSet characterSetWithCharactersInString:@"[]"];
+        NSString * str = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+        @strongify(self);
+        [self dealWithArray:[str componentsSeparatedByCharactersInSet:set]];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {}];
+}
+
+- (NSString *)searchCheakCodeWithData:(NSData *)data {
+    TFHpple *hpple = [[TFHpple alloc]initWithHTMLData:data ];
+    TFHppleElement * element = [[hpple searchWithXPathQuery:@"//input[@id='checkCodeId']"] lastObject];
+    for (NSString * tmp  in [element.raw componentsSeparatedByString:@" "]) {
+        if ([tmp containsString:@"value="]) {
+            NSString * str = [tmp stringByReplacingOccurrencesOfString:@"value=\"" withString:@""];
+            return [str stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        }
+    }
+    return nil;
+}
+
+- (NSString *)deleteHtmlChinese:(NSString *)htmlCode {
+    NSString * tmpHtmlCode = [htmlCode copy];
+    NSUInteger start = 0 , end = 0;
+    for (NSUInteger index = tmpHtmlCode.length - 1 ; index > 0; index--) {
+        int asc = [tmpHtmlCode characterAtIndex:index];
+        if( asc > 0x4e00 && asc < 0x9fff) {
+            if (start == 0 && end == 0) {
+                end   = index;
+                start = index;
+            }else if(start - index == 1) {
+                start = index;
+            }else {
+                NSString * tmp = [tmpHtmlCode substringWithRange:NSMakeRange(start, end -start + 2)];
+                tmpHtmlCode = [tmpHtmlCode stringByReplacingOccurrencesOfString:tmp withString:@""];
+                start = 0;
+                end = 0;
+            }
+        }
+    }
+    return tmpHtmlCode;
 }
 
 - (void)layoutSubviews {
