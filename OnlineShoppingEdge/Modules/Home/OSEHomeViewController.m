@@ -8,7 +8,6 @@
 
 #import "OSEHomeViewController.h"
 #import "OSEMutableDictionary.h"
-#import "OSETutorialViewController.h"
 #import "OSEHistroyDetailViewController.h"
 #import <YYCategories/UIGestureRecognizer+YYAdd.h>
 
@@ -30,7 +29,6 @@
 @implementation OSEHomeViewController {
     NSArray             * _hosts;
     OSEHistroyDetailViewController * _histroyDetailViewController;
-    OSETutorialViewController * _tutorialViewController;
 }
 
 - (void)viewDidLoad {
@@ -55,10 +53,11 @@
 }
 
 - (void)layoutSubviews {
-    self.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"如何使用?", nil)
-                                                              style:UIBarButtonItemStylePlain
-                                                             target:self
-                                                             action:@selector(tutorial:)];
+    UIButton * customBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [customBtn setImage:[UIImage imageNamed:@"home"] forState:UIControlStateNormal];
+    customBtn.frame = CGRectMake(0, 0, 44, 30);
+    [customBtn addTarget:self action:@selector(showHome:) forControlEvents:UIControlEventTouchUpInside];
+    self.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:customBtn];
     
     _searchBar                   = [[UISearchBar alloc]init];
     _searchBar.searchBarStyle    = UISearchBarStyleProminent;
@@ -88,12 +87,8 @@
     _hosts = [OSEMutableDictionary allKeys];
 }
 
-- (void)tutorial:(UIButton *)sender {
-    if (!_tutorialViewController) {
-        _tutorialViewController = [[OSETutorialViewController alloc]init];
-        _tutorialViewController.title = NSLocalizedString(@"使用教程", nil);
-    }
-    [self.navigationController pushViewController:_tutorialViewController animated:YES];
+- (void)showHome:(UIButton *)sender {
+  
 }
 
 - (void)enterHistoryDetailWithTitle:(NSString *)title url:(NSString *)url {
