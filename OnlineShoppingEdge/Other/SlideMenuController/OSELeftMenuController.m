@@ -29,7 +29,9 @@
 
 @end
 
-@implementation OSELeftMenuController
+@implementation OSELeftMenuController {
+    OSESlideMenuController * _slideMenuController;
+}
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -80,32 +82,42 @@
     if(cell == nil) return  nil;
     
     cell.backgroundColor = [UIColor clearColor];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.font = [UIFont systemFontOfSize:15];
-    cell.textLabel.text = [[_pageInfo objectForKey:@(indexPath.row)] objectForKey:@"title"];
+    cell.selectionStyle  = UITableViewCellSelectionStyleNone;
+    cell.textLabel.font  = [UIFont systemFontOfSize:15];
+    cell.textLabel.text  = [[_pageInfo objectForKey:@(indexPath.row)] objectForKey:@"title"];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (!_slideMenuController) {
+        _slideMenuController = [self slideMenuController];
+    }
     if (indexPath.row == TrialVersion.intValue) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TestflightUrl]
-                                           options:@{}
-                                 completionHandler:nil];
+        if (@available(iOS 10.0, *)) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TestflightUrl]
+                                               options:@{}
+                                     completionHandler:nil];
+        } else {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TestflightUrl]];
+        }
+        
     }else if(indexPath.row == CommentsFeedback.intValue) {
         [self jumpQQqun:@"607385329"];
     }else if(indexPath.row == ContectUs.intValue) {
         [self jumpQQqun:@"877106454"];
     }else if(indexPath.row == AppInfoUserInfo.intValue) {
-     
-    }else {
         NSString * title = [[self.pageInfo objectForKey:@(indexPath.row)] objectForKey:@"title"];
         NSString * class = [[self.pageInfo objectForKey:@(indexPath.row)] objectForKey:@"page"];
-        if (!class || class.length < 1)  return ;
+        if (!class || class.length < 1)  {
+            [_slideMenuController hideMenu];
+            return ;
+        }
                   
         UIViewController * viewController = [[NSClassFromString(class) alloc]init];
         viewController.title = NSLocalizedString(title, nil);
-        [[self slideMenuController] showViewController:viewController];
+        [_slideMenuController showViewController:viewController];
     }
+    [_slideMenuController hideMenu];
 }
 
 - (void)jumpQQqun:(NSString *)groupId {

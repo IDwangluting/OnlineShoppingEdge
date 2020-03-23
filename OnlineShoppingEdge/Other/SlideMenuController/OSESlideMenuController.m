@@ -119,7 +119,6 @@ static CGFloat const MinTrigerSpeed       = 1000.0f;
     if ([self.contentViewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController *nav = (id)self.contentViewController;
         [nav pushViewController:viewController animated:NO];
-        [self hideMenu];
         return ;
     }
 }
