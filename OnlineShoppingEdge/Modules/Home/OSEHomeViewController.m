@@ -87,7 +87,7 @@
 }
 
 - (void)showSlideMenu:(UIButton *)sender {
-    [[self slideMenuController] showMenu];;
+    [[self slideMenuController] showMenu];
 }
 
 - (void)enterHistoryDetailWithTitle:(NSString *)title url:(NSString *)url {
