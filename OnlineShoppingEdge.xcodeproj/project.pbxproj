@@ -20,6 +20,7 @@
 		1D40937F242861EE00954C46 /* UIViewController+YQSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D40937A242861ED00954C46 /* UIViewController+YQSlideMenu.m */; };
 		1D4093842428626E00954C46 /* LeftMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4093822428626E00954C46 /* LeftMenuController.xib */; };
 		1D4093852428626E00954C46 /* LeftMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4093832428626E00954C46 /* LeftMenuController.m */; };
+		1D409390242895C900954C46 /* OSESearchCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D40938F242895C900954C46 /* OSESearchCenterViewController.m */; };
 		1D4C09CA23F1B512004AD0D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D4C09CC23F1B512004AD0D5 /* InfoPlist.strings */; };
 		1D4C09D623F1B732004AD0D5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D4C09D823F1B732004AD0D5 /* Localizable.strings */; };
 		1DA206AD23F0578700675475 /* 亚马逊.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206A723F0578600675475 /* 亚马逊.mp4 */; };
@@ -59,6 +60,8 @@
 		1D4093812428626E00954C46 /* LeftMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuController.h; sourceTree = "<group>"; };
 		1D4093822428626E00954C46 /* LeftMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuController.xib; sourceTree = "<group>"; };
 		1D4093832428626E00954C46 /* LeftMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuController.m; sourceTree = "<group>"; };
+		1D40938E242895C900954C46 /* OSESearchCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSESearchCenterViewController.h; sourceTree = "<group>"; };
+		1D40938F242895C900954C46 /* OSESearchCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSESearchCenterViewController.m; sourceTree = "<group>"; };
 		1D4C09C623F1B459004AD0D5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		1D4C09C723F1B459004AD0D5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		1D4C09CB23F1B512004AD0D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 		1D38B18523E967D600DCE9F2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1D40938D242895C900954C46 /* SearchCenter */,
 				1DA3657823EC81D300068EEF /* Tutorial */,
 				1D38B18623E967D600DCE9F2 /* Home */,
 				1D38B18723E967D600DCE9F2 /* HistoryDetail */,
@@ -204,6 +208,15 @@
 				1D4093822428626E00954C46 /* LeftMenuController.xib */,
 			);
 			path = YQSlideMenuController;
+			sourceTree = "<group>";
+		};
+		1D40938D242895C900954C46 /* SearchCenter */ = {
+			isa = PBXGroup;
+			children = (
+				1D40938E242895C900954C46 /* OSESearchCenterViewController.h */,
+				1D40938F242895C900954C46 /* OSESearchCenterViewController.m */,
+			);
+			path = SearchCenter;
 			sourceTree = "<group>";
 		};
 		1DA206A623F0576200675475 /* Resource */ = {
@@ -386,6 +399,7 @@
 				1D40937E242861EE00954C46 /* YQSlideMenuController.m in Sources */,
 				1D0DA5C723C9F7B600BE11A6 /* main.m in Sources */,
 				1D0DA5B923C9F7B500BE11A6 /* SceneDelegate.m in Sources */,
+				1D409390242895C900954C46 /* OSESearchCenterViewController.m in Sources */,
 				1D4093852428626E00954C46 /* LeftMenuController.m in Sources */,
 				1D38B18123E95A0600DCE9F2 /* OSEBaseViewController.m in Sources */,
 				1DEA1E6623ED2D5C00AC594A /* OSETutorialDetailViewController.m in Sources */,

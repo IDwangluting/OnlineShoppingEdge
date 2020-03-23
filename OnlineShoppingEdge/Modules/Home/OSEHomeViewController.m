@@ -14,8 +14,6 @@
 //#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 //#import <CoreTelephony/CTCarrier.h>
 
-#define QuarkSearch @"https://quark.sm.cn/s?from=kkframenew&uc_param_str=dnntnwvepffrgibijbprsvpidsdichei&q="
-
 //可以识别url的正则表达式
 #define RegulaStr @"((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)"
 
@@ -128,24 +126,11 @@
         openSucess = YES;
     }
     
-    if (openSucess == false) {
-        [self searchWithContent:url];
-    }
-    
-    _searchBar.showsSearchResultsButton = YES;
+    _searchBar.showsSearchResultsButton = openSucess;
     _searchBar.searchResultsButtonSelected = openSucess;
-}
-
-- (void)searchWithContent:(NSString *)content {
-    NSString * url = nil;
-    if([content containsString:@"http"] || [content containsString:QuarkSearch]) {
-        url = content;
-        content = [[content stringByRemovingPercentEncoding] stringByReplacingOccurrencesOfString:QuarkSearch withString:@""];
-        _searchBar.text = content;
-    }else {
-        url = [NSString stringWithFormat:@"%@%@",QuarkSearch,content];
+    if (openSucess == false) {
+//        error
     }
-    [self enterHistoryDetailWithTitle:content url:url];
 }
 
 - (NSString *)pastboardUrl{

@@ -9,9 +9,13 @@
 #import "LeftMenuController.h"
 #import "UIViewController+YQSlideMenu.h"
 #import "OSETutorialViewController.h"
+#import "OSESearchCenterViewController.h"
 
 #define UserGuide        @0
 #define TrialVersion     @1
+#define SearchCenter     @4
+#define TestflightUrl    @"https://testflight.apple.com/join/QsLkbB3d"
+
 @implementation LeftMenuController {
     NSDictionary *_titleDic;
 }
@@ -20,6 +24,7 @@
     [super viewDidLoad];
     _titleDic = @{UserGuide       :@"使用教程",
                   TrialVersion    :@"体验版",
+                  SearchCenter    :@"搜索中心",
     };
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"reuseIdentifier"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -56,8 +61,12 @@
     if (indexPath.row == UserGuide.intValue) {
         viewController = [[OSETutorialViewController alloc]init];
     }else if (indexPath.row == TrialVersion.intValue) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://testflight.apple.com/join/QsLkbB3d"] options:@{} completionHandler:nil];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TestflightUrl]
+                                           options:@{}
+                                 completionHandler:nil];
         return ;
+    }else if (indexPath.row == SearchCenter.intValue) {
+       viewController = [[OSESearchCenterViewController alloc]init];
     }
     viewController.title = NSLocalizedString([_titleDic objectForKey:@(indexPath.row)], nil);
     [self.slideMenuController showViewController:viewController];
