@@ -17,6 +17,7 @@ static double  const DurationAnimation    = 0.3f;
 static CGFloat const MinTrigerSpeed       = 1000.0f;
 
 @interface OSESlideMenuController ()<UIGestureRecognizerDelegate>
+
 @property (nonatomic, strong) UIView *menuViewContainer;
 @property (nonatomic, strong) UIView *contentViewContainer;
 @property (nonatomic, strong) UIView *gestureRecognizerView;
@@ -116,7 +117,7 @@ static CGFloat const MinTrigerSpeed       = 1000.0f;
 
 - (void)showViewController:(UIViewController *)viewController{
     if ([self.contentViewController isKindOfClass:[UINavigationController class]]) {
-        UINavigationController *nav = (UINavigationController *)self.contentViewController;
+        UINavigationController *nav = (id)self.contentViewController;
         [nav pushViewController:viewController animated:NO];
         [self hideMenu];
         return ;
@@ -220,7 +221,8 @@ static CGFloat const MinTrigerSpeed       = 1000.0f;
             } else {
                 frame.origin.x += point.x;
             }
-            self.menuViewContainer.transform = CGAffineTransformMakeTranslation((1 - frame.origin.x / menuVisibleWidth) * (-menuVisibleWidth / 3), 0);
+            CGAffineTransform transform = CGAffineTransformMakeTranslation((1 - frame.origin.x / menuVisibleWidth) * (-menuVisibleWidth / 3), 0);
+            self.menuViewContainer.transform = transform;
             self.contentViewContainer.frame = frame;
             [recognizer setTranslation:CGPointZero inView:self.view];
         }
@@ -240,9 +242,9 @@ static CGFloat const MinTrigerSpeed       = 1000.0f;
         
         [UIView animateWithDuration:duration animations:^{
             if(show){
-                self.contentViewContainer.transform = CGAffineTransformMakeTranslation(self.view.width-self.realContentViewVisibleWidth, 0);
+                self.contentViewContainer.transform = CGAffineTransformMakeTranslation(self.view.width - self.realContentViewVisibleWidth, 0);
                 self.contentViewContainer.transform = CGAffineTransformScale(self.contentViewContainer.transform,MinScaleContentView, MinScaleContentView);
-                self.menuViewContainer.transform = CGAffineTransformIdentity;
+                self.menuViewContainer.transform    = CGAffineTransformIdentity;
                 self.contentViewScale = MinScaleContentView;
             }else{
                 self.contentViewContainer.transform = CGAffineTransformIdentity;
@@ -272,12 +274,12 @@ static CGFloat const MinTrigerSpeed       = 1000.0f;
 
 #pragma method assist
 - (void)updateContentViewShadow {
-    CALayer *layer = self.contentViewContainer.layer;
+    CALayer *layer     = self.contentViewContainer.layer;
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:layer.bounds];
-    layer.shadowPath = path.CGPath;
-    layer.shadowColor = self.contentViewShadowColor.CGColor;
+    layer.shadowPath   = path.CGPath;
+    layer.shadowColor  = self.contentViewShadowColor.CGColor;
     layer.shadowOffset = self.contentViewShadowOffset;
-    layer.shadowOpacity = self.contentViewShadowOpacity;
+    layer.shadowOpacity= self.contentViewShadowOpacity;
     layer.shadowRadius = self.contentViewShadowRadius;
 }
 
@@ -306,11 +308,9 @@ static CGFloat const MinTrigerSpeed       = 1000.0f;
     }
     return NO;
 }
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
-    if(gestureRecognizer == self.edgePanGesture){
-        return YES;
-    }
-    return  NO;
+    return  gestureRecognizer == self.edgePanGesture;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
