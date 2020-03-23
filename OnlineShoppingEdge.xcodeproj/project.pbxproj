@@ -17,7 +17,6 @@
 		1D38B18123E95A0600DCE9F2 /* OSEBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D38B18023E95A0600DCE9F2 /* OSEBaseViewController.m */; };
 		1D38B18423E966EF00DCE9F2 /* OSEResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D38B18323E966EF00DCE9F2 /* OSEResponder.m */; };
 		1D40937E242861EE00954C46 /* YQSlideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D409379242861ED00954C46 /* YQSlideMenuController.m */; };
-		1D40937F242861EE00954C46 /* UIViewController+YQSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D40937A242861ED00954C46 /* UIViewController+YQSlideMenu.m */; };
 		1D4093842428626E00954C46 /* LeftMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4093822428626E00954C46 /* LeftMenuController.xib */; };
 		1D4093852428626E00954C46 /* LeftMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4093832428626E00954C46 /* LeftMenuController.m */; };
 		1D409390242895C900954C46 /* OSESearchCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D40938F242895C900954C46 /* OSESearchCenterViewController.m */; };
@@ -54,9 +53,7 @@
 		1D38B18223E966EF00DCE9F2 /* OSEResponder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSEResponder.h; sourceTree = "<group>"; };
 		1D38B18323E966EF00DCE9F2 /* OSEResponder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEResponder.m; sourceTree = "<group>"; };
 		1D409379242861ED00954C46 /* YQSlideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YQSlideMenuController.m; sourceTree = "<group>"; };
-		1D40937A242861ED00954C46 /* UIViewController+YQSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+YQSlideMenu.m"; sourceTree = "<group>"; };
 		1D40937C242861ED00954C46 /* YQSlideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YQSlideMenuController.h; sourceTree = "<group>"; };
-		1D40937D242861ED00954C46 /* UIViewController+YQSlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+YQSlideMenu.h"; sourceTree = "<group>"; };
 		1D4093812428626E00954C46 /* LeftMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuController.h; sourceTree = "<group>"; };
 		1D4093822428626E00954C46 /* LeftMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuController.xib; sourceTree = "<group>"; };
 		1D4093832428626E00954C46 /* LeftMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuController.m; sourceTree = "<group>"; };
@@ -199,8 +196,6 @@
 		1D409378242861ED00954C46 /* YQSlideMenuController */ = {
 			isa = PBXGroup;
 			children = (
-				1D40937D242861ED00954C46 /* UIViewController+YQSlideMenu.h */,
-				1D40937A242861ED00954C46 /* UIViewController+YQSlideMenu.m */,
 				1D40937C242861ED00954C46 /* YQSlideMenuController.h */,
 				1D409379242861ED00954C46 /* YQSlideMenuController.m */,
 				1D4093812428626E00954C46 /* LeftMenuController.h */,
@@ -391,7 +386,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DA3657B23EC81E700068EEF /* OSETutorialViewController.m in Sources */,
-				1D40937F242861EE00954C46 /* UIViewController+YQSlideMenu.m in Sources */,
 				1D0DA5BC23C9F7B500BE11A6 /* OSEHistroyDetailViewController.m in Sources */,
 				1DD8E9E323EFF1D400603887 /* OSEMutableDictionary.m in Sources */,
 				1D0DA5B623C9F7B500BE11A6 /* AppDelegate.m in Sources */,

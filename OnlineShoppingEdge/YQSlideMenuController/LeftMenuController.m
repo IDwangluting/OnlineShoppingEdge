@@ -7,7 +7,7 @@
 //
 
 #import "LeftMenuController.h"
-#import "UIViewController+YQSlideMenu.h"
+#import "YQSlideMenuController.h"
 #import <YYCategories/YYCategoriesMacro.h>
 
 #define UserGuide        @0
@@ -40,8 +40,6 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -59,28 +57,35 @@
     return cell;
 }
 
-#pragma mark - Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    @weakify(self);
-    dispatch_block_t jump = ^{
-        @strongify(self);
-        NSString * title = [[self.pageInfo objectForKey:@(indexPath.row)] objectForKey:@"title"];
-        NSString * class = [[self.pageInfo objectForKey:@(indexPath.row)] objectForKey:@"page"];
-        if (!class || class.length < 1)  return ;
-        
-        UIViewController * viewController = [[NSClassFromString(class) alloc]init];
-        viewController.title = NSLocalizedString(title, nil);
-        [self.slideMenuController showViewController:viewController];
-    };
-    
     if (indexPath.row == TrialVersion.intValue) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TestflightUrl]
                                            options:@{}
                                  completionHandler:nil];
         return ;
     }
-    jump();
+    
+    NSString * title = [[self.pageInfo objectForKey:@(indexPath.row)] objectForKey:@"title"];
+    NSString * class = [[self.pageInfo objectForKey:@(indexPath.row)] objectForKey:@"page"];
+    if (!class || class.length < 1)  return ;
+           
+    UIViewController * viewController = [[NSClassFromString(class) alloc]init];
+    viewController.title = NSLocalizedString(title, nil);
+    [[self slideMenuController] showViewController:viewController];
+}
+
+- (YQSlideMenuController *)slideMenuController {
+    UIViewController *iter = self.parentViewController;
+    while (iter) {
+        if ([iter isKindOfClass:[YQSlideMenuController class]]) {
+            return (YQSlideMenuController *)iter;
+        } else if (iter.parentViewController && iter.parentViewController != iter) {
+            iter = iter.parentViewController;
+        } else {
+            iter = nil;
+        }
+    }
+    return nil;
 }
 
 @end
