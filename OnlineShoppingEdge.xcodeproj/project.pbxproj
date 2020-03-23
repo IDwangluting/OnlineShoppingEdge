@@ -22,6 +22,7 @@
 		1D409390242895C900954C46 /* OSESearchCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D40938F242895C900954C46 /* OSESearchCenterViewController.m */; };
 		1D4C09CA23F1B512004AD0D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D4C09CC23F1B512004AD0D5 /* InfoPlist.strings */; };
 		1D4C09D623F1B732004AD0D5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D4C09D823F1B732004AD0D5 /* Localizable.strings */; };
+		1D9BDFDC242922280036001E /* WebRefreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9BDFDB242922280036001E /* WebRefreshController.m */; };
 		1DA206AD23F0578700675475 /* 亚马逊.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206A723F0578600675475 /* 亚马逊.mp4 */; };
 		1DA206AE23F0578700675475 /* 京东.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206A823F0578600675475 /* 京东.mp4 */; };
 		1DA206AF23F0578700675475 /* 天猫.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206A923F0578600675475 /* 天猫.mp4 */; };
@@ -73,6 +74,8 @@
 		1D4C09D923F1B734004AD0D5 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1D4C09DA23F1B735004AD0D5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1D4C09DB23F1B736004AD0D5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1D9BDFDA242922280036001E /* WebRefreshController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebRefreshController.h; sourceTree = "<group>"; };
+		1D9BDFDB242922280036001E /* WebRefreshController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebRefreshController.m; sourceTree = "<group>"; };
 		1DA206A723F0578600675475 /* 亚马逊.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "亚马逊.mp4"; sourceTree = "<group>"; };
 		1DA206A823F0578600675475 /* 京东.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "京东.mp4"; sourceTree = "<group>"; };
 		1DA206A923F0578600675475 /* 天猫.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "天猫.mp4"; sourceTree = "<group>"; };
@@ -141,6 +144,7 @@
 		1D38B18523E967D600DCE9F2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1D9BDFD9242921FF0036001E /* OtherTool */,
 				1D40938D242895C900954C46 /* SearchCenter */,
 				1DA3657823EC81D300068EEF /* Tutorial */,
 				1D38B18623E967D600DCE9F2 /* Home */,
@@ -212,6 +216,15 @@
 				1D40938F242895C900954C46 /* OSESearchCenterViewController.m */,
 			);
 			path = SearchCenter;
+			sourceTree = "<group>";
+		};
+		1D9BDFD9242921FF0036001E /* OtherTool */ = {
+			isa = PBXGroup;
+			children = (
+				1D9BDFDA242922280036001E /* WebRefreshController.h */,
+				1D9BDFDB242922280036001E /* WebRefreshController.m */,
+			);
+			path = OtherTool;
 			sourceTree = "<group>";
 		};
 		1DA206A623F0576200675475 /* Resource */ = {
@@ -395,6 +408,7 @@
 				1D0DA5B923C9F7B500BE11A6 /* SceneDelegate.m in Sources */,
 				1D409390242895C900954C46 /* OSESearchCenterViewController.m in Sources */,
 				1D4093852428626E00954C46 /* OSELeftMenuController.m in Sources */,
+				1D9BDFDC242922280036001E /* WebRefreshController.m in Sources */,
 				1D38B18123E95A0600DCE9F2 /* OSEBaseViewController.m in Sources */,
 				1DEA1E6623ED2D5C00AC594A /* OSETutorialDetailViewController.m in Sources */,
 				1D38B18423E966EF00DCE9F2 /* OSEResponder.m in Sources */,
