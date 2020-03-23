@@ -36,6 +36,10 @@ static CGFloat const MinTrigerSpeed       = 1000.0f;
 @property (assign, nonatomic) BOOL menuMoving;
 
 @property (strong, nonatomic) NSArray *priorGestures;
+@property (strong, nonatomic) NSMutableDictionary * subViewControllerDictionary;
+
+@property (nonatomic, strong,nonnull) UIViewController *slideMenuViewController;
+@property (nonatomic, strong,nonnull) UIViewController *contentViewController;
 
 @end
 
@@ -45,7 +49,8 @@ static CGFloat const MinTrigerSpeed       = 1000.0f;
          slideMenuViewController:(UIViewController *)slideMenuViewController{
     if(self = [super init]){
         self.contentViewController   = homePageViewCOntroller;
-        self.slideMenuViewController  = slideMenuViewController;
+        self.slideMenuViewController = slideMenuViewController;
+        _subViewControllerDictionary = [NSMutableDictionary dictionaryWithCapacity:4];
         [self prepare];
     }
     return self;
@@ -115,9 +120,29 @@ static CGFloat const MinTrigerSpeed       = 1000.0f;
     [self updateContentViewShadow];
 }
 
-- (void)showViewController:(UIViewController *)viewController{
-    if ([self.contentViewController isKindOfClass:[UINavigationController class]]) {
+- (void)registerClass:(nullable Class)cls forCellReuseIdentifier:(NSString *)identifier {
+    if (cls == nil || identifier == nil || identifier.length < 0)  return ;
+    
+    UIViewController * viewCoNtroller = [[cls alloc]init];
+    if (viewCoNtroller == nil) return ;
+    
+    if ([_subViewControllerDictionary.allKeys containsObject:identifier]) {
+        NSLog(@"the same id:%@ has contain",identifier);
+        return ;
+    }
+    [_subViewControllerDictionary setObject:viewCoNtroller forKey:identifier];
+}
+
+- (void)showViewController:(NSString *_Nonnull)identifier {
+    [self showViewController:identifier title:@""];
+}
+
+- (void)showViewController:(NSString *)identifier title:(NSString *)title {
+    if ([self.contentViewController isKindOfClass:[UINavigationController class]] &&
+        [_subViewControllerDictionary.allKeys containsObject:identifier]) {
         UINavigationController *nav = (id)self.contentViewController;
+        UIViewController * viewController = [_subViewControllerDictionary objectForKey:identifier];
+        viewController.title = title;
         [nav pushViewController:viewController animated:NO];
         return ;
     }

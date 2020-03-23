@@ -15,9 +15,8 @@
 #define CommentsFeedback @3
 #define HistoricRecords  @4
 #define ContectUs        @5
-#define UpdateInfo       @6
-#define AppInfoUserInfo  @7
-#define Contribute       @8
+#define AppInfoUserInfo  @6
+
 
 #define TestflightUrl    @"https://testflight.apple.com/join/QsLkbB3d"
 #define QQGroupKey       @"b4405d01b954d4a9d85258514bc6a8331151afc11fa627533d4541359bc85bd7"
@@ -47,11 +46,7 @@
                                          @"page" :@"OSESearchCenterViewController"},
                       ContectUs       :@{@"title":@"联系我们",
                                          @"page" :@""},
-                      UpdateInfo      :@{@"title":@"更新内容",
-                                         @"page" :@""},
                       AppInfoUserInfo :@{@"title":@"app信息",
-                                         @"page" :@""},
-                      Contribute      :@{@"title":@"捐赠",
                                          @"page" :@""},
         };
     }
@@ -66,6 +61,16 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 80)];
     self.tableView.tableHeaderView = headerView;
     [self.tableView reloadData];
+    
+    if (!_slideMenuController) {
+        _slideMenuController = [self slideMenuController];
+        for (NSDictionary * item in _pageInfo.allValues) {
+            NSString * identifier = [item objectForKey:@"page"];
+            if (!identifier || identifier.length < 0)  continue ;
+           [_slideMenuController registerClass:NSClassFromString(identifier)
+                                   forCellReuseIdentifier:identifier];
+        }
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -89,9 +94,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (!_slideMenuController) {
-        _slideMenuController = [self slideMenuController];
-    }
+   
     if (indexPath.row == TrialVersion.intValue) {
         if (@available(iOS 10.0, *)) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TestflightUrl]
@@ -105,17 +108,15 @@
         [self jumpQQqun:@"607385329"];
     }else if(indexPath.row == ContectUs.intValue) {
         [self jumpQQqun:@"877106454"];
-    }else if(indexPath.row == AppInfoUserInfo.intValue) {
-        NSString * title = [[self.pageInfo objectForKey:@(indexPath.row)] objectForKey:@"title"];
-        NSString * class = [[self.pageInfo objectForKey:@(indexPath.row)] objectForKey:@"page"];
+    }else {
+        NSDictionary * item = [self.pageInfo objectForKey:@(indexPath.row)];
+        NSString * class = [item objectForKey:@"page"];
         if (!class || class.length < 1)  {
             [_slideMenuController hideMenu];
             return ;
         }
-                  
-        UIViewController * viewController = [[NSClassFromString(class) alloc]init];
-        viewController.title = NSLocalizedString(title, nil);
-        [_slideMenuController showViewController:viewController];
+        
+        [_slideMenuController showViewController:class title:[item objectForKey:@"title"]];
     }
     [_slideMenuController hideMenu];
 }

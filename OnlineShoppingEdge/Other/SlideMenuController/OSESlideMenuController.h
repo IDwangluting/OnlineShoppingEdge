@@ -10,14 +10,11 @@
 
 @protocol OSEContentViewControllerDelegate <NSObject>
 
-- (UINavigationController *)OSE_navigationController;
+- (nullable UINavigationController *)OSE_navigationController;
 
 @end
 
 @interface OSESlideMenuController : UIViewController
-
-@property (nonatomic, strong) UIViewController *slideMenuViewController;
-@property (nonatomic, strong) UIViewController *contentViewController;
 /**
  *  是否缩放内容视图 默认YES
  */
@@ -33,10 +30,14 @@
  */
 @property (assign, nonatomic) BOOL allowRotate;
 
-- (instancetype)initWithHomePage:(UIViewController *)homePageViewCOntroller
-         slideMenuViewController:(UIViewController *)slideMenuViewController;
+- (instancetype)initWithHomePage:(UIViewController * _Nonnull)homePageViewController
+         slideMenuViewController:(UIViewController * _Nonnull)slideMenuViewController;
 
-- (void)showViewController:(UIViewController *)viewController;
+- (void)registerClass:(nullable Class)cls forCellReuseIdentifier:(NSString * _Nonnull)identifier;
+
+- (void)showViewController:(NSString *_Nonnull)identifier;
+
+- (void)showViewController:(NSString *_Nonnull)identifier title:(NSString *_Nullable)title;
 
 - (void)hideMenu;
 
@@ -46,7 +47,7 @@
 
 @interface UIViewController(SlideMenu)
 
- - (OSESlideMenuController *)slideMenuController;
+ - (nullable OSESlideMenuController *)slideMenuController;
 
 @end
 
