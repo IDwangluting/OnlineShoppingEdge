@@ -112,7 +112,11 @@
     NSString * urlStr  = [NSString stringWithFormat:QQGroupUrl,groupId,QQGroupKey];
     NSURL * url = [NSURL URLWithString:urlStr];
     if([[UIApplication sharedApplication] canOpenURL:url]){
-        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+        if (@available(iOS 10.0, *)) {
+            [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+        } else {
+            [[UIApplication sharedApplication] openURL:url];
+        }
         return ;
     }
 }
