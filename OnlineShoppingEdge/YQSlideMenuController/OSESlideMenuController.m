@@ -1,20 +1,22 @@
 //
-//  YQSlidMenuController.m
-//  YQSlideMenuControllerDemo
+//  OSESlidMenuController.m
+//  OnlineShoppingEdge
 //
 //  Created by Wang on 15/5/20.
 //  Copyright (c) 2015年 Wang. All rights reserved.
 //
 
-#import "YQSlideMenuController.h"
+#import "OSESlideMenuController.h"
+#import <YYCategories/UIView+YYAdd.h>
 
-static CGFloat const LeftMarginGesture = 45.0f;
-static CGFloat const MinScaleContentView = 0.8f;
+static CGFloat const LeftMarginGesture    = 45.0f;
+static CGFloat const MinScaleContentView  = 0.8f;
 static CGFloat const MoveDistanceMenuView = 100.0f;
-static CGFloat const MinScaleMenuView = 0.8f;
-static double const DurationAnimation = 0.3f;
-static CGFloat const MinTrigerSpeed = 1000.0f;
-@interface YQSlideMenuController ()<UIGestureRecognizerDelegate>
+static CGFloat const MinScaleMenuView     = 0.8f;
+static double  const DurationAnimation    = 0.3f;
+static CGFloat const MinTrigerSpeed       = 1000.0f;
+
+@interface OSESlideMenuController ()<UIGestureRecognizerDelegate>
 @property (nonatomic, strong) UIView *menuViewContainer;
 @property (nonatomic, strong) UIView *contentViewContainer;
 @property (nonatomic, strong) UIView *gestureRecognizerView;
@@ -33,15 +35,16 @@ static CGFloat const MinTrigerSpeed = 1000.0f;
 @property (assign, nonatomic) BOOL menuMoving;
 
 @property (strong, nonatomic) NSArray *priorGestures;
+
 @end
 
-@implementation YQSlideMenuController
+@implementation OSESlideMenuController
 
-
-- (id)initWithContentViewController:(UIViewController *)contentViewController leftMenuViewController:(UIViewController *)leftMenuViewController{
+- (instancetype)initWithHomePage:(UIViewController *)homePageViewCOntroller
+         slideMenuViewController:(UIViewController *)slideMenuViewController{
     if(self = [super init]){
-        self.contentViewController = contentViewController;
-        self.leftMenuViewController = leftMenuViewController;
+        self.contentViewController   = homePageViewCOntroller;
+        self.slideMenuViewController  = slideMenuViewController;
         [self prepare];
     }
     return self;
@@ -63,15 +66,15 @@ static CGFloat const MinTrigerSpeed = 1000.0f;
     _scaleContent = YES;
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 9) {
         if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
-            _priorGestures = @[[UILongPressGestureRecognizer class], NSClassFromString(@"_UIPreviewGestureRecognizer"),NSClassFromString(@"_UIRevealGestureRecognizer")];
+            _priorGestures = @[[UILongPressGestureRecognizer class],
+                               NSClassFromString(@"_UIPreviewGestureRecognizer"),
+                               NSClassFromString(@"_UIRevealGestureRecognizer")];
         } else {
             _priorGestures = @[[UILongPressGestureRecognizer class]];
         }
     } else {
         _priorGestures = @[[UILongPressGestureRecognizer class]];
     }
-    
-    
 }
 
 - (void)viewDidLoad {
@@ -84,12 +87,12 @@ static CGFloat const MinTrigerSpeed = 1000.0f;
     self.contentViewContainer.frame = self.view.bounds;
     self.gestureRecognizerView.frame = self.view.bounds;
     
-    if (self.leftMenuViewController) {
-        [self addChildViewController:self.leftMenuViewController];
-        self.leftMenuViewController.view.frame = self.view.bounds;
-        self.leftMenuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [self.menuViewContainer addSubview:self.leftMenuViewController.view];
-        [self.leftMenuViewController didMoveToParentViewController:self];
+    if (self.slideMenuViewController) {
+        [self addChildViewController:self.slideMenuViewController];
+        self.slideMenuViewController.view.frame = self.view.bounds;
+        self.slideMenuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [self.menuViewContainer addSubview:self.slideMenuViewController.view];
+        [self.slideMenuViewController didMoveToParentViewController:self];
     }
  
     NSAssert(self.contentViewController, @"内容视图不能为空");
@@ -98,7 +101,6 @@ static CGFloat const MinTrigerSpeed = 1000.0f;
     self.contentViewController.view.frame = self.view.bounds;
     [self.contentViewContainer addSubview:self.contentViewController.view];
     [self.contentViewController didMoveToParentViewController:self];
-    
     
     self.edgePanGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognizer:)];
     self.edgePanGesture.delegate = self;
@@ -110,8 +112,6 @@ static CGFloat const MinTrigerSpeed = 1000.0f;
     [self.gestureRecognizerView addGestureRecognizer:tap];
 
     [self updateContentViewShadow];
-    
-    
 }
 
 - (void)showViewController:(UIViewController *)viewController{
@@ -119,27 +119,20 @@ static CGFloat const MinTrigerSpeed = 1000.0f;
         UINavigationController *nav = (UINavigationController *)self.contentViewController;
         [nav pushViewController:viewController animated:NO];
         [self hideMenu];
-    } else {
-        NSAssert([self.contentViewController conformsToProtocol:@protocol(YQContentViewControllerDelegate)], @"ContentViewController不是UINavigationController后者ContentViewController没有UINavigationController,请在ContentViewController中实现YQContentViewControllerDelegate协议");
-        id<YQContentViewControllerDelegate> delegate = (id<YQContentViewControllerDelegate>)self.contentViewController;
-        if ([delegate respondsToSelector:@selector(yq_navigationController)]) {
-            UINavigationController *nav = [delegate yq_navigationController];
-            NSAssert([nav isKindOfClass:[UINavigationController class]], @"yq_navigationController协议方法返回的不是UINavigationController");
-            [nav pushViewController:viewController animated:NO];
-            [self hideMenu];
-        }
+        return ;
     }
-    
 }
+
 - (void)hideMenu{
     if(!self.menuHidden || self.menuMoving){
         [self showMenu:NO];
     }
 }
+
 - (void)showMenu{
-    if(self.menuHidden){
-        [self showMenu:YES];
-    }
+    if(!self.menuHidden) return ;
+        
+    [self showMenu:YES];
 }
 
 #pragma custom selector
@@ -163,7 +156,7 @@ static CGFloat const MinTrigerSpeed = 1000.0f;
         [self updateContentViewShadow];
     }else if(recognizer.state == UIGestureRecognizerStateChanged){
     
-        CGFloat menuVisibleWidth = self.view.bounds.size.width-self.realContentViewVisibleWidth;
+        CGFloat menuVisibleWidth = self.view.width-self.realContentViewVisibleWidth;
         if (_scaleContent) {
             CGFloat delta = self.menuHidden ? point.x/menuVisibleWidth : (menuVisibleWidth+point.x)/menuVisibleWidth;
             CGFloat scale = 1-(1-MinScaleContentView)*delta;
@@ -192,9 +185,7 @@ static CGFloat const MinTrigerSpeed = 1000.0f;
                         self.menuViewContainer.transform = CGAffineTransformMakeScale(MinScaleMenuView, MinScaleMenuView);
                         self.menuViewContainer.transform = CGAffineTransformTranslate(self.menuViewContainer.transform, -MoveDistanceMenuView, 0);
                     }
-
                 }
-                
             }else{
                 
                 if(scale > 1){//D
@@ -211,7 +202,7 @@ static CGFloat const MinTrigerSpeed = 1000.0f;
                         self.menuViewContainer.transform = CGAffineTransformMakeScale(menuScale, menuScale);
                         self.menuViewContainer.transform = CGAffineTransformTranslate(self.menuViewContainer.transform, -MoveDistanceMenuView * (1-delta), 0);
                     }else{//F
-                        self.contentViewContainer.transform =CGAffineTransformMakeTranslation(self.view.bounds.size.width-self.realContentViewVisibleWidth, 0);
+                        self.contentViewContainer.transform =CGAffineTransformMakeTranslation(self.view.width-self.realContentViewVisibleWidth, 0);
                         self.contentViewContainer.transform = CGAffineTransformScale(self.contentViewContainer.transform,MinScaleContentView, MinScaleContentView);
                         self.contentViewScale = MinScaleContentView;
                         self.menuViewContainer.transform = CGAffineTransformMakeScale(1, 1);
@@ -235,20 +226,21 @@ static CGFloat const MinTrigerSpeed = 1000.0f;
         }
         
     }else if(recognizer.state == UIGestureRecognizerStateEnded){
-        [self showMenu: _scaleContent ? (self.contentViewScale < 1 - (1 - MinScaleContentView) / 2) : self.contentViewContainer.frame.origin.x > (self.view.bounds.size.width - self.realContentViewVisibleWidth) / 2];
+        [self showMenu: _scaleContent ? (self.contentViewScale < 1 - (1 - MinScaleContentView) / 2) : self.contentViewContainer.left > (self.view.width - self.realContentViewVisibleWidth) / 2];
         self.menuMoving = NO;
     } else if(recognizer.state == UIGestureRecognizerStateFailed || recognizer.state == UIGestureRecognizerStateCancelled) {
         [self hideMenu];
         self.menuMoving = NO;
     }
 }
+
 - (void)showMenu:(BOOL)show{
     if (_scaleContent) {
         NSTimeInterval duration  = show ? (self.contentViewScale-MinScaleContentView)/(1-MinScaleContentView)*DurationAnimation : (1 - (self.contentViewScale-MinScaleContentView)/(1-MinScaleContentView))*DurationAnimation;
         
         [UIView animateWithDuration:duration animations:^{
             if(show){
-                self.contentViewContainer.transform = CGAffineTransformMakeTranslation(self.view.bounds.size.width-self.realContentViewVisibleWidth, 0);
+                self.contentViewContainer.transform = CGAffineTransformMakeTranslation(self.view.width-self.realContentViewVisibleWidth, 0);
                 self.contentViewContainer.transform = CGAffineTransformScale(self.contentViewContainer.transform,MinScaleContentView, MinScaleContentView);
                 self.menuViewContainer.transform = CGAffineTransformIdentity;
                 self.contentViewScale = MinScaleContentView;
@@ -263,11 +255,12 @@ static CGFloat const MinTrigerSpeed = 1000.0f;
             self.gestureRecognizerView.hidden = !show;
         }];
     } else {
-        CGFloat menuWidth = self.view.bounds.size.width - self.realContentViewVisibleWidth;
-        NSTimeInterval duration = (show ? (menuWidth - self.contentViewContainer.frame.origin.x) / menuWidth : self.contentViewContainer.frame.origin.x / menuWidth) * DurationAnimation;
+        CGFloat menuWidth = self.view.width - self.realContentViewVisibleWidth;
+        NSTimeInterval duration = (show ? (menuWidth - self.contentViewContainer.left) / menuWidth : self.contentViewContainer.left / menuWidth) * DurationAnimation;
+        
         [UIView animateWithDuration:duration animations:^{
             CGRect frame = self.contentViewContainer.frame;
-            frame.origin.x =  show ? self.view.bounds.size.width - self.realContentViewVisibleWidth : 0;
+            frame.origin.x =  show ? self.view.width - self.realContentViewVisibleWidth : 0;
             self.contentViewContainer.frame = frame;
             self.menuViewContainer.transform = show ? CGAffineTransformIdentity : CGAffineTransformMakeTranslation(-menuWidth / 3, 0);
         } completion:^(BOOL finished) {
@@ -296,9 +289,9 @@ static CGFloat const MinTrigerSpeed = 1000.0f;
             UINavigationController *nav = nil;
             if ([self.contentViewController isKindOfClass:[UINavigationController class]] ) {
                 nav = (UINavigationController *)self.contentViewController;
-            } else if ([self.contentViewController conformsToProtocol:@protocol(YQContentViewControllerDelegate)]) {
-                id<YQContentViewControllerDelegate> delegate = (id<YQContentViewControllerDelegate>)self.contentViewController;
-                nav = [delegate yq_navigationController];
+            } else if ([self.contentViewController conformsToProtocol:@protocol(OSEContentViewControllerDelegate)]) {
+                id<OSEContentViewControllerDelegate> delegate = (id<OSEContentViewControllerDelegate>)self.contentViewController;
+                nav = [delegate OSE_navigationController];
             }
             if (nav) {
                 if (nav.childViewControllers.count < 2) {
@@ -340,17 +333,25 @@ static CGFloat const MinTrigerSpeed = 1000.0f;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
+
+@implementation UIViewController(SlideMenu)
+
+- (OSESlideMenuController *)slideMenuController{
+    UIViewController *iter = self.parentViewController;
+    while (iter) {
+        if ([iter isKindOfClass:[OSESlideMenuController class]]) {
+            return (OSESlideMenuController *)iter;
+        } else if (iter.parentViewController && iter.parentViewController != iter) {
+            iter = iter.parentViewController;
+        } else {
+            iter = nil;
+        }
+    }
+    return nil;
+}
+
+@end
+

@@ -10,6 +10,7 @@
 #import "OSEMutableDictionary.h"
 #import "OSEHistroyDetailViewController.h"
 #import <YYCategories/UIGestureRecognizer+YYAdd.h>
+#import "OSESlideMenuController.h"
 
 //#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 //#import <CoreTelephony/CTCarrier.h>
@@ -51,11 +52,11 @@
 }
 
 - (void)layoutSubviews {
-    UIButton * customBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [customBtn setImage:[UIImage imageNamed:@"home"] forState:UIControlStateNormal];
-    customBtn.frame = CGRectMake(0, 0, 44, 30);
-    [customBtn addTarget:self action:@selector(showHome:) forControlEvents:UIControlEventTouchUpInside];
-    self.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:customBtn];
+    UIImage * image = [[UIImage imageNamed:@"home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:image
+                                                             style:UIBarButtonItemStyleDone
+                                                            target:self
+                                                            action:@selector(showSlideMenu:)];
     
     _searchBar                   = [[UISearchBar alloc]init];
     _searchBar.searchBarStyle    = UISearchBarStyleProminent;
@@ -85,8 +86,8 @@
     _hosts = [OSEMutableDictionary allKeys];
 }
 
-- (void)showHome:(UIButton *)sender {
-  
+- (void)showSlideMenu:(UIButton *)sender {
+    [[self slideMenuController] showMenu];;
 }
 
 - (void)enterHistoryDetailWithTitle:(NSString *)title url:(NSString *)url {

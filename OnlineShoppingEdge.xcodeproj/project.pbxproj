@@ -16,9 +16,9 @@
 		1D0DA5C723C9F7B600BE11A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0DA5C623C9F7B600BE11A6 /* main.m */; };
 		1D38B18123E95A0600DCE9F2 /* OSEBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D38B18023E95A0600DCE9F2 /* OSEBaseViewController.m */; };
 		1D38B18423E966EF00DCE9F2 /* OSEResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D38B18323E966EF00DCE9F2 /* OSEResponder.m */; };
-		1D40937E242861EE00954C46 /* YQSlideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D409379242861ED00954C46 /* YQSlideMenuController.m */; };
-		1D4093842428626E00954C46 /* LeftMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4093822428626E00954C46 /* LeftMenuController.xib */; };
-		1D4093852428626E00954C46 /* LeftMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4093832428626E00954C46 /* LeftMenuController.m */; };
+		1D40937E242861EE00954C46 /* OSESlideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D409379242861ED00954C46 /* OSESlideMenuController.m */; };
+		1D4093842428626E00954C46 /* OSELeftMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4093822428626E00954C46 /* OSELeftMenuController.xib */; };
+		1D4093852428626E00954C46 /* OSELeftMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4093832428626E00954C46 /* OSELeftMenuController.m */; };
 		1D409390242895C900954C46 /* OSESearchCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D40938F242895C900954C46 /* OSESearchCenterViewController.m */; };
 		1D4C09CA23F1B512004AD0D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D4C09CC23F1B512004AD0D5 /* InfoPlist.strings */; };
 		1D4C09D623F1B732004AD0D5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D4C09D823F1B732004AD0D5 /* Localizable.strings */; };
@@ -52,11 +52,11 @@
 		1D38B18023E95A0600DCE9F2 /* OSEBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEBaseViewController.m; sourceTree = "<group>"; };
 		1D38B18223E966EF00DCE9F2 /* OSEResponder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSEResponder.h; sourceTree = "<group>"; };
 		1D38B18323E966EF00DCE9F2 /* OSEResponder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEResponder.m; sourceTree = "<group>"; };
-		1D409379242861ED00954C46 /* YQSlideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YQSlideMenuController.m; sourceTree = "<group>"; };
-		1D40937C242861ED00954C46 /* YQSlideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YQSlideMenuController.h; sourceTree = "<group>"; };
-		1D4093812428626E00954C46 /* LeftMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuController.h; sourceTree = "<group>"; };
-		1D4093822428626E00954C46 /* LeftMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuController.xib; sourceTree = "<group>"; };
-		1D4093832428626E00954C46 /* LeftMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuController.m; sourceTree = "<group>"; };
+		1D409379242861ED00954C46 /* OSESlideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSESlideMenuController.m; sourceTree = "<group>"; };
+		1D40937C242861ED00954C46 /* OSESlideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSESlideMenuController.h; sourceTree = "<group>"; };
+		1D4093812428626E00954C46 /* OSELeftMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSELeftMenuController.h; sourceTree = "<group>"; };
+		1D4093822428626E00954C46 /* OSELeftMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OSELeftMenuController.xib; sourceTree = "<group>"; };
+		1D4093832428626E00954C46 /* OSELeftMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSELeftMenuController.m; sourceTree = "<group>"; };
 		1D40938E242895C900954C46 /* OSESearchCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSESearchCenterViewController.h; sourceTree = "<group>"; };
 		1D40938F242895C900954C46 /* OSESearchCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSESearchCenterViewController.m; sourceTree = "<group>"; };
 		1D4C09C623F1B459004AD0D5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -196,11 +196,11 @@
 		1D409378242861ED00954C46 /* YQSlideMenuController */ = {
 			isa = PBXGroup;
 			children = (
-				1D40937C242861ED00954C46 /* YQSlideMenuController.h */,
-				1D409379242861ED00954C46 /* YQSlideMenuController.m */,
-				1D4093812428626E00954C46 /* LeftMenuController.h */,
-				1D4093832428626E00954C46 /* LeftMenuController.m */,
-				1D4093822428626E00954C46 /* LeftMenuController.xib */,
+				1D40937C242861ED00954C46 /* OSESlideMenuController.h */,
+				1D409379242861ED00954C46 /* OSESlideMenuController.m */,
+				1D4093812428626E00954C46 /* OSELeftMenuController.h */,
+				1D4093832428626E00954C46 /* OSELeftMenuController.m */,
+				1D4093822428626E00954C46 /* OSELeftMenuController.xib */,
 			);
 			path = YQSlideMenuController;
 			sourceTree = "<group>";
@@ -332,7 +332,7 @@
 				1D0DA5BF23C9F7B500BE11A6 /* Main.storyboard in Resources */,
 				1DA206AF23F0578700675475 /* 天猫.mp4 in Resources */,
 				1D4C09CA23F1B512004AD0D5 /* InfoPlist.strings in Resources */,
-				1D4093842428626E00954C46 /* LeftMenuController.xib in Resources */,
+				1D4093842428626E00954C46 /* OSELeftMenuController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,11 +390,11 @@
 				1DD8E9E323EFF1D400603887 /* OSEMutableDictionary.m in Sources */,
 				1D0DA5B623C9F7B500BE11A6 /* AppDelegate.m in Sources */,
 				1DE6311523E7D549002D0C0A /* OSEHomeViewController.m in Sources */,
-				1D40937E242861EE00954C46 /* YQSlideMenuController.m in Sources */,
+				1D40937E242861EE00954C46 /* OSESlideMenuController.m in Sources */,
 				1D0DA5C723C9F7B600BE11A6 /* main.m in Sources */,
 				1D0DA5B923C9F7B500BE11A6 /* SceneDelegate.m in Sources */,
 				1D409390242895C900954C46 /* OSESearchCenterViewController.m in Sources */,
-				1D4093852428626E00954C46 /* LeftMenuController.m in Sources */,
+				1D4093852428626E00954C46 /* OSELeftMenuController.m in Sources */,
 				1D38B18123E95A0600DCE9F2 /* OSEBaseViewController.m in Sources */,
 				1DEA1E6623ED2D5C00AC594A /* OSETutorialDetailViewController.m in Sources */,
 				1D38B18423E966EF00DCE9F2 /* OSEResponder.m in Sources */,

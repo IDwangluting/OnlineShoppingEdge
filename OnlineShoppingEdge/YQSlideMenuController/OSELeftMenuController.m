@@ -1,37 +1,47 @@
 //
-//  LeftMenuController.m
-//  YQSlideMenuControllerDemo
+//  OSELeftMenuController.m
+//  OnlineShoppingEdge
 //
 //  Created by Wang on 15/5/26.
 //  Copyright (c) 2015年 Wang. All rights reserved.
 //
 
-#import "LeftMenuController.h"
-#import "YQSlideMenuController.h"
-#import <YYCategories/YYCategoriesMacro.h>
+#import "OSELeftMenuController.h"
+#import "OSESlideMenuController.h"
 
 #define UserGuide        @0
 #define TrialVersion     @1
-#define SearchCenter     @4
+#define SearchCenter     @2
+#define CommentsFeedback @3
+#define HistoricRecords  @4
+#define AboutUs          @5
+#define UpdateInfo       @6
+
 #define TestflightUrl    @"https://testflight.apple.com/join/QsLkbB3d"
 
-@interface LeftMenuController ()
+@interface OSELeftMenuController ()
 
 @property (nonatomic,strong) NSDictionary * pageInfo;
 
 @end
 
-@implementation LeftMenuController
+@implementation OSELeftMenuController
+
+- (instancetype)init {
+    if (self = [super init]) {
+        _pageInfo = @{UserGuide       :@{@"title":@"使用教程",
+                                         @"page" :@"OSETutorialViewController"},
+                      TrialVersion    :@{@"title":@"体验版",
+                                         @"page" :@""},
+                      SearchCenter    :@{@"title":@"搜索中心",
+                                         @"page" :@"OSESearchCenterViewController"},
+        };
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _pageInfo = @{UserGuide       :@{@"title":@"使用教程",
-                                     @"page" :@"OSETutorialViewController"},
-                  TrialVersion    :@{@"title":@"体验版",
-                                     @"page" :@""},
-                  SearchCenter    :@{@"title":@"搜索中心",
-                                     @"page" :@"OSESearchCenterViewController"},
-    };
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"reuseIdentifier"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
    
@@ -51,8 +61,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
     if(cell == nil) return  nil;
+    
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
     cell.textLabel.text = [[_pageInfo objectForKey:@(indexPath.row)] objectForKey:@"title"];
     return cell;
 }
@@ -72,20 +84,6 @@
     UIViewController * viewController = [[NSClassFromString(class) alloc]init];
     viewController.title = NSLocalizedString(title, nil);
     [[self slideMenuController] showViewController:viewController];
-}
-
-- (YQSlideMenuController *)slideMenuController {
-    UIViewController *iter = self.parentViewController;
-    while (iter) {
-        if ([iter isKindOfClass:[YQSlideMenuController class]]) {
-            return (YQSlideMenuController *)iter;
-        } else if (iter.parentViewController && iter.parentViewController != iter) {
-            iter = iter.parentViewController;
-        } else {
-            iter = nil;
-        }
-    }
-    return nil;
 }
 
 @end

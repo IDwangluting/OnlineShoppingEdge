@@ -8,8 +8,8 @@
 
 #import "OSEResponder.h"
 #import "OSEHomeViewController.h"
-#import "YQSlideMenuController.h"
-#import "LeftMenuController.h"
+#import "OSESlideMenuController.h"
+#import "OSELeftMenuController.h"
 
 @implementation OSEResponder
 
@@ -20,9 +20,9 @@
     [viewController setTitle:NSLocalizedString(@"首页", nil)];
     UIViewController * nav = [[UINavigationController alloc]initWithRootViewController:viewController];
     
-    LeftMenuController  *leftMenuViewController = [[LeftMenuController alloc] init];
-    YQSlideMenuController *sideMenuController = [[YQSlideMenuController alloc] initWithContentViewController:nav
-                                                                    leftMenuViewController:leftMenuViewController];
+    OSELeftMenuController  *slideMenuViewController = [[OSELeftMenuController alloc] init];
+    OSESlideMenuController *sideMenuController = [[OSESlideMenuController alloc] initWithHomePage:nav
+                                                                    slideMenuViewController:slideMenuViewController];
     sideMenuController.scaleContent = NO;
     self.window.rootViewController = sideMenuController;
 

@@ -1,6 +1,6 @@
 //
-//  YQSlidMenuController.h
-//  YQSlideMenuControllerDemo
+//  OSESlidMenuController.h
+//  OnlineShoppingEdge
 //
 //  Created by Wang on 15/5/20.
 //  Copyright (c) 2015年 Wang. All rights reserved.
@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol YQContentViewControllerDelegate <NSObject>
-- (UINavigationController *)yq_navigationController;
+@protocol OSEContentViewControllerDelegate <NSObject>
+
+- (UINavigationController *)OSE_navigationController;
+
 @end
 
-@interface YQSlideMenuController : UIViewController
+@interface OSESlideMenuController : UIViewController
 
-@property (nonatomic, strong) UIViewController *leftMenuViewController;
+@property (nonatomic, strong) UIViewController *slideMenuViewController;
 @property (nonatomic, strong) UIViewController *contentViewController;
 /**
  *  是否缩放内容视图 默认YES
@@ -31,10 +33,20 @@
  */
 @property (assign, nonatomic) BOOL allowRotate;
 
-- (id)initWithContentViewController:(UIViewController *)contentViewController
-             leftMenuViewController:(UIViewController *)leftMenuViewController;
+- (instancetype)initWithHomePage:(UIViewController *)homePageViewCOntroller
+         slideMenuViewController:(UIViewController *)slideMenuViewController;
 
 - (void)showViewController:(UIViewController *)viewController;
+
 - (void)hideMenu;
+
 - (void)showMenu;
+
 @end
+
+@interface UIViewController(SlideMenu)
+
+ - (OSESlideMenuController *)slideMenuController;
+
+@end
+
