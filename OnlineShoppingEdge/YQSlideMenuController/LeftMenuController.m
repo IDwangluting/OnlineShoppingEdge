@@ -8,23 +8,29 @@
 
 #import "LeftMenuController.h"
 #import "UIViewController+YQSlideMenu.h"
-#import "OSETutorialViewController.h"
-#import "OSESearchCenterViewController.h"
+#import <YYCategories/YYCategoriesMacro.h>
 
 #define UserGuide        @0
 #define TrialVersion     @1
 #define SearchCenter     @4
 #define TestflightUrl    @"https://testflight.apple.com/join/QsLkbB3d"
 
-@implementation LeftMenuController {
-    NSDictionary *_titleDic;
-}
+@interface LeftMenuController ()
+
+@property (nonatomic,strong) NSDictionary * pageInfo;
+
+@end
+
+@implementation LeftMenuController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _titleDic = @{UserGuide       :@"使用教程",
-                  TrialVersion    :@"体验版",
-                  SearchCenter    :@"搜索中心",
+    _pageInfo = @{UserGuide       :@{@"title":@"使用教程",
+                                     @"page" :@"OSETutorialViewController"},
+                  TrialVersion    :@{@"title":@"体验版",
+                                     @"page" :@""},
+                  SearchCenter    :@{@"title":@"搜索中心",
+                                     @"page" :@"OSESearchCenterViewController"},
     };
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"reuseIdentifier"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -41,7 +47,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _titleDic.count;
+    return _pageInfo.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -49,27 +55,32 @@
     if(cell == nil) return  nil;
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.text = [_titleDic objectForKey:@(indexPath.row)];
+    cell.textLabel.text = [[_pageInfo objectForKey:@(indexPath.row)] objectForKey:@"title"];
     return cell;
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIViewController * viewController = nil;
+    @weakify(self);
+    dispatch_block_t jump = ^{
+        @strongify(self);
+        NSString * title = [[self.pageInfo objectForKey:@(indexPath.row)] objectForKey:@"title"];
+        NSString * class = [[self.pageInfo objectForKey:@(indexPath.row)] objectForKey:@"page"];
+        if (!class || class.length < 1)  return ;
+        
+        UIViewController * viewController = [[NSClassFromString(class) alloc]init];
+        viewController.title = NSLocalizedString(title, nil);
+        [self.slideMenuController showViewController:viewController];
+    };
     
-    if (indexPath.row == UserGuide.intValue) {
-        viewController = [[OSETutorialViewController alloc]init];
-    }else if (indexPath.row == TrialVersion.intValue) {
+    if (indexPath.row == TrialVersion.intValue) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TestflightUrl]
                                            options:@{}
                                  completionHandler:nil];
         return ;
-    }else if (indexPath.row == SearchCenter.intValue) {
-       viewController = [[OSESearchCenterViewController alloc]init];
     }
-    viewController.title = NSLocalizedString([_titleDic objectForKey:@(indexPath.row)], nil);
-    [self.slideMenuController showViewController:viewController];
+    jump();
 }
 
 @end
