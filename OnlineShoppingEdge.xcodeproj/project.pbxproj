@@ -126,7 +126,6 @@
 		1D0DA5B323C9F7B500BE11A6 /* OnlineShoppingEdge */ = {
 			isa = PBXGroup;
 			children = (
-				1D409378242861ED00954C46 /* YQSlideMenuController */,
 				1D38B18923E968A300DCE9F2 /* Other */,
 				1D38B18823E967E200DCE9F2 /* Base */,
 				1D38B18523E967D600DCE9F2 /* Modules */,
@@ -185,6 +184,7 @@
 		1D38B18923E968A300DCE9F2 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				1D409378242861ED00954C46 /* SlideMenuController */,
 				1D0DA5B423C9F7B500BE11A6 /* AppDelegate.h */,
 				1D0DA5B523C9F7B500BE11A6 /* AppDelegate.m */,
 				1D0DA5B723C9F7B500BE11A6 /* SceneDelegate.h */,
@@ -193,7 +193,7 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
-		1D409378242861ED00954C46 /* YQSlideMenuController */ = {
+		1D409378242861ED00954C46 /* SlideMenuController */ = {
 			isa = PBXGroup;
 			children = (
 				1D40937C242861ED00954C46 /* OSESlideMenuController.h */,
@@ -202,7 +202,7 @@
 				1D4093832428626E00954C46 /* OSELeftMenuController.m */,
 				1D4093822428626E00954C46 /* OSELeftMenuController.xib */,
 			);
-			path = YQSlideMenuController;
+			path = SlideMenuController;
 			sourceTree = "<group>";
 		};
 		1D40938D242895C900954C46 /* SearchCenter */ = {

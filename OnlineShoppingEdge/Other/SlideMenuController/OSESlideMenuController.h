@@ -2,8 +2,8 @@
 //  OSESlidMenuController.h
 //  OnlineShoppingEdge
 //
-//  Created by Wang on 15/5/20.
-//  Copyright (c) 2015年 Wang. All rights reserved.
+//  Created by luting on 20/1/11
+//  Copyright © 2020 luting. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -2,8 +2,8 @@
 //  OSELeftMenuController.m
 //  OnlineShoppingEdge
 //
-//  Created by Wang on 15/5/26.
-//  Copyright (c) 2015年 Wang. All rights reserved.
+//  Created by luting on 20/1/11
+//  Copyright © 2020 luting. All rights reserved.
 //
 
 #import "OSELeftMenuController.h"
