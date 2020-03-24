@@ -10,12 +10,13 @@
 #import "OSESlideMenuController.h"
 
 #define UserGuide        @0
-#define TrialVersion     @1
+#define DeviceInfo       @1
 #define SearchCenter     @2
-#define CommentsFeedback @3
-#define HistoricRecords  @4
+#define HistoricRecords  @3
 #define ContectUs        @5
-#define DeviceInfo       @6
+#define CommentsFeedback @4
+#define TrialVersion     @6
+#define Contribute       @7
 
 #define TestflightUrl    @"https://testflight.apple.com/join/QsLkbB3d"
 #define QQGroupKey       @"b4405d01b954d4a9d85258514bc6a8331151afc11fa627533d4541359bc85bd7"
@@ -47,6 +48,8 @@
                                          @"page" :@""},
                       DeviceInfo      :@{@"title":@"设备信息",
                                          @"page" :@"OSEUserInfoViewController"},
+                      Contribute      :@{@"title":@"捐赠",
+                                         @"page" :@"OSEContributeViewController"},
         };
     }
     return self;
@@ -54,7 +57,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"reuseIdentifier"];
+    [self.tableView registerClass:[UITableViewCell class]
+           forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
    
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 80)];
@@ -82,7 +86,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier"
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([UITableViewCell class])
                                                             forIndexPath:indexPath];
     if(cell == nil) return  nil;
     
