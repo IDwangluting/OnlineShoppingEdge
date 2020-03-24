@@ -8,5 +8,6 @@ target 'OnlineShoppingEdge' do
 #	pod 'LookinServer', :configurations => ['Debug']
   pod 'YYCategories'
   pod 'MBProgressHUD'
+  pod 'AFNetworking'
   
 end

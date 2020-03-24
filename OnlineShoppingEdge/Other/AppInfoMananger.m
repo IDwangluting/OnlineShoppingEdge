@@ -38,28 +38,26 @@
     return self;
 }
 
-- (NSDictionary *)appInfo {
+- (NSArray *)appInfo {
     if (!_appInfo) {
         AppInfoMananger *  manager = [AppInfoMananger manager];
-        _appInfo = @{@"bundleId"          :manager.bundleId,
-                     @"version"           :manager.version,
-                     @"bulidNumber"       :manager.bulidNumber,
-//                     @"appName"           :manager.appName,
-                     @"deviceName"        :manager.deviceName,
-                     @"system"            :manager.systemName,
-                     @"systemVersion"     :manager.systemVersion,
-                     @"localizedModel"    :manager.localizedModel,
-                     @"platform"          :manager.devicePlatform,
-                     @"uuid"              :manager.uuid,
-                     @"phoneModel"        :manager.phoneModel,
-                     @"appEnvironment"    :manager.appEnvironment,
-                     @"carrierName"       :manager.carrierName,
-                     @"mobileCountryCode" :manager.mobileCountryCode,
-                     @"mobileNetworkCode" :manager.mobileNetworkCode,
-                     @"allowsVOIP"        :manager.allowsVOIP,
-                     @"isoCountryCode"    :manager.isoCountryCode,
-                     @"phoneNumber"       :manager.phoneNumber
-        };
+        _appInfo = @[@{@"appName"           :manager.appName},
+                     @{@"version"           :manager.version},
+                     @{@"system"            :manager.systemName},
+                     @{@"systemVersion"     :manager.systemVersion},
+                     @{@"platform"          :manager.devicePlatform},
+                     @{@"phoneModel"        :manager.phoneModel},
+                     @{@"carrierName"       :manager.carrierName},
+                     @{@"mobileCountryCode" :manager.mobileCountryCode},
+                     @{@"mobileNetworkCode" :manager.mobileNetworkCode},
+                     @{@"isoCountryCode"    :manager.isoCountryCode},
+                     @{@"allowsVOIP"        :manager.allowsVOIP},
+                     @{@"deviceName"        :manager.deviceName},
+                     @{@"bulidNumber"       :manager.bulidNumber},
+                     @{@"appEnvironment"    :manager.appEnvironment},
+                     @{@"bundleId"          :manager.bundleId},
+                     @{@"uuid"              :manager.uuid},
+        ];
     }
     return _appInfo;
 }
@@ -69,13 +67,6 @@
         _bundleId = [[NSBundle mainBundle] bundleIdentifier];
     }
     return _bundleId;
-}
-
-- (NSString *)phoneNumber {
-    if (!_phoneNumber) {
-        _phoneNumber = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBFormattedPhoneNumber"]?:@"";
-    }
-    return _phoneNumber;
 }
 
 - (NSString *)version {
@@ -94,7 +85,7 @@
 
 - (NSString *)appName {
     if (!_appName) {
-       _appName = [_infoDictionary objectForKey:@"CFBundleDisplayName"];
+       _appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
     }
     return _appName;
 }
@@ -144,9 +135,9 @@
 - (NSString *)appEnvironment {
     if (!_appEnvironment) {
         #if DEBUG
-            _appEnvironment = @"debug";
+            _appEnvironment = @"DEBUG";
         #else
-            _appEnvironment = @"release";
+            _appEnvironment = @"RELEASE";
         #endif
     }
     return _appEnvironment;
@@ -169,6 +160,17 @@
 - (NSString *)mobileNetworkCode {
     if (!_mobileNetworkCode) {
         _mobileNetworkCode = _carrier.mobileNetworkCode?:@"";
+        if ([_mobileNetworkCode isEqualToString:@"00"] ||
+            [_mobileNetworkCode isEqualToString:@"02"] ||
+            [_mobileNetworkCode isEqualToString:@"07"]) {
+                _mobileNetworkCode = @"移动";
+        }else if([_mobileNetworkCode isEqualToString:@"03"] ||
+                 [_mobileNetworkCode isEqualToString:@"05"]){
+               _mobileNetworkCode =  @"电信";
+        }else if ([_mobileNetworkCode isEqualToString:@"01"] ||
+                  [_mobileNetworkCode isEqualToString:@"06"]){
+            _mobileNetworkCode =  @"联通";
+        }
     }
     return _mobileNetworkCode;
 }
@@ -306,17 +308,41 @@
     return platform;
 }
 
-+ (NSString *)getByteRate {
-    long long intcurrentBytes = [AppInfoMananger getInterfaceBytes];
++ (NSString *)getiByteRate {
+    long long intcurrentBytes = [AppInfoMananger getInBytes];
     NSString *rateStr = [AppInfoMananger formatNetWork:intcurrentBytes];
     return rateStr;
 }
 
-+ (long long)getInterfaceBytes {
++ (NSString *)getoByteRate {
+    long long intcurrentBytes = [AppInfoMananger getOutBytes];
+    NSString *rateStr = [AppInfoMananger formatNetWork:intcurrentBytes];
+    return rateStr;
+}
+
++ (long long)getInBytes {
     struct ifaddrs *ifa_list = 0, *ifa;
     if (getifaddrs(&ifa_list) == -1)  return 0;
     
     uint32_t iBytes = 0;
+    for (ifa = ifa_list; ifa; ifa = ifa->ifa_next) {
+        if (AF_LINK != ifa->ifa_addr->sa_family) continue;
+        if (!(ifa->ifa_flags & IFF_UP) && !(ifa->ifa_flags & IFF_RUNNING)) continue;
+        if (ifa->ifa_data == 0) continue;
+        /* Not a loopback device. */
+        if (strncmp(ifa->ifa_name, "lo", 2)){
+            struct if_data *if_data = (struct if_data *)ifa->ifa_data;
+            iBytes += if_data->ifi_ibytes;
+        }
+    }
+    freeifaddrs(ifa_list);
+    return iBytes ;
+}
+
++ (long long)getOutBytes {
+    struct ifaddrs *ifa_list = 0, *ifa;
+    if (getifaddrs(&ifa_list) == -1)  return 0;
+
     uint32_t oBytes = 0;
     for (ifa = ifa_list; ifa; ifa = ifa->ifa_next) {
         if (AF_LINK != ifa->ifa_addr->sa_family) continue;
@@ -325,21 +351,24 @@
         /* Not a loopback device. */
         if (strncmp(ifa->ifa_name, "lo", 2)){
             struct if_data *if_data = (struct if_data *)ifa->ifa_data;
-            iBytes += if_data->ifi_ibytes;
+        
             oBytes += if_data->ifi_obytes;
         }
     }
     freeifaddrs(ifa_list);
-    return iBytes + oBytes;
+    return  oBytes;
 }
 
 + (NSString *)formatNetWork:(long long int)rate {
-    if (rate < 1024) return [NSString stringWithFormat:@"%lldB/秒", rate];
-    else if (rate >=1024&& rate <1024*1024) {
+    if (rate < 1024) {
+        return [NSString stringWithFormat:@"%lldB/秒", rate];
+    } else if (rate >= 1024 && rate < 1024*1024) {
         return [NSString stringWithFormat:@"%.1fKB/秒", (double)rate /1024];
-    } else if (rate >=1024*1024&& rate <1024*1024*1024) {
+    } else if (rate >= 1024*1024 && rate < 1024*1024*1024) {
         return [NSString stringWithFormat:@"%.2fMB/秒", (double)rate / (1024*1024)];
-    } else return@"10Kb/秒";
+    } else {
+        return@"10KB/秒";
+    }
 }
 
 @end

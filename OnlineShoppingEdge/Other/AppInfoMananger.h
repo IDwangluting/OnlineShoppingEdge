@@ -30,15 +30,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy)NSString * mobileNetworkCode; //供应商网络编号
 @property (nonatomic,copy)NSString * allowsVOIP ;
 @property (nonatomic,copy)NSString * isoCountryCode;
-@property (nonatomic,copy)NSString * phoneNumber;
 
-@property (nonatomic,copy)NSDictionary * appInfo;
+@property (nonatomic,strong)NSArray * appInfo;
 
 + (instancetype)manager;
 
-+ (NSString *)getByteRate;
++ (NSString *)getiByteRate;
 
-+ (long long)getInterfaceBytes;
++ (NSString *)getoByteRate;
 
 @end
 

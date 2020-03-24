@@ -8,78 +8,146 @@
 
 #import "OSEUserInfoViewController.h"
 #import "AppInfoMananger.h"
+#import <AFNetworking/AFNetworkReachabilityManager.h>
 
 @interface OSEUserInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView * tableView;
+@property (nonatomic,strong) NSMutableArray * userInfo;
 
 @end
 
-@implementation OSEUserInfoViewController {
-    NSMutableArray * _userInfo;
-}
+@implementation OSEUserInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _userInfo = [NSMutableArray arrayWithCapacity:4];
-    NSDictionary * tmp = [[AppInfoMananger manager] appInfo];
-    for (NSString * key in tmp) {
-        NSString * name = @"";
-        if ([key isEqualToString:@"system"]) {
-            name = @"操作系统";
-        }else if ([key isEqualToString:@"bundleId"]) {
-            name = @"应 用 ID";
-        }else if ([key isEqualToString:@"version"]) {
-            name = @"版 本 号";
-        }else if ([key isEqualToString:@"bulidNumber"]) {
-            name = @"编译版本";
-        }else if ([key isEqualToString:@"appName"]) {
-            name = @"app名字";
-        }else if ([key isEqualToString:@"deviceName"]) {
-            name = @"设 备 名";
-        }else if ([key isEqualToString:@"systemVersion"]) {
-            name = @"系统版本";
-        }else if ([key isEqualToString:@"uuid"]) {
-            name = @"手机 ID";
-        }else if ([key isEqualToString:@"appEnvironment"]) {
-            name = @"安装环境";
-        }else if ([key isEqualToString:@"phoneNumber"]) {
-            name = @"本机号码";
-        }else if ([key isEqualToString:@"allowsVOIP"]) {
-            name = @"允许VOIP";
-        }else if ([key isEqualToString:@"localizedModel"]) {
-            name = @"平   台";
-        }else if ([key isEqualToString:@"platform"]) {
-            name = @"设备详情";
-        }else if ([key isEqualToString:@"phoneModel"]) {
-            name = @"手机模式";
-        }else if ([key isEqualToString:@"carrierName"]) {
-            name = @"供应商名称";
-        }else if ([key isEqualToString:@"carrierName"]) {
-            name = @"供应商名称";
-        }else if ([key isEqualToString:@"mobileCountryCode"]) {
-            name = @"国家编号";
-        }else if ([key isEqualToString:@"mobileNetworkCode"]) {
-            name = @"网络编号";
-        }else if ([key isEqualToString:@"isoCountryCode"]) {
-            name = @"国家代码";
+    for (NSDictionary * item in [[AppInfoMananger manager] appInfo]) {
+        NSString * key = @"";
+        if ([item.allKeys.firstObject isEqualToString:@"system"]) {
+            key = @"操作系统";
+        }else if ([item.allKeys.firstObject isEqualToString:@"bundleId"]) {
+            key = @"应  用  ID";
+        }else if ([item.allKeys.firstObject isEqualToString:@"appName"]) {
+            key = @"应用名称";
+        }else if ([item.allKeys.firstObject isEqualToString:@"version"]) {
+            key = @"应用版本";
+        }else if ([item.allKeys.firstObject isEqualToString:@"bulidNumber"]) {
+            key = @"编译版本";
+        }else if ([item.allKeys.firstObject isEqualToString:@"appkey"]) {
+            key = @"app名字";
+        }else if ([item.allKeys.firstObject isEqualToString:@"systemVersion"]) {
+            key = @"系统版本";
+        }else if ([item.allKeys.firstObject isEqualToString:@"uuid"]) {
+            key = @"手  机  ID";
+        }else if ([item.allKeys.firstObject isEqualToString:@"appEnvironment"]) {
+            key = @"安装环境";
+        }else if ([item.allKeys.firstObject isEqualToString:@"phoneNumber"]) {
+            key = @"本机号码";
+        }else if ([item.allKeys.firstObject isEqualToString:@"allowsVOIP"]) {
+            key = @"允许voip";
+        }else if ([item.allKeys.firstObject isEqualToString:@"platform"]) {
+            key = @"设备详情";
+        }else if ([item.allKeys.firstObject isEqualToString:@"phoneModel"]) {
+            key = @"设备类型";
+        }else if ([item.allKeys.firstObject isEqualToString:@"mobileCountryCode"]) {
+            key = @"国家编号";
+        }else if ([item.allKeys.firstObject isEqualToString:@"mobileNetworkCode"]) {
+            key = @"网络类型";
+        }else if ([item.allKeys.firstObject isEqualToString:@"isoCountryCode"]) {
+            key = @"国家代码";
+        }else if ([item.allKeys.firstObject isEqualToString:@"carrierName"]) {
+            key = @"运  营  商";
+        }else if ([item.allKeys.firstObject isEqualToString:@"deviceName"]) {
+            key = @"设备名称";
         }
-        if (name.length < 1)  name = key ;
-        NSString * value = tmp[key];
-        if (value.length < 1) {
-            [_userInfo addObject:[NSString stringWithFormat:@"%@:%@",name,tmp[key]]];
-        }else if(_userInfo.count < 1) {
-            [_userInfo addObject:[NSString stringWithFormat:@"%@:%@",name,tmp[key]]];
-        }else{
-            [_userInfo insertObject:[NSString stringWithFormat:@"%@:%@",name,tmp[key]] atIndex:0];
+        if (key.length < 1)  key = item.allKeys.firstObject ;
+        NSString * value = item.allValues.firstObject;
+        [_userInfo addObject:[NSString stringWithFormat:@"%@:%@",key,value]];
+    }
+    __block NSString * netStatus = [self currentNetWithStatus:[[AFNetworkReachabilityManager sharedManager] networkReachabilityStatus]];
+    [self.userInfo insertObject:[NSString stringWithFormat:@"网络状态:%@",netStatus] atIndex:3];
+    
+    @weakify(self);
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        @strongify(self);
+        netStatus = [self currentNetWithStatus:status];
+        [self deleteDataWithKey:@"网络状态"];
+        [self.userInfo insertObject:[NSString stringWithFormat:@"网络状态:%@",netStatus] atIndex:3];
+        [self.tableView reloadData];
+    }];
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self byteRate];
+}
+
+- (NSString *)currentNetWithStatus:(AFNetworkReachabilityStatus)status {
+    NSString * netStatus = @"";
+    switch (status) {
+        case AFNetworkReachabilityStatusUnknown:{
+            netStatus = @"Unknown";
+            break;
+        }
+        case AFNetworkReachabilityStatusNotReachable:{
+            netStatus = @"NotReachable";
+            break;
+        }
+        case AFNetworkReachabilityStatusReachableViaWWAN:
+            netStatus = @"WWAN";
+            break;
+        case AFNetworkReachabilityStatusReachableViaWiFi:
+            netStatus = @"WiFi";
+            break;
+        default:
+            break;
+    }
+    return netStatus;
+}
+
+- (void)deleteDataWithKey:(NSString *)key {
+    NSArray * tmp = [self.userInfo copy];
+    for (NSInteger index = tmp.count -1; index >= 0; index--) {
+        if ([[tmp objectAtIndex:index] hasPrefix:key] ) {
+            [self.userInfo removeObjectAtIndex:index];
+            break ;
         }
     }
 }
 
+- (void)byteRate {
+    [self deleteDataWithKey:@"下载网速"];
+    [self deleteDataWithKey:@"上传网速"];
+    NSString * inContent = @"", *outContent = @"";
+    
+    if ([AFNetworkReachabilityManager sharedManager].isReachable) {
+        inContent  = [NSString stringWithFormat:@"下载网速:%@",[AppInfoMananger getiByteRate]];
+        outContent = [NSString stringWithFormat:@"上传网速:%@",[AppInfoMananger getoByteRate]];
+    }else {
+        inContent  = @"下载网速:0B/秒";
+        outContent = @"上传网速:0B/秒";
+    }
+    [self.userInfo insertObject:inContent atIndex:4];
+    [self.userInfo insertObject:outContent atIndex:5];
+    [self.tableView reloadData];
+    @weakify(self);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        @strongify(self);
+        [self byteRate];
+    });
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
+}
+
 - (void)layoutSubviews {
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(5, self.view.top, self.view.width - 5 * 2, self.view.height)
+    _tableView = [[UITableView alloc]initWithFrame:self.view.bounds
                                              style:UITableViewStylePlain];
-    _tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
+    _tableView.separatorStyle  = UITableViewCellSeparatorStyleSingleLine;
     _tableView.delegate        = self;
     _tableView.dataSource      = self;
     _tableView.backgroundColor = UIColor.whiteColor;
