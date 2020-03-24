@@ -101,7 +101,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == TrialVersion.intValue) {
         [self openURL:TestflightUrl];
-    }else if(indexPath.row == CommentsFeedback.intValue) {
+    }else if(indexPath.row == FeedbackCenter.intValue) {
         [self openURL:[NSString stringWithFormat:QQGroupUrl,@"607385329",QQGroupKey]];
     }else if(indexPath.row == ContectUs.intValue) {
         [self openURL:[NSString stringWithFormat:QQGroupUrl,@"877106454",QQGroupKey]];

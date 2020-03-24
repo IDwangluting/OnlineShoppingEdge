@@ -16,11 +16,13 @@
 
 @interface OSEHistroyDetailViewController ()<WKUIDelegate,WKNavigationDelegate>
 
-@property (nonnull,strong,nonatomic)WKWebView * webView ;
+@property (strong,nonatomic)WKWebView * webView ;
 
 @end
 
-@implementation OSEHistroyDetailViewController
+@implementation OSEHistroyDetailViewController {
+    UIButton  * _buyBtn ;
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -33,6 +35,42 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     _webView.frame = self.view.frame;
+    CGFloat top = self.navigationController.navigationBar.bottom + 10;
+    _buyBtn.frame = CGRectMake(self.view.width - 70, top, 60, 40);
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    if (!_webView) {
+        _webView = [[WKWebView alloc]initWithFrame:self.view.bounds
+                                     configuration:[[WKWebViewConfiguration alloc]init]];
+        _webView.navigationDelegate = self;
+        _webView.UIDelegate         = self;
+        [self.view addSubview:_webView];
+    }
+    
+    if (!_buyBtn) {
+        _buyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _buyBtn.layer.cornerRadius = 5;
+        _buyBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_buyBtn setTitle:@"去购买" forState:UIControlStateNormal];
+        [_buyBtn setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
+        [_buyBtn setBackgroundColor:UIColor.grayColor];
+        [_buyBtn addTarget:self action:@selector(gotoBuy:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_buyBtn];
+    }
+}
+
+- (void)gotoBuy:(UIButton *)sender {
+    NSString * tmp = [_url.absoluteString stringByReplacingOccurrencesOfString:@"vvv" withString:@""];
+    NSURL * url = [NSURL URLWithString:tmp];
+    if (![[UIApplication sharedApplication] canOpenURL:url]) return ;
+    
+    if (@available(iOS 10.0, *)) {
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    } else {
+        [[UIApplication sharedApplication] openURL:url];
+    }
 }
 
 - (void)setUrl:(NSURL *)url {
@@ -40,11 +78,6 @@
     
     _url = url;
     [self openWebWithUrl:_url];
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    [self.view addSubview:self.webView];
 }
 
 - (void)share:(id)sender {
@@ -72,16 +105,6 @@
     if ([activity respondsToSelector:@selector(popoverPresentationController)]) {        activity.popoverPresentationController.sourceView = self.view;
     }
     [self presentViewController:activity animated:YES completion:nil];
-}
-
-- (WKWebView *)webView {
-    if (!_webView) {
-        _webView = [[WKWebView alloc]initWithFrame:self.view.bounds
-                                     configuration:[[WKWebViewConfiguration alloc]init]];
-        _webView.navigationDelegate = self;
-        _webView.UIDelegate = self;
-    }
-    return _webView;
 }
 
 - (void)openWebWithUrl:(NSURL *)url {

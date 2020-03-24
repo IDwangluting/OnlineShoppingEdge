@@ -41,7 +41,7 @@
     _searchBar                   = [[UISearchBar alloc]init];
     _searchBar.searchBarStyle    = UISearchBarStyleProminent;
     _searchBar.barStyle          = UIBarStyleBlack;
-    _searchBar.placeholder       = NSLocalizedString(@"请输入网商品地址", nil);
+    _searchBar.placeholder       = NSLocalizedString(@"请输入搜索内容", nil);
     _searchBar.returnKeyType     = UIReturnKeyDone;
     _searchBar.keyboardType      = UIKeyboardTypeURL;
     _searchBar.scopeButtonTitles = @[];
