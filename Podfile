@@ -9,4 +9,5 @@ target 'OnlineShoppingEdge' do
   pod 'YYCategories'
   pod 'MBProgressHUD'
   pod 'Realm'       
+  pod 'AFNetworking'
 end
