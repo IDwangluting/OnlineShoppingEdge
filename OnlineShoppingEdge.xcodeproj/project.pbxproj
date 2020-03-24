@@ -30,6 +30,8 @@
 		1DA206B123F0578700675475 /* 淘宝.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206AB23F0578700675475 /* 淘宝.mp4 */; };
 		1DA206B223F0578700675475 /* 考拉海购.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206AC23F0578700675475 /* 考拉海购.mp4 */; };
 		1DA3657B23EC81E700068EEF /* OSETutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA3657A23EC81E700068EEF /* OSETutorialViewController.m */; };
+		1DD3296E2429DE6000A8ABC9 /* OSEUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD3296D2429DE6000A8ABC9 /* OSEUserInfoViewController.m */; };
+		1DD329712429DFEF00A8ABC9 /* AppInfoMananger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD3296F2429DFEF00A8ABC9 /* AppInfoMananger.m */; };
 		1DD8E9E323EFF1D400603887 /* OSEMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD8E9E223EFF1D400603887 /* OSEMutableDictionary.m */; };
 		1DE6311523E7D549002D0C0A /* OSEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6311423E7D549002D0C0A /* OSEHomeViewController.m */; };
 		1DEA1E6623ED2D5C00AC594A /* OSETutorialDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DEA1E6523ED2D5C00AC594A /* OSETutorialDetailViewController.m */; };
@@ -85,6 +87,10 @@
 		1DA3657923EC81E700068EEF /* OSETutorialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSETutorialViewController.h; sourceTree = "<group>"; };
 		1DA3657A23EC81E700068EEF /* OSETutorialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSETutorialViewController.m; sourceTree = "<group>"; };
 		1DBE30FE23F04AC100A07DA4 /* CommonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
+		1DD3296C2429DE6000A8ABC9 /* OSEUserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSEUserInfoViewController.h; sourceTree = "<group>"; };
+		1DD3296D2429DE6000A8ABC9 /* OSEUserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEUserInfoViewController.m; sourceTree = "<group>"; };
+		1DD3296F2429DFEF00A8ABC9 /* AppInfoMananger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppInfoMananger.m; sourceTree = "<group>"; };
+		1DD329702429DFEF00A8ABC9 /* AppInfoMananger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInfoMananger.h; sourceTree = "<group>"; };
 		1DD8E9E123EFF1D400603887 /* OSEMutableDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSEMutableDictionary.h; sourceTree = "<group>"; };
 		1DD8E9E223EFF1D400603887 /* OSEMutableDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEMutableDictionary.m; sourceTree = "<group>"; };
 		1DE6311323E7D549002D0C0A /* OSEHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSEHomeViewController.h; sourceTree = "<group>"; };
@@ -144,10 +150,11 @@
 		1D38B18523E967D600DCE9F2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1D38B18623E967D600DCE9F2 /* Home */,
+				1DD3296B2429DDF500A8ABC9 /* UserInfo */,
 				1D9BDFD9242921FF0036001E /* OtherTool */,
 				1D40938D242895C900954C46 /* SearchCenter */,
 				1DA3657823EC81D300068EEF /* Tutorial */,
-				1D38B18623E967D600DCE9F2 /* Home */,
 				1D38B18723E967D600DCE9F2 /* HistoryDetail */,
 			);
 			path = Modules;
@@ -193,6 +200,8 @@
 				1D0DA5B523C9F7B500BE11A6 /* AppDelegate.m */,
 				1D0DA5B723C9F7B500BE11A6 /* SceneDelegate.h */,
 				1D0DA5B823C9F7B500BE11A6 /* SceneDelegate.m */,
+				1DD329702429DFEF00A8ABC9 /* AppInfoMananger.h */,
+				1DD3296F2429DFEF00A8ABC9 /* AppInfoMananger.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -252,6 +261,15 @@
 				1DEA1E6523ED2D5C00AC594A /* OSETutorialDetailViewController.m */,
 			);
 			path = Tutorial;
+			sourceTree = "<group>";
+		};
+		1DD3296B2429DDF500A8ABC9 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				1DD3296C2429DE6000A8ABC9 /* OSEUserInfoViewController.h */,
+				1DD3296D2429DE6000A8ABC9 /* OSEUserInfoViewController.m */,
+			);
+			path = UserInfo;
 			sourceTree = "<group>";
 		};
 		8E38253EE87B680136601BB5 /* Frameworks */ = {
@@ -400,6 +418,8 @@
 			files = (
 				1DA3657B23EC81E700068EEF /* OSETutorialViewController.m in Sources */,
 				1D0DA5BC23C9F7B500BE11A6 /* OSEHistroyDetailViewController.m in Sources */,
+				1DD329712429DFEF00A8ABC9 /* AppInfoMananger.m in Sources */,
+				1DD3296E2429DE6000A8ABC9 /* OSEUserInfoViewController.m in Sources */,
 				1DD8E9E323EFF1D400603887 /* OSEMutableDictionary.m in Sources */,
 				1D0DA5B623C9F7B500BE11A6 /* AppDelegate.m in Sources */,
 				1DE6311523E7D549002D0C0A /* OSEHomeViewController.m in Sources */,

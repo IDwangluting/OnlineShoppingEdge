@@ -12,9 +12,6 @@
 #import <YYCategories/UIGestureRecognizer+YYAdd.h>
 #import "OSESlideMenuController.h"
 
-//#import <CoreTelephony/CTTelephonyNetworkInfo.h>
-//#import <CoreTelephony/CTCarrier.h>
-
 //可以识别url的正则表达式
 #define RegulaStr @"((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)"
 
@@ -197,15 +194,6 @@
     return YES;
 }
 
-//- (void)simCardInfo {
-//    CTTelephonyNetworkInfo *  networkInfo = [[CTTelephonyNetworkInfo alloc] init];
-//    CTCarrier *carrier = networkInfo.subscriberCellularProvider;
-//    carrier.carrierName;//供应商名称（中国联通 中国移动）
-//    carrier.mobileCountryCode; //所在国家编号
-//    carrier.mobileNetworkCode; //供应商网络编号
-//    carrier.allowsVOIP?@ "YES" :@ "NO";
-//    carrier.isoCountryCode;
 //    NSString *number = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBFormattedPhoneNumber"];
 //    UITextContentTypeOneTimeCode
-//}
 @end

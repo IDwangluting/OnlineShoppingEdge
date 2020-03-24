@@ -15,8 +15,7 @@
 #define CommentsFeedback @3
 #define HistoricRecords  @4
 #define ContectUs        @5
-#define AppInfoUserInfo  @6
-
+#define DeviceInfo       @6
 
 #define TestflightUrl    @"https://testflight.apple.com/join/QsLkbB3d"
 #define QQGroupKey       @"b4405d01b954d4a9d85258514bc6a8331151afc11fa627533d4541359bc85bd7"
@@ -46,8 +45,8 @@
                                          @"page" :@"OSESearchCenterViewController"},
                       ContectUs       :@{@"title":@"联系我们",
                                          @"page" :@""},
-                      AppInfoUserInfo :@{@"title":@"app信息",
-                                         @"page" :@""},
+                      DeviceInfo      :@{@"title":@"设备信息",
+                                         @"page" :@"OSEUserInfoViewController"},
         };
     }
     return self;
@@ -67,8 +66,9 @@
         for (NSDictionary * item in _pageInfo.allValues) {
             NSString * identifier = [item objectForKey:@"page"];
             if (!identifier || identifier.length < 0)  continue ;
-           [_slideMenuController registerClass:NSClassFromString(identifier)
-                                   forCellReuseIdentifier:identifier];
+            
+            [_slideMenuController registerClass:NSClassFromString(identifier)
+                         forCellReuseIdentifier:identifier];
         }
     }
 }
@@ -94,7 +94,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   
     if (indexPath.row == TrialVersion.intValue) {
         if (@available(iOS 10.0, *)) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TestflightUrl]
