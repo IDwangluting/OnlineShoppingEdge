@@ -10,11 +10,11 @@
 #import "OSESlideMenuController.h"
 
 #define UserGuide        @0
-#define DeviceInfo       @1
+#define HistoricRecords  @1
 #define SearchCenter     @2
-#define HistoricRecords  @3
-#define ContectUs        @5
-#define CommentsFeedback @4
+#define CommentsFeedback @3
+#define ContectUs        @4
+#define DeviceInfo       @5
 #define TrialVersion     @6
 #define Contribute       @7
 
@@ -38,7 +38,7 @@
                                          @"page" :@"OSETutorialViewController"},
                       TrialVersion    :@{@"title":@"体验版",
                                          @"page" :@""},
-                      HistoricRecords :@{@"title":@"搜索记录",
+                      HistoricRecords :@{@"title":@"历史记录",
                                          @"page" :@""},
                       CommentsFeedback:@{@"title":@"意见与反馈",
                                          @"page" :@""},
