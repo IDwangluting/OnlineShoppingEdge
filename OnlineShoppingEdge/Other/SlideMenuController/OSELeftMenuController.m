@@ -10,13 +10,14 @@
 #import "OSESlideMenuController.h"
 
 #define UserGuide        @0
-#define HistoricRecords  @1
-#define SearchCenter     @2
-#define CommentsFeedback @3
-#define ContectUs        @4
-#define DeviceInfo       @5
-#define TrialVersion     @6
-#define Contribute       @7
+#define SearchCenter     @1
+#define FeedbackCenter   @2
+#define ContectUs        @3
+#define DeviceInfo       @4
+#define TrialVersion     @5
+
+//#define HistoricRecords  @1
+//#define Contribute       @7
 
 #define TestflightUrl    @"https://testflight.apple.com/join/QsLkbB3d"
 #define QQGroupKey       @"b4405d01b954d4a9d85258514bc6a8331151afc11fa627533d4541359bc85bd7"
@@ -36,11 +37,9 @@
     if (self = [super init]) {
         _pageInfo = @{UserGuide       :@{@"title":@"使用教程",
                                          @"page" :@"OSETutorialViewController"},
-                      TrialVersion    :@{@"title":@"体验版",
-                                         @"page" :@""},
-                      HistoricRecords :@{@"title":@"历史记录",
-                                         @"page" :@""},
-                      CommentsFeedback:@{@"title":@"意见与反馈",
+//                      TrialVersion    :@{@"title":@"体验版",
+//                                         @"page" :@""},
+                      FeedbackCenter  :@{@"title":@"反馈中心",
                                          @"page" :@""},
                       SearchCenter    :@{@"title":@"搜索中心",
                                          @"page" :@"OSESearchCenterViewController"},
@@ -48,8 +47,10 @@
                                          @"page" :@""},
                       DeviceInfo      :@{@"title":@"设备信息",
                                          @"page" :@"OSEUserInfoViewController"},
-                      Contribute      :@{@"title":@"捐赠",
-                                         @"page" :@"OSEContributeViewController"},
+                      //                      Contribute      :@{@"title":@"捐赠",
+                      //                                         @"page" :@"OSEContributeViewController"},//
+                      //                      HistoricRecords :@{@"title":@"历史记录",
+                      //                                         @"page" :@""},
         };
     }
     return self;
@@ -118,12 +119,12 @@
 
 - (void)openURL:(NSString *)urlStr {
     NSURL * url = [NSURL URLWithString:urlStr];
-    if([[UIApplication sharedApplication] canOpenURL:url]){
-        if (@available(iOS 10.0, *)) {
-            [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
-        } else {
-            [[UIApplication sharedApplication] openURL:url];
-        }
+    if(![[UIApplication sharedApplication] canOpenURL:url]) return ;
+        
+    if (@available(iOS 10.0, *)) {
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    } else {
+        [[UIApplication sharedApplication] openURL:url];
     }
 }
 

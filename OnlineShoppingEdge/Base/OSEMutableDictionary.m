@@ -25,40 +25,40 @@ static NSMutableDictionary * contentData = nil;
         contentData = [[NSMutableDictionary alloc]initWithCapacity:4];
         NSString *tmail = NSLocalizedString(@"天猫", nil);
         [contentData setObject:@{PlatformName       :tmail,
-                          HistoricalPriceData:@"detail.tmallvvv.com"}
-                 forKey:@"detail.tmall.com"];
+                                 HistoricalPriceData:@"detail.tmallvvv.com"}
+                        forKey:@"detail.tmall.com"];
         [contentData setObject:@{PlatformName       :tmail,
-                          HistoricalPriceData:@"detail.m.tmallvvv.com"}
-                 forKey:@"detail.m.tmall.com"];
+                                 HistoricalPriceData:@"detail.m.tmallvvv.com"}
+                        forKey:@"detail.m.tmall.com"];
                       
         NSString *taobao = NSLocalizedString(@"淘宝", nil);
         [contentData setObject:@{PlatformName       :taobao,
-                          HistoricalPriceData:@"item.taobaovvv.com"}
-                 forKey:@"item.taobao.com"];
+                                 HistoricalPriceData:@"item.taobaovvv.com"}
+                        forKey:@"item.taobao.com"];
         [contentData setObject:@{PlatformName       :taobao,
-                          HistoricalPriceData:@"h5.m.taobaovvv.com"}
-                 forKey:@"h5.m.taobao.com"];
+                                 HistoricalPriceData:@"h5.m.taobaovvv.com"}
+                        forKey:@"h5.m.taobao.com"];
         
         NSString *jd = NSLocalizedString(@"京东", nil);
         [contentData setObject:@{PlatformName       :jd,
-                          HistoricalPriceData:@"item.jdvvv.com"}
-                 forKey:@"item.jd.com"];
+                                 HistoricalPriceData:@"item.jdvvv.com"}
+                        forKey:@"item.jd.com"];
         [contentData setObject:@{PlatformName       :jd,
-                          HistoricalPriceData:@"item.m.jdvvv.com"}
-                 forKey:@"item.m.jd.com"];
+                                 HistoricalPriceData:@"item.m.jdvvv.com"}
+                        forKey:@"item.m.jd.com"];
                       
         NSString * amazon = NSLocalizedString(@"亚马逊", nil);
         [contentData setObject:@{PlatformName       :amazon,
-                          HistoricalPriceData:@"www.amazonvvv.cn"}
-                 forKey:@"www.amazon.cn"];
+                                 HistoricalPriceData:@"www.amazonvvv.cn"}
+                        forKey:@"www.amazon.cn"];
                       
         NSString * dangdang = NSLocalizedString(@"当当", nil);
         [contentData setObject:@{PlatformName       :dangdang,
-                          HistoricalPriceData:@"product.dangdangvvv.com"}
-                 forKey:@"product.dangdang.com"];
+                                 HistoricalPriceData:@"product.dangdangvvv.com"}
+                        forKey:@"product.dangdang.com"];
         [contentData setObject:@{PlatformName       :dangdang,
-                          HistoricalPriceData:@"product.dangdangvvv.com"}
-                 forKey:@"product.m.dangdang.com"];
+                                 HistoricalPriceData:@"product.dangdangvvv.com"}
+                        forKey:@"product.m.dangdang.com"];
                                 
         NSString * kaola = NSLocalizedString(@"考拉海购", nil);
         [contentData setObject:@{PlatformName       :kaola,

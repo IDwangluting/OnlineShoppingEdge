@@ -7,8 +7,9 @@
 //
 
 #import "OSEHistroyDetailViewController.h"
-#import "MBProgressHUD.h"
 #import "OSEMutableDictionary.h"
+#import "CustomActivity.h"
+#import "MBProgressHUD.h"
 @import WebKit;
 
 #define offsetY  210 / 375.0 * [UIScreen mainScreen].bounds.size.width
@@ -21,9 +22,12 @@
 
 @implementation OSEHistroyDetailViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self layoutSubviews];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"分享"
+                                                              style:UIBarButtonItemStyleDone
+                                                             target:self
+                                                             action:@selector(share:)];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -39,7 +43,35 @@
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
     [self.view addSubview:self.webView];
+}
+
+- (void)share:(id)sender {
+     NSString *text  = @"网购利器--帮你用最低的价格购买心仪的商品";
+     UIImage  *image = [UIImage imageNamed:@"AppIcon.png"];
+     NSURL    *url   = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/id1497669870?mt=8"];
+     NSArray  *activityItems = @[url,text,image];
+     CustomActivity * customActivity = [[CustomActivity alloc] initWithTitie:@"网购利器"
+                                                                       image:image
+                                                                         url:url
+                                                                        type:@"CustomActivity"
+                                                                     context:activityItems];
+    UIActivityViewController *activity = [[UIActivityViewController alloc] initWithActivityItems:activityItems
+                                                                           applicationActivities:@[customActivity]];
+    activity.excludedActivityTypes = @[];
+    activity.completionWithItemsHandler = ^(NSString *activityType ,BOOL completed,
+                                            NSArray  *returnedItems,NSError *activityError) {
+        if (completed){
+
+        }else{
+//            activityError
+        }
+    };
+    
+    if ([activity respondsToSelector:@selector(popoverPresentationController)]) {        activity.popoverPresentationController.sourceView = self.view;
+    }
+    [self presentViewController:activity animated:YES completion:nil];
 }
 
 - (WKWebView *)webView {

@@ -51,7 +51,7 @@
 - (void)layoutSubviews {
     UIImage * image = [[UIImage imageNamed:@"home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:image
-                                                             style:UIBarButtonItemStyleDone
+                                                             style:UIBarButtonItemStylePlain
                                                             target:self
                                                             action:@selector(showSlideMenu:)];
     
