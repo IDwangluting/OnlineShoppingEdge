@@ -8,14 +8,9 @@
 
 #import "OSEHomeViewController.h"
 #import "OSEMutableDictionary.h"
-#import "OSETutorialViewController.h"
 #import "OSEHistroyDetailViewController.h"
 #import <YYCategories/UIGestureRecognizer+YYAdd.h>
-
-//#import <CoreTelephony/CTTelephonyNetworkInfo.h>
-//#import <CoreTelephony/CTCarrier.h>
-
-#define QuarkSearch @"https://quark.sm.cn/s?from=kkframenew&uc_param_str=dnntnwvepffrgibijbprsvpidsdichei&q="
+#import "OSESlideMenuController.h"
 
 //可以识别url的正则表达式
 #define RegulaStr @"((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)"
@@ -30,7 +25,6 @@
 @implementation OSEHomeViewController {
     NSArray             * _hosts;
     OSEHistroyDetailViewController * _histroyDetailViewController;
-    OSETutorialViewController * _tutorialViewController;
 }
 
 - (void)viewDidLoad {
@@ -55,10 +49,11 @@
 }
 
 - (void)layoutSubviews {
-    self.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"如何使用?", nil)
-                                                              style:UIBarButtonItemStylePlain
-                                                             target:self
-                                                             action:@selector(tutorial:)];
+    UIImage * image = [[UIImage imageNamed:@"home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:image
+                                                             style:UIBarButtonItemStylePlain
+                                                            target:self
+                                                            action:@selector(showSlideMenu:)];
     
     _searchBar                   = [[UISearchBar alloc]init];
     _searchBar.searchBarStyle    = UISearchBarStyleProminent;
@@ -88,12 +83,8 @@
     _hosts = [OSEMutableDictionary allKeys];
 }
 
-- (void)tutorial:(UIButton *)sender {
-    if (!_tutorialViewController) {
-        _tutorialViewController = [[OSETutorialViewController alloc]init];
-        _tutorialViewController.title = NSLocalizedString(@"使用教程", nil);
-    }
-    [self.navigationController pushViewController:_tutorialViewController animated:YES];
+- (void)showSlideMenu:(UIButton *)sender {
+    [[self slideMenuController] showMenu];
 }
 
 - (void)enterHistoryDetailWithTitle:(NSString *)title url:(NSString *)url {
@@ -133,24 +124,11 @@
         openSucess = YES;
     }
     
-    if (openSucess == false) {
-        [self searchWithContent:url];
-    }
-    
-    _searchBar.showsSearchResultsButton = YES;
+    _searchBar.showsSearchResultsButton = openSucess;
     _searchBar.searchResultsButtonSelected = openSucess;
-}
-
-- (void)searchWithContent:(NSString *)content {
-    NSString * url = nil;
-    if([content containsString:@"http"] || [content containsString:QuarkSearch]) {
-        url = content;
-        content = [[content stringByRemovingPercentEncoding] stringByReplacingOccurrencesOfString:QuarkSearch withString:@""];
-        _searchBar.text = content;
-    }else {
-        url = [NSString stringWithFormat:@"%@%@",QuarkSearch,content];
+    if (openSucess == false) {
+//        error
     }
-    [self enterHistoryDetailWithTitle:content url:url];
 }
 
 - (NSString *)pastboardUrl{
@@ -216,15 +194,6 @@
     return YES;
 }
 
-//- (void)simCardInfo {
-//    CTTelephonyNetworkInfo *  networkInfo = [[CTTelephonyNetworkInfo alloc] init];
-//    CTCarrier *carrier = networkInfo.subscriberCellularProvider;
-//    carrier.carrierName;//供应商名称（中国联通 中国移动）
-//    carrier.mobileCountryCode; //所在国家编号
-//    carrier.mobileNetworkCode; //供应商网络编号
-//    carrier.allowsVOIP?@ "YES" :@ "NO";
-//    carrier.isoCountryCode;
 //    NSString *number = [[NSUserDefaults standardUserDefaults] stringForKey:@"SBFormattedPhoneNumber"];
 //    UITextContentTypeOneTimeCode
-//}
 @end

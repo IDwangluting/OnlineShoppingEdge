@@ -8,16 +8,24 @@
 
 #import "OSEResponder.h"
 #import "OSEHomeViewController.h"
+#import "OSESlideMenuController.h"
+#import "OSELeftMenuController.h"
 
 @implementation OSEResponder
 
 - (void)baseSetting {
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.bounds = [UIScreen mainScreen].bounds;
-    OSEHomeViewController * rootViewController  = [[OSEHomeViewController alloc]init];
-    [rootViewController setTitle:NSLocalizedString(@"首页", nil)];
-    UIViewController * navigationController = [[UINavigationController alloc]initWithRootViewController:rootViewController];
-    self.window.rootViewController = navigationController ;
+    OSEHomeViewController * viewController = [[OSEHomeViewController alloc]init];
+    [viewController setTitle:NSLocalizedString(@"首页", nil)];
+    UIViewController * nav = [[UINavigationController alloc]initWithRootViewController:viewController];
+    
+    OSELeftMenuController  *slideMenuViewController = [[OSELeftMenuController alloc] init];
+    OSESlideMenuController *sideMenuController = [[OSESlideMenuController alloc] initWithHomePage:nav
+                                                                    slideMenuViewController:slideMenuViewController];
+    sideMenuController.scaleContent = NO;
+    self.window.rootViewController = sideMenuController;
+
     [self.window makeKeyAndVisible];
     
     [UINavigationBar appearance].titleTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:17],

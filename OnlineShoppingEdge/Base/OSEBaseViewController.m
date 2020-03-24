@@ -27,11 +27,11 @@
 }
 
 - (void)setRightBarButtonItem:(UIBarButtonItem *)rightBarButtonItem {
-    self.navigationController.navigationBar.topItem.rightBarButtonItem  = rightBarButtonItem;
+    self.navigationController.navigationBar.topItem.rightBarButtonItem = rightBarButtonItem;
 }
 
 - (void)setLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem {
-    self.navigationController.navigationBar.topItem.leftBarButtonItem = leftBarButtonItem;
+    self.navigationController.navigationBar.topItem.leftBarButtonItem  = leftBarButtonItem;
 }
 
 - (void)layoutSubviews {}

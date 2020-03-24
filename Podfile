@@ -13,4 +13,5 @@ target 'OnlineShoppingEdge' do
   pod 'MBProgressHUD'
   pod 'MMKV','1.0.24'
   pod 'TFHpple','2.0.0'
+  pod 'Realm'       
 end
