@@ -99,18 +99,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == TrialVersion.intValue) {
-        if (@available(iOS 10.0, *)) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TestflightUrl]
-                                               options:@{}
-                                     completionHandler:nil];
-        } else {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:TestflightUrl]];
-        }
-        
+        [self openURL:TestflightUrl];
     }else if(indexPath.row == CommentsFeedback.intValue) {
-        [self jumpQQqun:@"607385329"];
+        [self openURL:[NSString stringWithFormat:QQGroupUrl,@"607385329",QQGroupKey]];
     }else if(indexPath.row == ContectUs.intValue) {
-        [self jumpQQqun:@"877106454"];
+        [self openURL:[NSString stringWithFormat:QQGroupUrl,@"877106454",QQGroupKey]];
     }else {
         NSDictionary * item = [self.pageInfo objectForKey:@(indexPath.row)];
         NSString * class = [item objectForKey:@"page"];
@@ -118,14 +111,12 @@
             [_slideMenuController hideMenu];
             return ;
         }
-        
         [_slideMenuController showViewController:class title:[item objectForKey:@"title"]];
     }
     [_slideMenuController hideMenu];
 }
 
-- (void)jumpQQqun:(NSString *)groupId {
-    NSString * urlStr  = [NSString stringWithFormat:QQGroupUrl,groupId,QQGroupKey];
+- (void)openURL:(NSString *)urlStr {
     NSURL * url = [NSURL URLWithString:urlStr];
     if([[UIApplication sharedApplication] canOpenURL:url]){
         if (@available(iOS 10.0, *)) {
@@ -133,7 +124,6 @@
         } else {
             [[UIApplication sharedApplication] openURL:url];
         }
-        return ;
     }
 }
 
