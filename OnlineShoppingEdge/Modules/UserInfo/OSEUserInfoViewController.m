@@ -87,16 +87,14 @@
 - (NSString *)currentNetWithStatus:(AFNetworkReachabilityStatus)status {
     NSString * netStatus = @"";
     switch (status) {
-        case AFNetworkReachabilityStatusUnknown:{
-            netStatus = @"Unknown";
+        case AFNetworkReachabilityStatusUnknown:
+            netStatus = @"识别不了";
             break;
-        }
-        case AFNetworkReachabilityStatusNotReachable:{
-            netStatus = @"NotReachable";
+        case AFNetworkReachabilityStatusNotReachable:
+            netStatus = @"检测不到";
             break;
-        }
         case AFNetworkReachabilityStatusReachableViaWWAN:
-            netStatus = @"WWAN";
+            netStatus = @"4G/3G/2G";
             break;
         case AFNetworkReachabilityStatusReachableViaWiFi:
             netStatus = @"WiFi";
