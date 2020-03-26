@@ -30,8 +30,8 @@
  */
 @property (assign, nonatomic) BOOL allowRotate;
 
-- (instancetype)initWithHomePage:(UIViewController * _Nonnull)homePageViewController
-         slideMenuViewController:(UIViewController * _Nonnull)slideMenuViewController;
+- (instancetype _Nullable )initWithHomePage:(UIViewController * _Nonnull)homePageViewController
+                    slideMenuViewController:(UIViewController * _Nonnull)slideMenuViewController;  
 
 - (void)registerClass:(nullable Class)cls forCellReuseIdentifier:(NSString * _Nonnull)identifier;
 
