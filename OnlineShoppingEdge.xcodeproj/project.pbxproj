@@ -204,9 +204,9 @@
 		1D38B18923E968A300DCE9F2 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				1D409378242861ED00954C46 /* SlideMenuController */,
 				1D9BDFDD242A51210036001E /* CustomActivity.h */,
 				1D9BDFDE242A51210036001E /* CustomActivity.m */,
-				1D409378242861ED00954C46 /* SlideMenuController */,
 				1D0DA5B423C9F7B500BE11A6 /* AppDelegate.h */,
 				1D0DA5B523C9F7B500BE11A6 /* AppDelegate.m */,
 				1D0DA5B723C9F7B500BE11A6 /* SceneDelegate.h */,

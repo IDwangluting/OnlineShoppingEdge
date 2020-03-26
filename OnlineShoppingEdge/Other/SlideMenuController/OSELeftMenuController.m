@@ -9,21 +9,20 @@
 #import "OSELeftMenuController.h"
 #import "OSESlideMenuController.h"
 #import <StoreKit/StoreKit.h>
+#import "AppInfoMananger.h"
+#import "CommonDefine.h"
 
 #define UserGuide        @0
 #define SearchCenter     @1
 #define FeedbackCenter   @2
 #define ContectUs        @3
 #define DeviceInfo       @4
-#define Update           @5
+#define ChectUpdate      @5
 #define TrialVersion     @6
 
 //#define HistoricRecords  @7
 //#define Contribute       @8
 
-#define TestflightUrl    @"https://testflight.apple.com/join/QsLkbB3d"
-#define QQGroupKey       @"b4405d01b954d4a9d85258514bc6a8331151afc11fa627533d4541359bc85bd7"
-#define QQGroupUrl       @"mqqapi://card/show_pslcard?src_type=internal&version=1&uin=%@&key=%@&card_type=group&source=external"
 
 @interface OSELeftMenuController ()<SKStoreProductViewControllerDelegate>
 
@@ -41,7 +40,7 @@
                                          @"page" :@"OSETutorialViewController"},
                       FeedbackCenter  :@{@"title":@"反馈中心",
                                          @"page" :@""},
-                      Update          :@{@"title":@"app更新",
+                      ChectUpdate     :@{@"title":@"app更新",
                                          @"page" :@""},
                       SearchCenter    :@{@"title":@"搜索中心",
                                          @"page" :@"OSESearchCenterViewController"},
@@ -105,29 +104,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == TrialVersion.intValue) {
         [self openURL:TestflightUrl];
-    }else
-        if(indexPath.row == FeedbackCenter.intValue) {
-        [self openURL:[NSString stringWithFormat:QQGroupUrl,@"607385329",QQGroupKey]];
+    }else if(indexPath.row == FeedbackCenter.intValue) {
+        [self openURL:FacebackCenterUrl];
     }else if(indexPath.row == ContectUs.intValue) {
-        [self openURL:[NSString stringWithFormat:QQGroupUrl,@"877106454",QQGroupKey]];
-    }else if(indexPath.row == Update.intValue) {
-        if (@available(iOS 10.3, *)) {
-            __block SKStoreProductViewController *updateApp = [[SKStoreProductViewController alloc] init];
-            updateApp.delegate = self;
-            __weak typeof(self) weakSelf = self ;
-//            start loading
-            [updateApp loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:@"1497669870"}
-                                             completionBlock:^(BOOL result, NSError *error) {
-//                end loading
-                if (result) {
-                    [weakSelf presentViewController:updateApp animated:YES completion:nil];
-                }else {
-                    
-                }
-            }];
-            return ;
-        }
-//      提示版本不支持
+        [self openURL:ContectUsUrl];
+    }else if(indexPath.row == ChectUpdate.intValue) {
+        [self checkUpdate];
     }else {
         NSDictionary * item = [self.pageInfo objectForKey:@(indexPath.row)];
         NSString * class = [item objectForKey:@"page"];
@@ -148,6 +130,35 @@
         [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
     } else {
         [[UIApplication sharedApplication] openURL:url];
+    }
+}
+
+- (void)checkUpdate {
+    NSError *error;
+    NSDictionary *appInfo = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:AppInfoUrl]]
+                                                            options:NSJSONReadingAllowFragments
+                                                              error:&error];
+    if (error) return ;
+            
+    NSArray *infoContent  = [appInfo objectForKey:@"results"];
+    NSString * version    = [[infoContent objectAtIndex:0]objectForKey:@"version"];
+    if (version && [version isEqualToString:[AppInfoMananger manager].version]) return ;
+                        
+    [self openURL:AppUpdateUrl];
+}
+
+- (void)recomandInstallAppWithId:(NSString *)appId {
+    if (@available(iOS 10.3, *)) {
+        __block SKStoreProductViewController *updateApp = [[SKStoreProductViewController alloc] init];
+        updateApp.delegate = self;
+        __weak typeof(self) weakSelf = self ;
+//        start loading
+        [updateApp loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:appId}
+                             completionBlock:^(BOOL result, NSError *error) {
+//            end loading
+            if (result == false) return ;
+            [weakSelf presentViewController:updateApp animated:YES completion:nil];
+        }];
     }
 }
 

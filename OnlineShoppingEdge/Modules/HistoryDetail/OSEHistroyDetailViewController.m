@@ -171,11 +171,6 @@
     return tmpHtmlCode;
 }
 
-- (void)layoutSubviews {
-    [self.view addSubview:self.webView];
-}
-
-
 - (void)share:(id)sender {
      NSString *text  = @"网购利器--帮你用最低的价格购买心仪的商品";
      UIImage  *image = [UIImage imageNamed:@"AppIcon.png"];
