@@ -13,7 +13,6 @@
 - (instancetype)initWithTitie:(NSString *)title
                         image:(UIImage *)image
                           url:(NSURL *)url
-                         type:(NSString *)type
                       context:(NSArray *)shareContexts;
 
 @end

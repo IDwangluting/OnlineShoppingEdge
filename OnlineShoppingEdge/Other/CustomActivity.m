@@ -7,26 +7,24 @@
 //
 
 #import "CustomActivity.h"
+#import "NSObject+Tool.h"
 
 @implementation CustomActivity {
     NSString * _title;
     UIImage  * _image;
     NSURL    * _url  ;
-    NSString * _type ;
-    NSArray  * _shareContexts;
+    NSArray  * _context;
 }
 
 - (instancetype)initWithTitie:(NSString *)title
                         image:(UIImage *)image
                           url:(NSURL   *)url
-                         type:(NSString *)type
-                      context:(NSArray *)shareContexts{
+                      context:(NSArray *)context{
     if(self == [super init]){
-        _title         = title;
-        _image         = image;
-        _url           = url;
-        _type          = type;
-        _shareContexts = shareContexts;
+        _title   = title;
+        _image   = image;
+        _url     = url;
+        _context = context;
     }
     return self;
 }
@@ -36,7 +34,7 @@
 }
 
 - (NSString *)activityType{
-    return _type;
+    return NSStringFromClass(self.class);
 }
 
 - (NSString *)activityTitle {
@@ -61,13 +59,7 @@
 
 - (void)performActivity {
     [self activityDidFinish:YES];
-    if (![[UIApplication sharedApplication] canOpenURL:_url]) return ;
-    
-    if (@available(iOS 10.0, *)) {
-        [[UIApplication sharedApplication] openURL:_url options:@{} completionHandler:nil];
-    } else {
-        [[UIApplication sharedApplication] openURL:_url];
-    }
+    [self openURL:_url.absoluteString];
 }
 
 @end

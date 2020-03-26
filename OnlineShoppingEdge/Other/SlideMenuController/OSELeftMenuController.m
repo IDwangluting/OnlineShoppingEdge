@@ -8,11 +8,8 @@
 
 #import "OSELeftMenuController.h"
 #import "OSESlideMenuController.h"
-#import <StoreKit/StoreKit.h>
-#import "AppInfoMananger.h"
-#import "MBProgressHUD.h"
 #import "CommonDefine.h"
-#import <Toast/Toast.h>
+#import "NSObject+Tool.h"
 
 #define UserGuide        @0
 #define SearchCenter     @1
@@ -24,8 +21,7 @@
 //#define HistoricRecords  @7
 //#define Contribute       @8
 
-
-@interface OSELeftMenuController ()<SKStoreProductViewControllerDelegate>
+@interface OSELeftMenuController ()
 
 @property (nonatomic,strong) NSDictionary * pageInfo;
 
@@ -121,64 +117,6 @@
         }
     }
     [_slideMenuController hideMenu];
-}
-
-- (void)openURL:(NSString *)urlStr {
-    NSURL * url = [NSURL URLWithString:urlStr];
-    if(![[UIApplication sharedApplication] canOpenURL:url]) return ;
-        
-    if (@available(iOS 10.0, *)) {
-        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
-        return ;
-    }
-    [[UIApplication sharedApplication] openURL:url];
-}
-
-- (void)checkUpdate {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    __weak typeof(self) weakSelf = self ;
-    void (^UpdataTip)(NSString *tips) = ^(NSString * tips){
-        [weakSelf.view makeToast:tips
-                        duration:2.0
-                        position:CSToastPositionTop];
-    };
-    NSError *error;
-    NSDictionary *appInfo = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:AppInfoUrl]]
-                                                            options:NSJSONReadingAllowFragments
-                                                              error:&error];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    if (error){
-        UpdataTip(@"更新出错");
-        return ;
-    }
-
-    NSArray *infoContent = [appInfo objectForKey:@"results"];
-    NSString * version   = [[infoContent objectAtIndex:0]objectForKey:@"version"];
-    if (version && [version isEqualToString:[AppInfoMananger manager].version]) {
-        UpdataTip(@"不需要更新");
-        return ;
-    }
-    [self openURL:AppInstallUrl];
-}
-
-- (void)recommandInstallAppWithId:(NSString *)appId {
-    if (@available(iOS 10.3, *)) {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        __block SKStoreProductViewController *productViewController = [[SKStoreProductViewController alloc] init];
-        productViewController.delegate = self;
-        __weak typeof(self) weakSelf = self ;
-        [productViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:appId}
-                                         completionBlock:^(BOOL result, NSError *error) {
-            [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES];
-            if (result == false || error) return ;
-            
-            [weakSelf presentViewController:productViewController animated:YES completion:nil];
-        }];
-    }
-}
-
-- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController {
-    [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

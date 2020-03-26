@@ -181,7 +181,6 @@
      CustomActivity * customActivity = [[CustomActivity alloc] initWithTitie:NSLocalizedString([AppInfoMananger manager].appName, nil)
                                                                        image:image
                                                                          url:url
-                                                                        type:@"CustomActivity"
                                                                      context:activityItems];
     UIActivityViewController *activity = [[UIActivityViewController alloc] initWithActivityItems:activityItems
                                                                            applicationActivities:@[customActivity]];
