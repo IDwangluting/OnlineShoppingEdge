@@ -10,7 +10,9 @@
 #import "OSESlideMenuController.h"
 #import <StoreKit/StoreKit.h>
 #import "AppInfoMananger.h"
+#import "MBProgressHUD.h"
 #import "CommonDefine.h"
+#import <Toast/Toast.h>
 
 #define UserGuide        @0
 #define SearchCenter     @1
@@ -19,7 +21,6 @@
 #define DeviceInfo       @4
 #define ChectUpdate      @5
 #define TrialVersion     @6
-
 //#define HistoricRecords  @7
 //#define Contribute       @8
 
@@ -40,7 +41,7 @@
                                          @"page" :@"OSETutorialViewController"},
                       FeedbackCenter  :@{@"title":@"反馈中心",
                                          @"page" :@""},
-                      ChectUpdate     :@{@"title":@"app更新",
+                      ChectUpdate     :@{@"title":@"检查更新",
                                          @"page" :@""},
                       SearchCenter    :@{@"title":@"搜索中心",
                                          @"page" :@"OSESearchCenterViewController"},
@@ -48,12 +49,12 @@
                                          @"page" :@""},
                       DeviceInfo      :@{@"title":@"设备信息",
                                          @"page" :@"OSEUserInfoViewController"},
-                      //                      TrialVersion    :@{@"title":@"体验版",
-                      //                                         @"page" :@""},
-                      //                      Contribute      :@{@"title":@"捐赠",
-                      //                                         @"page" :@"OSEContributeViewController"},//
-                      //                      HistoricRecords :@{@"title":@"历史记录",
-                      //                                         @"page" :@""},
+//                      TrialVersion    :@{@"title":@"体验版",
+//                                         @"page" :@""},
+//                      Contribute      :@{@"title":@"捐赠",
+//                                         @"page" :@"OSEContributeViewController"},
+//                      HistoricRecords :@{@"title":@"历史记录",
+//                                         @"page" :@""},
         };
     }
     return self;
@@ -65,7 +66,7 @@
            forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
    
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 80)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 0)];
     self.tableView.tableHeaderView = headerView;
     [self.tableView reloadData];
     
@@ -97,7 +98,8 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle  = UITableViewCellSelectionStyleNone;
     cell.textLabel.font  = [UIFont systemFontOfSize:15];
-    cell.textLabel.text  = [[_pageInfo objectForKey:@(indexPath.row)] objectForKey:@"title"];
+    NSString * title     = [[_pageInfo objectForKey:@(indexPath.row)] objectForKey:@"title"];
+    cell.textLabel.text  = NSLocalizedString(title,nil);
     return cell;
 }
 
@@ -110,14 +112,13 @@
         [self openURL:ContectUsUrl];
     }else if(indexPath.row == ChectUpdate.intValue) {
         [self checkUpdate];
+        return ;
     }else {
         NSDictionary * item = [self.pageInfo objectForKey:@(indexPath.row)];
         NSString * class = [item objectForKey:@"page"];
-        if (!class || class.length < 1)  {
-            [_slideMenuController hideMenu];
-            return ;
+        if (class && class.length > 1)  {
+            [_slideMenuController showViewController:class title:[item objectForKey:@"title"]];
         }
-        [_slideMenuController showViewController:class title:[item objectForKey:@"title"]];
     }
     [_slideMenuController hideMenu];
 }
@@ -128,36 +129,50 @@
         
     if (@available(iOS 10.0, *)) {
         [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
-    } else {
-        [[UIApplication sharedApplication] openURL:url];
+        return ;
     }
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 - (void)checkUpdate {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    __weak typeof(self) weakSelf = self ;
+    void (^UpdataTip)(NSString *tips) = ^(NSString * tips){
+        [weakSelf.view makeToast:tips
+                        duration:2.0
+                        position:CSToastPositionTop];
+    };
     NSError *error;
     NSDictionary *appInfo = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:AppInfoUrl]]
                                                             options:NSJSONReadingAllowFragments
                                                               error:&error];
-    if (error) return ;
-            
-    NSArray *infoContent  = [appInfo objectForKey:@"results"];
-    NSString * version    = [[infoContent objectAtIndex:0]objectForKey:@"version"];
-    if (version && [version isEqualToString:[AppInfoMananger manager].version]) return ;
-                        
-    [self openURL:AppUpdateUrl];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    if (error){
+        UpdataTip(@"更新出错");
+        return ;
+    }
+
+    NSArray *infoContent = [appInfo objectForKey:@"results"];
+    NSString * version   = [[infoContent objectAtIndex:0]objectForKey:@"version"];
+    if (version && [version isEqualToString:[AppInfoMananger manager].version]) {
+        UpdataTip(@"不需要更新");
+        return ;
+    }
+    [self openURL:AppInstallUrl];
 }
 
-- (void)recomandInstallAppWithId:(NSString *)appId {
+- (void)recommandInstallAppWithId:(NSString *)appId {
     if (@available(iOS 10.3, *)) {
-        __block SKStoreProductViewController *updateApp = [[SKStoreProductViewController alloc] init];
-        updateApp.delegate = self;
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        __block SKStoreProductViewController *productViewController = [[SKStoreProductViewController alloc] init];
+        productViewController.delegate = self;
         __weak typeof(self) weakSelf = self ;
-//        start loading
-        [updateApp loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:appId}
-                             completionBlock:^(BOOL result, NSError *error) {
-//            end loading
-            if (result == false) return ;
-            [weakSelf presentViewController:updateApp animated:YES completion:nil];
+        [productViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:appId}
+                                         completionBlock:^(BOOL result, NSError *error) {
+            [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES];
+            if (result == false || error) return ;
+            
+            [weakSelf presentViewController:productViewController animated:YES completion:nil];
         }];
     }
 }

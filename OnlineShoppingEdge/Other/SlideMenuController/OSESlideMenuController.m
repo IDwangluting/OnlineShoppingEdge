@@ -138,8 +138,8 @@ static CGFloat const MinTrigerSpeed       = 1000.0f;
 }
 
 - (void)showViewController:(NSString *)identifier title:(NSString *)title {
-    if ([self.contentViewController isKindOfClass:[UINavigationController class]] &&
-        [_subViewControllerDictionary.allKeys containsObject:identifier]) {
+    if ([self.contentViewController isKindOfClass:[UINavigationController class]]
+        && [_subViewControllerDictionary.allKeys containsObject:identifier]) {
         UINavigationController *nav = (id)self.contentViewController;
         UIViewController * viewController = [_subViewControllerDictionary objectForKey:identifier];
         viewController.title = title;

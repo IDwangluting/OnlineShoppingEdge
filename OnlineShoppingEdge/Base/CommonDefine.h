@@ -15,7 +15,7 @@
 
 #define AppId               @"1497669870"
 #define AppInfoUrl          [NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",AppId]
-#define AppUpdateUrl        [NSString stringWithFormat:@"itms-apps://itunes.apple.com/cn/app/id%@?mt=8",AppId]
+#define AppInstallUrl       [NSString stringWithFormat:@"itms-apps://itunes.apple.com/cn/app/id%@?mt=8",AppId]
 #define TestflightUrl       @"https://testflight.apple.com/join/QsLkbB3d"
 
 #define QQGroupKey          @"b4405d01b954d4a9d85258514bc6a8331151afc11fa627533d4541359bc85bd7"

@@ -12,6 +12,8 @@
 #import "TFHpple.h"
 #import "CustomActivity.h"
 #import "MBProgressHUD.h"
+#import "CommonDefine.h"
+#import "AppInfoMananger.h"
 
 @import WebKit;
 
@@ -32,7 +34,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"分享"
+    self.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"分享",nil)
                                                               style:UIBarButtonItemStyleDone
                                                              target:self
                                                              action:@selector(share:)];
@@ -174,9 +176,9 @@
 - (void)share:(id)sender {
      NSString *text  = @"网购利器--帮你用最低的价格购买心仪的商品";
      UIImage  *image = [UIImage imageNamed:@"AppIcon.png"];
-     NSURL    *url   = [NSURL URLWithString:@"https://itunes.apple.com/cn/app/id1497669870?mt=8"];
+     NSURL    *url   = [NSURL URLWithString:AppInstallUrl];
      NSArray  *activityItems = @[url,text,image];
-     CustomActivity * customActivity = [[CustomActivity alloc] initWithTitie:@"网购利器"
+     CustomActivity * customActivity = [[CustomActivity alloc] initWithTitie:NSLocalizedString([AppInfoMananger manager].appName, nil)
                                                                        image:image
                                                                          url:url
                                                                         type:@"CustomActivity"

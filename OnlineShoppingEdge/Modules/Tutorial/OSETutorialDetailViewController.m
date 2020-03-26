@@ -56,10 +56,9 @@
 }
 
 - (void)videoDidPlayEnd {
-    self.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:NSLocalizedString(@"重新播放", nil)
-                                                              style:UIBarButtonItemStylePlain
-                                                             target:self
-                                                             action:@selector(rePlayVideo)];
+    self.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                                           target:self
+                                                                           action:@selector(rePlayVideo)];
 }
 
 - (void)layoutSubviews {
