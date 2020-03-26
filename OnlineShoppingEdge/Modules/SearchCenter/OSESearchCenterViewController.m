@@ -7,7 +7,7 @@
 //
 
 #import "OSESearchCenterViewController.h"
-#import "OSEHistroyDetailViewController.h"
+#import "OSESearchDetailViewController.h"
 
 #define QuarkSearch @"https://quark.sm.cn/s?from=kkframenew&uc_param_str=dnntnwvepffrgibijbprsvpidsdichei&q="
 
@@ -55,16 +55,13 @@
 - (void)enterHistoryDetailWithTitle:(NSString *)title url:(NSString *)url {
     if (url == nil && url.length < 1) return ;
     
-    OSEHistroyDetailViewController * searchlViewController = nil;
-    if (!searchlViewController) {
-        searchlViewController = [[OSEHistroyDetailViewController alloc]init];
-    }
-    searchlViewController.title = title;
-    // 处理重定向问题
     NSMutableCharacterSet *set  = [[NSCharacterSet URLQueryAllowedCharacterSet] mutableCopy];
     [set addCharactersInString:@"#"];
-    searchlViewController.url = [NSURL URLWithString:[url stringByAddingPercentEncodingWithAllowedCharacters:set]];
-    [self.navigationController pushViewController:searchlViewController animated:YES];
+    NSURL * URL = [NSURL URLWithString:[url stringByAddingPercentEncodingWithAllowedCharacters:set]];
+    OSESearchDetailViewController * searchlViewController = [[OSESearchDetailViewController alloc]initWithUrl:URL];
+    searchlViewController.title = title;
+    
+    [self presentViewController:searchlViewController animated:YES completion:nil];
 }
 - (void)tryOpenWebWithUrl:(NSString *)url {
     if (url.length < 1 || url == nil) return ;

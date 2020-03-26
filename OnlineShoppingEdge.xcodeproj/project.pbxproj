@@ -23,6 +23,7 @@
 		1D4C09CA23F1B512004AD0D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D4C09CC23F1B512004AD0D5 /* InfoPlist.strings */; };
 		1D4C09D623F1B732004AD0D5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D4C09D823F1B732004AD0D5 /* Localizable.strings */; };
 		1D9656CA242D19BB00137AED /* NSObject+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9656C9242D19BB00137AED /* NSObject+Tool.m */; };
+		1D9656CD242D1F2F00137AED /* OSESearchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9656CC242D1F2F00137AED /* OSESearchDetailViewController.m */; };
 		1D9BDFDC242922280036001E /* WebRefreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9BDFDB242922280036001E /* WebRefreshController.m */; };
 		1D9BDFDF242A51210036001E /* CustomActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9BDFDE242A51210036001E /* CustomActivity.m */; };
 		1DA206AD23F0578700675475 /* 亚马逊.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206A723F0578600675475 /* 亚马逊.mp4 */; };
@@ -82,6 +83,8 @@
 		1D4C09DB23F1B736004AD0D5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1D9656C8242D19BB00137AED /* NSObject+Tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Tool.h"; sourceTree = "<group>"; };
 		1D9656C9242D19BB00137AED /* NSObject+Tool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Tool.m"; sourceTree = "<group>"; };
+		1D9656CB242D1F2F00137AED /* OSESearchDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSESearchDetailViewController.h; sourceTree = "<group>"; };
+		1D9656CC242D1F2F00137AED /* OSESearchDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSESearchDetailViewController.m; sourceTree = "<group>"; };
 		1D9BDFDA242922280036001E /* WebRefreshController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebRefreshController.h; sourceTree = "<group>"; };
 		1D9BDFDB242922280036001E /* WebRefreshController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebRefreshController.m; sourceTree = "<group>"; };
 		1D9BDFDD242A51210036001E /* CustomActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomActivity.h; sourceTree = "<group>"; };
@@ -239,6 +242,8 @@
 			children = (
 				1D40938E242895C900954C46 /* OSESearchCenterViewController.h */,
 				1D40938F242895C900954C46 /* OSESearchCenterViewController.m */,
+				1D9656CB242D1F2F00137AED /* OSESearchDetailViewController.h */,
+				1D9656CC242D1F2F00137AED /* OSESearchDetailViewController.m */,
 			);
 			path = SearchCenter;
 			sourceTree = "<group>";
@@ -460,6 +465,7 @@
 				1D9BDFDC242922280036001E /* WebRefreshController.m in Sources */,
 				1D38B18123E95A0600DCE9F2 /* OSEBaseViewController.m in Sources */,
 				1D9BDFDF242A51210036001E /* CustomActivity.m in Sources */,
+				1D9656CD242D1F2F00137AED /* OSESearchDetailViewController.m in Sources */,
 				1DEA1E6623ED2D5C00AC594A /* OSETutorialDetailViewController.m in Sources */,
 				1D38B18423E966EF00DCE9F2 /* OSEResponder.m in Sources */,
 			);
