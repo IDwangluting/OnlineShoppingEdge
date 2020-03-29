@@ -39,6 +39,9 @@
 		1DD329772429F43300A8ABC9 /* OSEContributeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DD329752429F43300A8ABC9 /* OSEContributeViewController.xib */; };
 		1DD8E9E323EFF1D400603887 /* OSEMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD8E9E223EFF1D400603887 /* OSEMutableDictionary.m */; };
 		1DE6311523E7D549002D0C0A /* OSEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6311423E7D549002D0C0A /* OSEHomeViewController.m */; };
+		1DE6A439243062BE009D2791 /* WWNetwoorking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6A434243062BE009D2791 /* WWNetwoorking.m */; };
+		1DE6A43A243062BE009D2791 /* WWJsonToModelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6A436243062BE009D2791 /* WWJsonToModelTool.m */; };
+		1DE6A43B243062BE009D2791 /* KGRNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6A438243062BE009D2791 /* KGRNetworking.m */; };
 		1DEA1E6623ED2D5C00AC594A /* OSETutorialDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DEA1E6523ED2D5C00AC594A /* OSETutorialDetailViewController.m */; };
 		E40500F22B43ED6248EFD1E0 /* Pods_OnlineShoppingEdge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A624950E6961521CAE6AFD /* Pods_OnlineShoppingEdge.framework */; };
 /* End PBXBuildFile section */
@@ -109,6 +112,12 @@
 		1DD8E9E223EFF1D400603887 /* OSEMutableDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEMutableDictionary.m; sourceTree = "<group>"; };
 		1DE6311323E7D549002D0C0A /* OSEHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSEHomeViewController.h; sourceTree = "<group>"; };
 		1DE6311423E7D549002D0C0A /* OSEHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEHomeViewController.m; sourceTree = "<group>"; };
+		1DE6A433243062BE009D2791 /* WWJsonToModelTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWJsonToModelTool.h; sourceTree = "<group>"; };
+		1DE6A434243062BE009D2791 /* WWNetwoorking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWNetwoorking.m; sourceTree = "<group>"; };
+		1DE6A435243062BE009D2791 /* KGRNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGRNetworking.h; sourceTree = "<group>"; };
+		1DE6A436243062BE009D2791 /* WWJsonToModelTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WWJsonToModelTool.m; sourceTree = "<group>"; };
+		1DE6A437243062BE009D2791 /* WWNetwoorking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WWNetwoorking.h; sourceTree = "<group>"; };
+		1DE6A438243062BE009D2791 /* KGRNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGRNetworking.m; sourceTree = "<group>"; };
 		1DEA1E6423ED2D5C00AC594A /* OSETutorialDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSETutorialDetailViewController.h; sourceTree = "<group>"; };
 		1DEA1E6523ED2D5C00AC594A /* OSETutorialDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSETutorialDetailViewController.m; sourceTree = "<group>"; };
 		32A624950E6961521CAE6AFD /* Pods_OnlineShoppingEdge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnlineShoppingEdge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +173,7 @@
 		1D38B18523E967D600DCE9F2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1D409378242861ED00954C46 /* SlideMenuController */,
 				1D38B18623E967D600DCE9F2 /* Home */,
 				1DD329722429F42300A8ABC9 /* Contribute */,
 				1DD3296B2429DDF500A8ABC9 /* UserInfo */,
@@ -196,6 +206,7 @@
 		1D38B18823E967E200DCE9F2 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				1DE6A432243062BE009D2791 /* Network */,
 				1DBE30FE23F04AC100A07DA4 /* CommonDefine.h */,
 				1D38B18223E966EF00DCE9F2 /* OSEResponder.h */,
 				1D38B18323E966EF00DCE9F2 /* OSEResponder.m */,
@@ -210,7 +221,6 @@
 		1D38B18923E968A300DCE9F2 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				1D409378242861ED00954C46 /* SlideMenuController */,
 				1D9BDFDD242A51210036001E /* CustomActivity.h */,
 				1D9BDFDE242A51210036001E /* CustomActivity.m */,
 				1D0DA5B423C9F7B500BE11A6 /* AppDelegate.h */,
@@ -301,6 +311,19 @@
 				1DD329752429F43300A8ABC9 /* OSEContributeViewController.xib */,
 			);
 			path = Contribute;
+			sourceTree = "<group>";
+		};
+		1DE6A432243062BE009D2791 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1DE6A433243062BE009D2791 /* WWJsonToModelTool.h */,
+				1DE6A436243062BE009D2791 /* WWJsonToModelTool.m */,
+				1DE6A435243062BE009D2791 /* KGRNetworking.h */,
+				1DE6A438243062BE009D2791 /* KGRNetworking.m */,
+				1DE6A434243062BE009D2791 /* WWNetwoorking.m */,
+				1DE6A437243062BE009D2791 /* WWNetwoorking.h */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		8E38253EE87B680136601BB5 /* Frameworks */ = {
@@ -460,7 +483,10 @@
 				1D0DA5C723C9F7B600BE11A6 /* main.m in Sources */,
 				1D0DA5B923C9F7B500BE11A6 /* SceneDelegate.m in Sources */,
 				1D409390242895C900954C46 /* OSESearchCenterViewController.m in Sources */,
+				1DE6A439243062BE009D2791 /* WWNetwoorking.m in Sources */,
+				1DE6A43B243062BE009D2791 /* KGRNetworking.m in Sources */,
 				1D4093852428626E00954C46 /* OSELeftMenuController.m in Sources */,
+				1DE6A43A243062BE009D2791 /* WWJsonToModelTool.m in Sources */,
 				1D9656CA242D19BB00137AED /* NSObject+Tool.m in Sources */,
 				1D9BDFDC242922280036001E /* WebRefreshController.m in Sources */,
 				1D38B18123E95A0600DCE9F2 /* OSEBaseViewController.m in Sources */,
