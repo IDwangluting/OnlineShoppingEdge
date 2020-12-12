@@ -12,7 +12,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WebRefreshController : UIViewController
 
-- (void)refreshRealTime;
+@property (nonatomic,assign)CGFloat refreshTimespan; //default 3 second
+
+@property (nonatomic,copy) NSString * url;
+
++ (instancetype)new API_UNAVAILABLE(ios);
+
+- (instancetype)init API_UNAVAILABLE(ios);
+
+- (void)refresh;
 
 - (void)stopRefresh;
 

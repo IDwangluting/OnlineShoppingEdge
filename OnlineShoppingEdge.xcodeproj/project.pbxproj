@@ -162,9 +162,9 @@
 				1D38B18823E967E200DCE9F2 /* Base */,
 				1D38B18523E967D600DCE9F2 /* Modules */,
 				1DA206A623F0576200675475 /* Resource */,
+				1D0DA5C523C9F7B600BE11A6 /* Info.plist */,
 				1D0DA5C223C9F7B600BE11A6 /* LaunchScreen.storyboard */,
 				1D0DA5BD23C9F7B500BE11A6 /* Main.storyboard */,
-				1D0DA5C523C9F7B600BE11A6 /* Info.plist */,
 				1D0DA5C623C9F7B600BE11A6 /* main.m */,
 			);
 			path = OnlineShoppingEdge;
@@ -173,7 +173,7 @@
 		1D38B18523E967D600DCE9F2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				1D409378242861ED00954C46 /* SlideMenuController */,
+				1D409378242861ED00954C46 /* SlideMenu */,
 				1D38B18623E967D600DCE9F2 /* Home */,
 				1DD329722429F42300A8ABC9 /* Contribute */,
 				1DD3296B2429DDF500A8ABC9 /* UserInfo */,
@@ -235,7 +235,7 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
-		1D409378242861ED00954C46 /* SlideMenuController */ = {
+		1D409378242861ED00954C46 /* SlideMenu */ = {
 			isa = PBXGroup;
 			children = (
 				1D40937C242861ED00954C46 /* OSESlideMenuController.h */,
@@ -244,7 +244,7 @@
 				1D4093832428626E00954C46 /* OSELeftMenuController.m */,
 				1D4093822428626E00954C46 /* OSELeftMenuController.xib */,
 			);
-			path = SlideMenuController;
+			path = SlideMenu;
 			sourceTree = "<group>";
 		};
 		1D40938D242895C900954C46 /* SearchCenter */ = {
@@ -354,7 +354,7 @@
 				1D0DA5AD23C9F7B500BE11A6 /* Sources */,
 				1D0DA5AE23C9F7B500BE11A6 /* Frameworks */,
 				1D0DA5AF23C9F7B500BE11A6 /* Resources */,
-				429D388226FD5C07B7E050F5 /* [CP] Embed Pods Frameworks */,
+				4A143AC2F9B50BFA0C831072 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -372,7 +372,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = OSE;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = luting;
 				TargetAttributes = {
 					1D0DA5B023C9F7B500BE11A6 = {
@@ -447,7 +447,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		429D388226FD5C07B7E050F5 /* [CP] Embed Pods Frameworks */ = {
+		4A143AC2F9B50BFA0C831072 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -574,6 +574,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -633,6 +634,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
