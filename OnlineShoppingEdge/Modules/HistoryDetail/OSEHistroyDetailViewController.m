@@ -11,7 +11,7 @@
 #import "KGRNetworking.h"
 #import "TFHpple.h"
 #import "CustomActivity.h"
-#import "MBProgressHUD.h"
+#import "UIView+HUD.h"
 #import "CommonDefine.h"
 #import "AppInfoMananger.h"
 
@@ -201,12 +201,12 @@
 }
 
 - (void)openWebWithUrl:(NSURL *)url {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.view showHUDAnimated:YES];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self.view hideHUDAnimated:YES];
     if (![[OSEMutableDictionary  allKeys] containsObject:[_url.host stringByReplacingOccurrencesOfString:@"vvv" withString:@""]]) return ;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [webView.scrollView setContentOffset:CGPointMake(0, offsetY) animated:YES] ;
@@ -215,14 +215,14 @@
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation
       withError:(NSError *)error {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self.view hideHUDAnimated:YES];
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
 decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     NSURL * URL = navigationAction.request.URL;
     if ([[OSEMutableDictionary  allKeys] containsObject:URL.host] && [self.title containsString:@"http"]) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.view hideHUDAnimated:YES];
         decisionHandler(WKNavigationActionPolicyCancel);
         _url = URL;
         self.title = [[[OSEMutableDictionary contentData] objectForKey:URL.host] objectForKey:PlatformName];

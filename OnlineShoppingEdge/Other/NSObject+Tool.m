@@ -30,7 +30,7 @@
 @implementation UIViewController (Tool)
 
 - (void)checkUpdate {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.view showHUDAnimated:YES];
     __weak typeof(self) weakSelf = self ;
     void (^UpdataTip)(NSString *tips) = ^(NSString * tips){
         [weakSelf.view makeToast:tips
@@ -41,7 +41,7 @@
     NSDictionary *appInfo = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:AppInfoUrl]]
                                                             options:NSJSONReadingAllowFragments
                                                               error:&error];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self.view hideHUDAnimated:YES];
     if (error){
         UpdataTip(@"更新出错");
         return ;
@@ -59,14 +59,14 @@
 
 - (void)recommandInstallAppWithId:(NSString *)appId {
     if (@available(iOS 10.3, *)) {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [self.view showHUDAnimated:YES];
         __block SKStoreProductViewController *productViewController = [[SKStoreProductViewController alloc] init];
         id<SKStoreProductViewControllerDelegate> delegate = (id)self;
         productViewController.delegate = delegate;
         __weak typeof(self) weakSelf = self ;
         [productViewController loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier:appId}
                                          completionBlock:^(BOOL result, NSError *error) {
-            [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES];
+            [weakSelf.view showHUDAnimated:YES];
             if (result == false || error) return ;
             
             [weakSelf presentViewController:productViewController animated:YES completion:nil];

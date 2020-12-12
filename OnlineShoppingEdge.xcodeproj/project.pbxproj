@@ -22,6 +22,7 @@
 		1D409390242895C900954C46 /* OSESearchCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D40938F242895C900954C46 /* OSESearchCenterViewController.m */; };
 		1D4C09CA23F1B512004AD0D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D4C09CC23F1B512004AD0D5 /* InfoPlist.strings */; };
 		1D4C09D623F1B732004AD0D5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D4C09D823F1B732004AD0D5 /* Localizable.strings */; };
+		1D6F0FB22585148B0074A772 /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F0FB12585148B0074A772 /* UIView+HUD.m */; };
 		1D9656CA242D19BB00137AED /* NSObject+Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9656C9242D19BB00137AED /* NSObject+Tool.m */; };
 		1D9656CD242D1F2F00137AED /* OSESearchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9656CC242D1F2F00137AED /* OSESearchDetailViewController.m */; };
 		1D9BDFDC242922280036001E /* WebRefreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9BDFDB242922280036001E /* WebRefreshController.m */; };
@@ -84,6 +85,8 @@
 		1D4C09D923F1B734004AD0D5 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1D4C09DA23F1B735004AD0D5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1D4C09DB23F1B736004AD0D5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1D6F0FB02585148B0074A772 /* UIView+HUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+HUD.h"; sourceTree = "<group>"; };
+		1D6F0FB12585148B0074A772 /* UIView+HUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+HUD.m"; sourceTree = "<group>"; };
 		1D9656C8242D19BB00137AED /* NSObject+Tool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Tool.h"; sourceTree = "<group>"; };
 		1D9656C9242D19BB00137AED /* NSObject+Tool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Tool.m"; sourceTree = "<group>"; };
 		1D9656CB242D1F2F00137AED /* OSESearchDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSESearchDetailViewController.h; sourceTree = "<group>"; };
@@ -210,6 +213,8 @@
 				1DBE30FE23F04AC100A07DA4 /* CommonDefine.h */,
 				1D38B18223E966EF00DCE9F2 /* OSEResponder.h */,
 				1D38B18323E966EF00DCE9F2 /* OSEResponder.m */,
+				1D6F0FB02585148B0074A772 /* UIView+HUD.h */,
+				1D6F0FB12585148B0074A772 /* UIView+HUD.m */,
 				1DD8E9E123EFF1D400603887 /* OSEMutableDictionary.h */,
 				1DD8E9E223EFF1D400603887 /* OSEMutableDictionary.m */,
 				1D38B17F23E95A0600DCE9F2 /* OSEBaseViewController.h */,
@@ -480,6 +485,7 @@
 				1DE6311523E7D549002D0C0A /* OSEHomeViewController.m in Sources */,
 				1D40937E242861EE00954C46 /* OSESlideMenuController.m in Sources */,
 				1DD329762429F43300A8ABC9 /* OSEContributeViewController.m in Sources */,
+				1D6F0FB22585148B0074A772 /* UIView+HUD.m in Sources */,
 				1D0DA5C723C9F7B600BE11A6 /* main.m in Sources */,
 				1D0DA5B923C9F7B500BE11A6 /* SceneDelegate.m in Sources */,
 				1D409390242895C900954C46 /* OSESearchCenterViewController.m in Sources */,

@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <MBProgressHUD/MBProgressHUD.h>
-#import <Toast/Toast.h>
+#import "UIView+HUD.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

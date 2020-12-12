@@ -7,7 +7,7 @@
 //
 
 #import "OSESearchDetailViewController.h"
-#import "MBProgressHUD.h"
+#import "UIView+HUD.h"
 @import WebKit;
 
 @interface OSESearchDetailViewController ()<WKUIDelegate,WKNavigationDelegate>
@@ -32,7 +32,7 @@
 }
 
 - (void)refresh{
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.view showHUDAnimated:YES];
     [self.webView reload];
 }
 
@@ -53,22 +53,22 @@
 }
 
 - (void)openWebWithUrl:(NSURL *)url {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.view showHUDAnimated:YES];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self.view hideHUDAnimated:YES];
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation
       withError:(NSError *)error {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self.view hideHUDAnimated:YES];
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
 decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self.view hideHUDAnimated:YES];
     decisionHandler(WKNavigationActionPolicyAllow);
 }
 
