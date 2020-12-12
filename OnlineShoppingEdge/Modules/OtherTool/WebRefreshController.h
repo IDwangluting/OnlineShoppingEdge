@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WebRefreshController : UIViewController
 
-- (void)refreshAllTheTime;
+- (void)refreshRealTime;
 
 - (void)stopRefresh;
 

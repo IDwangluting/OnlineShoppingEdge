@@ -26,27 +26,25 @@
     [super viewDidLoad];
     self.title = @"网页刷新神器";
     _refreshCount = 0;
-    _webView = [[WKWebView alloc]initWithFrame:self.view.bounds
-                                 configuration:[[WKWebViewConfiguration alloc]init]];
+    _webView = [[WKWebView alloc]initWithFrame:self.view.bounds  configuration:[[WKWebViewConfiguration alloc]init]];
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:weiboUrl]]];
     _webView.frame = CGRectMake(0, 0, self.view.frame.size.width, 100);
     [self.view addSubview:_webView];
-    [self refreshAllTheTime];
+    
+    [self performSelector:@selector(refreshRealTime) withObject:nil afterDelay:3.0];
 }
 
-- (void)refreshAllTheTime {
+- (void)refreshRealTime {
     if(_stopWebViewReload == YES) return ;
     
-    __weak typeof(self) weakSelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.refreshCount++;
-        [weakSelf.webView reload];
-        [weakSelf refreshAllTheTime];
-    });
+    self.refreshCount++;
+    [self.webView reload];
+    [self performSelector:@selector(refreshRealTime) withObject:nil afterDelay:3.0];
 }
 
 - (void)stopRefresh{
     _stopWebViewReload = YES;
+    [[self class] cancelPreviousPerformRequestsWithTarget:self];
 }
 
 @end
