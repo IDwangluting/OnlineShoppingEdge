@@ -24,7 +24,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         NSString * url = @"http://122.51.146.191/vv/dm/historynew.php?code=bf42c25e71e93ce96bbe9e3f23db93f99aa259ee9171641d4892037045eff94ee52a9b7962ce844d3f7c635a2a1b8b71b71ee788f5c711e0d6eaa8ce4077c9ba54a769cf104cebb38097d20503ef98769041fbdf7be70e3432b1de1ccf2c436049422b31b787f357a1c0ac4adbe53d6049ef71d41ce110d78d89896a6bf7fcc2850afddda307dd550628e95460b23b882f368047b2154afaf1a2d0964b4d9a8d81e22be801914a775d5806a7cd4a22b3452e0a15296d5ce50ea16f33bc164934220c4b0a3a7ebdf85246f48663c898f9bd233151e5af71d870259fb1eefa6aa7f471606e1e1ec5ed3955780c1d86b3142c642c724e13fc3c243e232b8bf7c5b3ee2a666d4f4ca47d7711e21bbe111b1bcddf02767498414e&t=&ud=WSVWDERWCJANRFIZACJ_HN_1607789919&reqid=ab0d495641ce5574d016f437396d8dea";
-        [self requestWithURL:url];
+        [self historyPriceRequestWithURL:url];
     }
     return self;
 }
