@@ -5,11 +5,11 @@ use_frameworks!
 
 target 'OnlineShoppingEdge' do
 #	pod 'LookinServer'  ,:configurations => ['Debug']
-  pod 'AFNetworking'  ,'~>3.2.1'
+  pod 'AFNetworking'  ,'~>4.0.1'
   pod 'YYCategories'  ,'~>1.0.4'
   pod 'YYModel'       ,'~>1.0.4'
   pod 'YYCache'       ,'~>1.0.4'
-  pod 'Realm'         ,'~>4.3.2'
+#  pod 'Realm'         ,'~>4.3.2'
   pod 'MMKV'          ,'~>1.0.24'
   pod 'TFHpple'       ,'~>2.0.0'
   pod 'Toast'         ,'~> 4.0.0'

@@ -71,10 +71,10 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    CGFloat top = self.navigationController.navigationBar.height + 20;
-    CGFloat left = 5;
+    CGFloat top    = self.navigationController.navigationBar.height + 20;
+    CGFloat left   = 5;
     CGFloat height = self.view.width / 3 * 2;
-    CGFloat width = self.view.width  - left * 2;
+    CGFloat width  = self.view.width  - left * 2;
     [self.canvas setcCanvasViewFrame:CGRectMake(left,top,width,height)];
 }
 
