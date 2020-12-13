@@ -34,6 +34,8 @@
 		1DA206B123F0578700675475 /* 淘宝.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206AB23F0578700675475 /* 淘宝.mp4 */; };
 		1DA206B223F0578700675475 /* 考拉海购.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DA206AC23F0578700675475 /* 考拉海购.mp4 */; };
 		1DA3657B23EC81E700068EEF /* OSETutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA3657A23EC81E700068EEF /* OSETutorialViewController.m */; };
+		1DA545562586131900C9D254 /* OSECanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA545552586131900C9D254 /* OSECanvas.m */; };
+		1DA5455A2586133500C9D254 /* OSEExampleCanvasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA545592586133500C9D254 /* OSEExampleCanvasViewController.m */; };
 		1DD3296E2429DE6000A8ABC9 /* OSEUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD3296D2429DE6000A8ABC9 /* OSEUserInfoViewController.m */; };
 		1DD329712429DFEF00A8ABC9 /* AppInfoMananger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD3296F2429DFEF00A8ABC9 /* AppInfoMananger.m */; };
 		1DD329762429F43300A8ABC9 /* OSEContributeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD329742429F43300A8ABC9 /* OSEContributeViewController.m */; };
@@ -103,6 +105,10 @@
 		1DA206AC23F0578700675475 /* 考拉海购.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "考拉海购.mp4"; sourceTree = "<group>"; };
 		1DA3657923EC81E700068EEF /* OSETutorialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSETutorialViewController.h; sourceTree = "<group>"; };
 		1DA3657A23EC81E700068EEF /* OSETutorialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSETutorialViewController.m; sourceTree = "<group>"; };
+		1DA545542586131900C9D254 /* OSECanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSECanvas.h; sourceTree = "<group>"; };
+		1DA545552586131900C9D254 /* OSECanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSECanvas.m; sourceTree = "<group>"; };
+		1DA545582586133500C9D254 /* OSEExampleCanvasViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSEExampleCanvasViewController.h; sourceTree = "<group>"; };
+		1DA545592586133500C9D254 /* OSEExampleCanvasViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEExampleCanvasViewController.m; sourceTree = "<group>"; };
 		1DBE30FE23F04AC100A07DA4 /* CommonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonDefine.h; sourceTree = "<group>"; };
 		1DD3296C2429DE6000A8ABC9 /* OSEUserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OSEUserInfoViewController.h; sourceTree = "<group>"; };
 		1DD3296D2429DE6000A8ABC9 /* OSEUserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OSEUserInfoViewController.m; sourceTree = "<group>"; };
@@ -226,6 +232,7 @@
 		1D38B18923E968A300DCE9F2 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				1DA545532586131900C9D254 /* Canvas */,
 				1D9BDFDD242A51210036001E /* CustomActivity.h */,
 				1D9BDFDE242A51210036001E /* CustomActivity.m */,
 				1D0DA5B423C9F7B500BE11A6 /* AppDelegate.h */,
@@ -297,6 +304,17 @@
 				1DEA1E6523ED2D5C00AC594A /* OSETutorialDetailViewController.m */,
 			);
 			path = Tutorial;
+			sourceTree = "<group>";
+		};
+		1DA545532586131900C9D254 /* Canvas */ = {
+			isa = PBXGroup;
+			children = (
+				1DA545542586131900C9D254 /* OSECanvas.h */,
+				1DA545552586131900C9D254 /* OSECanvas.m */,
+				1DA545582586133500C9D254 /* OSEExampleCanvasViewController.h */,
+				1DA545592586133500C9D254 /* OSEExampleCanvasViewController.m */,
+			);
+			path = Canvas;
 			sourceTree = "<group>";
 		};
 		1DD3296B2429DDF500A8ABC9 /* UserInfo */ = {
@@ -477,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DA3657B23EC81E700068EEF /* OSETutorialViewController.m in Sources */,
+				1DA5455A2586133500C9D254 /* OSEExampleCanvasViewController.m in Sources */,
 				1D0DA5BC23C9F7B500BE11A6 /* OSEHistroyDetailViewController.m in Sources */,
 				1DD329712429DFEF00A8ABC9 /* AppInfoMananger.m in Sources */,
 				1DD3296E2429DE6000A8ABC9 /* OSEUserInfoViewController.m in Sources */,
@@ -494,6 +513,7 @@
 				1D4093852428626E00954C46 /* OSELeftMenuController.m in Sources */,
 				1DE6A43A243062BE009D2791 /* WWJsonToModelTool.m in Sources */,
 				1D9656CA242D19BB00137AED /* NSObject+Tool.m in Sources */,
+				1DA545562586131900C9D254 /* OSECanvas.m in Sources */,
 				1D9BDFDC242922280036001E /* WebRefreshController.m in Sources */,
 				1D38B18123E95A0600DCE9F2 /* OSEBaseViewController.m in Sources */,
 				1D9BDFDF242A51210036001E /* CustomActivity.m in Sources */,

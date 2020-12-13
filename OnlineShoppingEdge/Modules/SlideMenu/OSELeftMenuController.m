@@ -20,6 +20,7 @@
 #define TrialVersion     @6
 //#define HistoricRecords  @7
 //#define Contribute       @8
+#define ExampleCanvas    @7
 
 @interface OSELeftMenuController ()
 
@@ -45,12 +46,14 @@
                                          @"page" :@""},
                       DeviceInfo      :@{@"title":@"设备信息",
                                          @"page" :@"OSEUserInfoViewController"},
-//                      TrialVersion    :@{@"title":@"体验版",
-//                                         @"page" :@""},
+                      TrialVersion    :@{@"title":@"体验版",
+                                         @"page" :@""},
 //                      Contribute      :@{@"title":@"捐赠",
 //                                         @"page" :@"OSEContributeViewController"},
 //                      HistoricRecords :@{@"title":@"历史记录",
 //                                         @"page" :@""},
+                      ExampleCanvas     :@{@"title":@"Example Canvas",
+                                           @"page" :@"OSEExampleCanvasViewController"},
         };
     }
     return self;
